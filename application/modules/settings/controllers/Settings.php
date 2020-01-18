@@ -363,16 +363,17 @@ class Settings extends CI_Controller {
 			$data['result_language']=$result_language;
 			//print_r($result_language);
 			$data['invoice'] = $this->settings_model->get_invoice_settings();
-			$clinic_id = $this->session->userdata('clinic_id');
-			$user_id = $this->session->userdata('user_id');
+			// $clinic_id = $this->session->userdata('clinic_id');
+			// $user_id = $this->session->userdata('user_id');
 
-			$header_data['clinic_id'] = $clinic_id;
-			$header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
-			$header_data['active_modules'] = $this->module_model->get_active_modules();
-			$header_data['user_id'] = $user_id;
-			$header_data['user'] = $this->admin_model->get_user($user_id);
-			$header_data['login_page'] = get_main_page();
-
+			// $header_data['clinic_id'] = $clinic_id;
+			// $header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
+			// $header_data['active_modules'] = $this->module_model->get_active_modules();
+			// $header_data['user_id'] = $user_id;
+			// $header_data['user'] = $this->admin_model->get_user($user_id);
+			// $header_data['login_page'] = get_main_page();
+			$header_data = get_header_data();
+			
 			$this->load->view('templates/header',$header_data);
 			$this->load->view('templates/menu');
 			$this->load->view('settings',$data);
@@ -388,15 +389,16 @@ class Settings extends CI_Controller {
             redirect('login/index');
         } else {
 			$data['tax_rates'] = $this->settings_model->get_tax_rates();
-			$clinic_id = $this->session->userdata('clinic_id');
-			$user_id = $this->session->userdata('user_id');
+			// $clinic_id = $this->session->userdata('clinic_id');
+			// $user_id = $this->session->userdata('user_id');
 
-			$header_data['clinic_id'] = $clinic_id;
-			$header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
-			$header_data['active_modules'] = $this->module_model->get_active_modules();
-			$header_data['user_id'] = $user_id;
-			$header_data['user'] = $this->admin_model->get_user($user_id);
-			$header_data['login_page'] = get_main_page();
+			// $header_data['clinic_id'] = $clinic_id;
+			// $header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
+			// $header_data['active_modules'] = $this->module_model->get_active_modules();
+			// $header_data['user_id'] = $user_id;
+			// $header_data['user'] = $this->admin_model->get_user($user_id);
+			// $header_data['login_page'] = get_main_page();
+			$header_data = get_header_data();
 
 			$this->load->view('templates/header',$header_data);
 			$this->load->view('templates/menu');
@@ -412,16 +414,17 @@ class Settings extends CI_Controller {
 			$this->form_validation->set_rules('tax_rate', $this->lang->line("tax_rate")." ".$this->lang->line("percentage"), 'required');
 			if ($this->form_validation->run() === FALSE) {
 
-				$clinic_id = $this->session->userdata('clinic_id');
-				$user_id = $this->session->userdata('user_id');
+				// $clinic_id = $this->session->userdata('clinic_id');
+				// $user_id = $this->session->userdata('user_id');
 
-				$header_data['clinic_id'] = $clinic_id;
-				$header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
-				$header_data['active_modules'] = $this->module_model->get_active_modules();
-				$header_data['user_id'] = $user_id;
-				$header_data['user'] = $this->admin_model->get_user($user_id);
-				$header_data['login_page'] = get_main_page();
-
+				// $header_data['clinic_id'] = $clinic_id;
+				// $header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
+				// $header_data['active_modules'] = $this->module_model->get_active_modules();
+				// $header_data['user_id'] = $user_id;
+				// $header_data['user'] = $this->admin_model->get_user($user_id);
+				// $header_data['login_page'] = get_main_page();
+				$header_data = get_header_data();
+				
 				$this->load->view('templates/header',$header_data);
 				$this->load->view('templates/menu');
 				$this->load->view('tax_rate_form');
@@ -442,15 +445,16 @@ class Settings extends CI_Controller {
 			if ($this->form_validation->run() === FALSE) {
 				$data['tax_rate'] = $this->settings_model->get_tax_rate($tax_id);
 
-				$clinic_id = $this->session->userdata('clinic_id');
-				$user_id = $this->session->userdata('user_id');
+				// $clinic_id = $this->session->userdata('clinic_id');
+				// $user_id = $this->session->userdata('user_id');
 
-				$header_data['clinic_id'] = $clinic_id;
-				$header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
-				$header_data['active_modules'] = $this->module_model->get_active_modules();
-				$header_data['user_id'] = $user_id;
-				$header_data['user'] = $this->admin_model->get_user($user_id);
-				$header_data['login_page'] = get_main_page();
+				// $header_data['clinic_id'] = $clinic_id;
+				// $header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
+				// $header_data['active_modules'] = $this->module_model->get_active_modules();
+				// $header_data['user_id'] = $user_id;
+				// $header_data['user'] = $this->admin_model->get_user($user_id);
+				// $header_data['login_page'] = get_main_page();
+				$header_data = get_header_data();
 
 				$this->load->view('templates/header',$header_data);
 				$this->load->view('templates/menu');
@@ -517,15 +521,16 @@ class Settings extends CI_Controller {
 			$data['enable_sync'] = $this->settings_model->get_data_value('enable_sync');
 			$data['sync_status'] = $this->settings_model->get_data_value('sync_status');
 			$data['online_url'] = $this->settings_model->get_data_value('online_url');
-			$clinic_id = $this->session->userdata('clinic_id');
-			$user_id = $this->session->userdata('user_id');
+			// $clinic_id = $this->session->userdata('clinic_id');
+			// $user_id = $this->session->userdata('user_id');
 
-			$header_data['clinic_id'] = $clinic_id;
-			$header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
-			$header_data['active_modules'] = $this->module_model->get_active_modules();
-			$header_data['user_id'] = $user_id;
-			$header_data['user'] = $this->admin_model->get_user($user_id);
-			$header_data['login_page'] = get_main_page();
+			// $header_data['clinic_id'] = $clinic_id;
+			// $header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
+			// $header_data['active_modules'] = $this->module_model->get_active_modules();
+			// $header_data['user_id'] = $user_id;
+			// $header_data['user'] = $this->admin_model->get_user($user_id);
+			// $header_data['login_page'] = get_main_page();
+			$header_data = get_header_data();
 
 			$this->load->view('templates/header',$header_data);
 
@@ -613,13 +618,13 @@ class Settings extends CI_Controller {
 			$clinic_id = $this->session->userdata('clinic_id');
 			$user_id = $this->session->userdata('user_id');
 
-			$header_data['clinic_id'] = $clinic_id;
-			$header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
-			$header_data['active_modules'] = $this->module_model->get_active_modules();
-			$header_data['user_id'] = $user_id;
-			$header_data['user'] = $this->admin_model->get_user($user_id);
-			$header_data['login_page'] = get_main_page();
-
+			// $header_data['clinic_id'] = $clinic_id;
+			// $header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
+			// $header_data['active_modules'] = $this->module_model->get_active_modules();
+			// $header_data['user_id'] = $user_id;
+			// $header_data['user'] = $this->admin_model->get_user($user_id);
+			// $header_data['login_page'] = get_main_page();
+			$header_data = get_header_data();
 
 
 			if(isset($file_upload['error'])){
@@ -719,15 +724,16 @@ class Settings extends CI_Controller {
             redirect('login/index');
         } else {
 			$data['reference_by'] = $this->settings_model->get_reference_by();
-			$clinic_id = $this->session->userdata('clinic_id');
-			$user_id = $this->session->userdata('user_id');
+			// $clinic_id = $this->session->userdata('clinic_id');
+			// $user_id = $this->session->userdata('user_id');
 
-			$header_data['clinic_id'] = $clinic_id;
-			$header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
-			$header_data['active_modules'] = $this->module_model->get_active_modules();
-			$header_data['user_id'] = $user_id;
-			$header_data['user'] = $this->admin_model->get_user($user_id);
-			$header_data['login_page'] = get_main_page();
+			// $header_data['clinic_id'] = $clinic_id;
+			// $header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
+			// $header_data['active_modules'] = $this->module_model->get_active_modules();
+			// $header_data['user_id'] = $user_id;
+			// $header_data['user'] = $this->admin_model->get_user($user_id);
+			// $header_data['login_page'] = get_main_page();
+			$header_data = get_header_data();
 
 			$this->load->view('templates/header',$header_data);
 			$this->load->view('templates/menu');
@@ -741,15 +747,17 @@ class Settings extends CI_Controller {
         } else {
 			$this->form_validation->set_rules('reference_option', $this->lang->line('option'), 'required');
 			if ($this->form_validation->run() === FALSE) {
-				$clinic_id = $this->session->userdata('clinic_id');
-				$user_id = $this->session->userdata('user_id');
+				// $clinic_id = $this->session->userdata('clinic_id');
+				// $user_id = $this->session->userdata('user_id');
 
-				$header_data['clinic_id'] = $clinic_id;
-				$header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
-				$header_data['active_modules'] = $this->module_model->get_active_modules();
-				$header_data['user_id'] = $user_id;
-				$header_data['user'] = $this->admin_model->get_user($user_id);
-				$header_data['login_page'] = get_main_page();
+				// $header_data['clinic_id'] = $clinic_id;
+				// $header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
+				// $header_data['active_modules'] = $this->module_model->get_active_modules();
+				// $header_data['user_id'] = $user_id;
+				// $header_data['user'] = $this->admin_model->get_user($user_id);
+				// $header_data['login_page'] = get_main_page();
+				$header_data = get_header_data();
+				
 				$this->load->view('templates/header',$header_data);
 				$this->load->view('templates/menu');
 				$this->load->view('settings/reference_by_form');
@@ -768,16 +776,17 @@ class Settings extends CI_Controller {
 
 			if ($this->form_validation->run() === FALSE) {
 				$data['reference'] = $this->settings_model->get_reference($reference_id);
-				$clinic_id = $this->session->userdata('clinic_id');
-				$user_id = $this->session->userdata('user_id');
+				// $clinic_id = $this->session->userdata('clinic_id');
+				// $user_id = $this->session->userdata('user_id');
 
-				$header_data['clinic_id'] = $clinic_id;
-				$header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
-				$header_data['active_modules'] = $this->module_model->get_active_modules();
-				$header_data['user_id'] = $user_id;
-				$header_data['user'] = $this->admin_model->get_user($user_id);
-				$header_data['login_page'] = get_main_page();
-
+				// $header_data['clinic_id'] = $clinic_id;
+				// $header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
+				// $header_data['active_modules'] = $this->module_model->get_active_modules();
+				// $header_data['user_id'] = $user_id;
+				// $header_data['user'] = $this->admin_model->get_user($user_id);
+				// $header_data['login_page'] = get_main_page();
+				$header_data = get_header_data();
+				
 				$this->load->view('templates/header',$header_data);
 				$this->load->view('templates/menu');
 				$this->load->view('settings/reference_by_form',$data);
