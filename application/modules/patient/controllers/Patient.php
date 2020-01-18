@@ -184,16 +184,19 @@ class Patient extends CI_Controller {
 				}
 				$clinic_id = $this->session->userdata('clinic_id');
 				$user_id = $this->session->userdata('user_id');
-				$header_data['clinic_id'] = $clinic_id;
-				$header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
-				$header_data['active_modules'] = $this->module_model->get_active_modules();
-				$header_data['user_id'] = $user_id;
-				$header_data['user'] = $this->admin_model->get_user($user_id);
-				$header_data['login_page'] = get_main_page();
-	            $header_data['software_name']= $this->settings_model->get_data_value("software_name");
+				// $header_data['clinic_id'] = $clinic_id;
+				// $header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
+				// $header_data['active_modules'] = $this->module_model->get_active_modules();
+				// $header_data['user_id'] = $user_id;
+				// $header_data['user'] = $this->admin_model->get_user($user_id);
+				// $header_data['login_page'] = get_main_page();
+	            // $header_data['software_name']= $this->settings_model->get_data_value("software_name");
 
 
+				// $this->load->view('templates/header',$header_data);
+				$header_data = get_header_data();
 				$this->load->view('templates/header',$header_data);
+				
 				$this->load->view('templates/menu');
 				$this->load->view('form', $data);
 				$this->load->view('templates/footer');
@@ -1654,17 +1657,20 @@ class Patient extends CI_Controller {
 			redirect('login/index/');
 		} else {
 			$data['patients_detail'] = $this->patient_model->new_inquiries();
-			$clinic_id = $this->session->userdata('clinic_id');
-			$user_id = $this->session->userdata('user_id');
-			$header_data['clinic_id'] = $clinic_id;
-			$header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
-			$header_data['active_modules'] = $this->module_model->get_active_modules();
-			$header_data['user_id'] = $user_id;
-			$header_data['user'] = $this->admin_model->get_user($user_id);
-			$header_data['login_page'] = get_main_page();
-            $header_data['software_name']= $this->settings_model->get_data_value("software_name");
+			// $clinic_id = $this->session->userdata('clinic_id');
+			// $user_id = $this->session->userdata('user_id');
+			// $header_data['clinic_id'] = $clinic_id;
+			// $header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
+			// $header_data['active_modules'] = $this->module_model->get_active_modules();
+			// $header_data['user_id'] = $user_id;
+			// $header_data['user'] = $this->admin_model->get_user($user_id);
+			// $header_data['login_page'] = get_main_page();
+            // $header_data['software_name']= $this->settings_model->get_data_value("software_name");
 
+			// $this->load->view('templates/header',$header_data);
+			$header_data = get_header_data();
 			$this->load->view('templates/header',$header_data);
+			
 			$this->load->view('templates/menu');
 			$this->load->view('new_inquiries', $data);
 			$this->load->view('templates/footer');
@@ -1693,17 +1699,20 @@ class Patient extends CI_Controller {
 			}elseif($this->input->post('print_report')!== NULL){
 				$this->print_patient_report($data['patient_report']);
 			}else{
-				$clinic_id = $this->session->userdata('clinic_id');
-				$user_id = $this->session->userdata('user_id');
-				$header_data['clinic_id'] = $clinic_id;
-				$header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
-				$header_data['active_modules'] = $this->module_model->get_active_modules();
-				$header_data['user_id'] = $user_id;
-				$header_data['user'] = $this->admin_model->get_user($user_id);
-				$header_data['login_page'] = get_main_page();
-                $header_data['software_name']= $this->settings_model->get_data_value("software_name");
+				// $clinic_id = $this->session->userdata('clinic_id');
+				// $user_id = $this->session->userdata('user_id');
+				// $header_data['clinic_id'] = $clinic_id;
+				// $header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
+				// $header_data['active_modules'] = $this->module_model->get_active_modules();
+				// $header_data['user_id'] = $user_id;
+				// $header_data['user'] = $this->admin_model->get_user($user_id);
+				// $header_data['login_page'] = get_main_page();
+                // $header_data['software_name']= $this->settings_model->get_data_value("software_name");
 
+				// $this->load->view('templates/header',$header_data);
+				$header_data = get_header_data();
 				$this->load->view('templates/header',$header_data);
+				
 				$this->load->view('templates/menu');
 				$this->load->view('patient/patient_report',$data);
 				$this->load->view('templates/footer');
