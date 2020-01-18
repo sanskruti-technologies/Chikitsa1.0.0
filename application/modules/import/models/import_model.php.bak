@@ -1,0 +1,31 @@
+<?php
+
+class Import_model extends CI_Model {
+
+    function __construct() {
+        parent::__construct();
+
+        $this->load->database();
+    }
+	public function insert_item_full($item_name,$desired_stock,$mrp){
+		$data['item_name'] = $item_name;
+        $data['desired_stock'] = $desired_stock;
+        $data['mrp'] = $mrp;
+        $this->db->insert('item',$data);
+		return $this->db->insert_id();
+	}
+	public function insert_medicine_full($medicine_name){
+		$data['medicine_name'] = $medicine_name;
+        $this->db->insert('medicines',$data);
+		return $this->db->insert_id();
+	}
+	public function insert_doctor_full($doctor_id,$schedule_day,$schedule_date,$from_time,$to_time){
+		$data['doctor_id'] = $doctor_id;
+		$data['schedule_day'] = $schedule_day;
+		$data['schedule_date'] = $schedule_date;
+		$data['from_time'] = $from_time;
+		$data['to_time'] = $to_time;
+        $this->db->insert('doctor_schedule',$data);
+		return $this->db->insert_id();
+	}
+}

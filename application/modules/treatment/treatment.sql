@@ -1,0 +1,35 @@
+INSERT INTO %db_prefix%modules (module_name,module_display_name,module_description,module_status) VALUES ('treatment', 'Treatments',"Manage Treatment List and their Prices", '1');
+CREATE TABLE IF NOT EXISTS %db_prefix%treatments (id int(11) NOT NULL AUTO_INCREMENT,treatment varchar(80) DEFAULT NULL,price float(11,2) DEFAULT NULL,PRIMARY KEY (id),UNIQUE KEY treatment (treatment));
+INSERT INTO %db_prefix%navigation_menu (menu_name,parent_name,menu_order,menu_url,menu_icon,menu_text,required_module) VALUES ('treatment', '', 800,'treatment/index', 'fa-heartbeat', 'Treatments','treatment');
+UPDATE %db_prefix%modules SET module_version = '0.0.3' WHERE module_name = 'treatment';
+--0.0.4
+UPDATE %db_prefix%modules SET module_version = '0.0.4' WHERE module_name = 'treatment';
+--0.0.5
+UPDATE %db_prefix%navigation_menu SET menu_icon = NULL WHERE menu_name = "treatment";	
+UPDATE %db_prefix%navigation_menu SET parent_name = 'administration' WHERE menu_name = "treatment";
+CREATE TABLE IF NOT EXISTS %db_prefix%visit_treatment_r ( visit_treatment_id int(11) NOT NULL AUTO_INCREMENT, visit_id int(11) NOT NULL, treatment_id int(11) NOT NULL, PRIMARY KEY (visit_treatment_id));
+ALTER TABLE %db_prefix%visit_treatment_r ADD UNIQUE KEY visit_treatment_r_uq (visit_id, treatment_id);
+INSERT INTO %db_prefix%visit_treatment_r( visit_id, treatment_id ) SELECT visit.visit_id, treatments.id FROM %db_prefix%visit AS visit INNER JOIN %db_prefix%bill AS bill ON bill.visit_id = visit.visit_id INNER JOIN %db_prefix%bill_detail AS bill_detail ON bill_detail.bill_id = bill.bill_id INNER JOIN %db_prefix%treatments AS treatments ON treatments.treatment = bill_detail.particular ORDER BY visit.visit_id;
+INSERT INTO %db_prefix%navigation_menu (menu_name, parent_name, menu_order, menu_url, menu_icon, menu_text, required_module) VALUES ( 'treatment_report', 'reports', '300', 'treatment/treatment_report', NULL, 'Treatment Report', 'treatment');
+UPDATE %db_prefix%modules SET module_version = '0.0.5' WHERE module_name = 'treatment';
+ALTER TABLE %db_prefix%treatments ADD is_deleted INT NULL;
+ALTER TABLE %db_prefix%visit_treatment_r ADD is_deleted INT NULL;
+ALTER TABLE %db_prefix%treatments ADD sync_status INT NULL;
+ALTER TABLE %db_prefix%visit_treatment_r ADD sync_status INT NULL;
+UPDATE %db_prefix%modules SET module_display_name = 'Treatment' WHERE module_name = 'treatment';
+INSERT INTO %db_prefix%menu_access (menu_name, category_name, allow, is_deleted, sync_status) VALUES ('treatment', 'Administrator', '1', NULL, NULL);
+INSERT INTO %db_prefix%menu_access (menu_name, category_name, allow, is_deleted, sync_status) VALUES ('treatment_report', 'Administrator', '1', NULL, NULL);
+INSERT INTO %db_prefix%menu_access (menu_name, category_name, allow) VALUES ('treatment', 'System Administrator', '1');
+INSERT INTO %db_prefix%menu_access (menu_name, category_name, allow) VALUES ('treatment_report', 'System Administrator', '1');
+UPDATE %db_prefix%modules SET module_version = '0.0.6' WHERE module_name = 'treatment';
+UPDATE %db_prefix%navigation_menu SET menu_text = 'treatments' WHERE menu_name = 'treatment';
+UPDATE %db_prefix%navigation_menu SET menu_text = 'treatment_report' WHERE menu_name = 'treatment_report';
+UPDATE %db_prefix%modules SET module_version = '0.0.7' WHERE module_name = 'treatment';
+ALTER TABLE %db_prefix%treatments ADD tax_id INT(11) NULL;
+UPDATE %db_prefix%modules SET module_version = '0.0.8' WHERE module_name = 'treatment';
+ALTER TABLE %db_prefix%treatments ADD share_amount INT(11) NOT NULL;
+ALTER TABLE %db_prefix%treatments ADD share_type VARCHAR(150) NOT NULL;
+INSERT INTO %db_prefix%menu_access (menu_name, category_name, allow) VALUES ('treatment', 'System Administrator', '1');
+INSERT INTO %db_prefix%menu_access (menu_name, category_name, allow) VALUES ('treatment_report', 'System Administrator', '1');
+UPDATE %db_prefix%modules SET module_version = '0.0.9' WHERE module_name = 'treatment';
+ALTER TABLE %db_prefix%treatments ADD departments VARCHAR(25) NULL AFTER share_type;

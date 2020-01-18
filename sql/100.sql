@@ -1,0 +1,1 @@
+ALTER TABLE `ck_users` ADD `profile_image` VARCHAR(250) NULL AFTER `sync_status`; 

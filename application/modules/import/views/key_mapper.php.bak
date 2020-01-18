@@ -1,0 +1,47 @@
+<?php 
+	$item_fields = array('item_name' => $this->lang->line('item_name'),
+						'desired_stock' => $this->lang->line('desired_stock'),
+						'mrp' => $this->lang->line('mrp'));
+	$fields = $item_fields;
+?>
+<div id="page-inner">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-primary">
+			<div class="panel-heading">
+				Map Keys
+			</div>
+			<div class="panel-body">
+				<?php echo form_open('import/key_mapper') ?>
+				<input type='hidden' name='update_existing' value='<?=$update_existing;?>' />
+				<input type='hidden' name='file_path' value='<?=$file_path;?>' />				
+				<?php $i=0; ?>
+				<?php foreach($headers as $header){ ?>
+					
+					<?php echo '<input type="hidden" name="row_headers[]" value="'. $row_headers[$i]. '">'; ?>
+					<div class="col-md-4">
+						<div class="panel panel-primary">
+							<div class="panel-heading"><?php echo $header;?></div>
+						</div>
+						<div class="panel-body">
+							<span>Map CSV File Column <?php echo $header;?> To </span>
+							<select name="<?php echo $row_headers[$i];?>" class="form-control">
+								<?php foreach($fields as $key => $value) { ?>
+									<option value="<?=$key;?>" <?php if(trim($header) == $value) {echo "selected";} ?>><?=$value;?></option>
+								<?php } ?>
+							</select>
+						</div>
+					</div>
+					<?php $i=$i+1; ?>
+				<?php } ?>
+				<div class="col-md-12">
+					<div class="form-group">
+						<button class="btn btn-primary" type="submit" name="submit" />Submit</button>
+					</div>
+				</div>
+				<?php echo form_close() ?>    	
+			</div>
+		</div>
+	</div>
+</div>
+		

@@ -1,0 +1,16 @@
+DROP TABLE %db_prefix%item;
+DROP TABLE %db_prefix%supplier;
+DROP TABLE %db_prefix%purchase;
+DROP TABLE %db_prefix%sell;
+DROP TABLE %db_prefix%sell_detail;
+DROP VIEW %db_prefix%view_purchase;
+DROP VIEW %db_prefix%view_purchase_total;
+DELETE FROM %db_prefix%navigation_menu WHERE menu_name = 'stock';
+DELETE FROM %db_prefix%navigation_menu WHERE menu_name = 'stock_item';
+DELETE FROM %db_prefix%navigation_menu WHERE menu_name = 'stock_supplier';
+DELETE FROM %db_prefix%navigation_menu WHERE menu_name = 'stock_purchase';
+DELETE FROM %db_prefix%navigation_menu WHERE menu_name = 'stock_purchase_report';
+DELETE FROM %db_prefix%navigation_menu WHERE menu_name = 'stock_sell';
+DELETE FROM %db_prefix%navigation_menu WHERE menu_name = 'stock_all_sell';
+DELETE FROM %db_prefix%navigation_menu WHERE menu_name = 'stock_sell_report';
+DELETE FROM %db_prefix%navigation_menu WHERE menu_name = 'stock_stock_report';
