@@ -1677,7 +1677,7 @@ class Patient extends CI_Controller {
 				$this->print_patient_report($data['patient_report']);
 			}else{
 				$header_data = get_header_data();
-				$this->load->view('templates/header',$header_data);				
+				$this->load->view('templates/header',$header_data);		
 				$this->load->view('templates/menu');
 				$this->load->view('patient/patient_report',$data);
 				$this->load->view('templates/footer');
