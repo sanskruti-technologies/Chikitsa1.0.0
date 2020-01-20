@@ -30,7 +30,7 @@ class Module extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->helper('file');
 		$this->load->helper('unzip_helper');
-		$this->load->helper('mainpage');
+		$this->load->helper('header');
 
         $this->load->library('form_validation');
 		$this->load->library('session');
@@ -54,16 +54,7 @@ class Module extends CI_Controller {
 				$data['module_license_status'] = $updates;
 			}
 			$data['software_name'] = $this->menu_model->get_data_value('software_name');
-			$clinic_id = $this->session->userdata('clinic_id');
-			$user_id = $this->session->userdata('user_id');
-			$header_data['clinic_id'] = $clinic_id;
-			$header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
-			$header_data['active_modules'] = $this->module_model->get_active_modules();
-			$header_data['user_id'] = $user_id;
-			$header_data['user'] = $this->admin_model->get_user($user_id);
-			$header_data['login_page'] = get_main_page();
-			$header_data['software_name']= $this->settings_model->get_data_value("software_name");
-
+			$header_data = get_header_data();
 			$this->load->view('templates/header',$header_data);
 		    $this->load->view('templates/menu');
 			$this->load->view('browse',$data);

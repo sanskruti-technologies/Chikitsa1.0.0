@@ -98,7 +98,8 @@ class Payment extends CI_Controller {
 						$this->load->model('sessions/sessions_model');
 						$data['sessions'] = $this->sessions_model->get_sessions();
 					}
-					
+					// $clinic_id = $this->session->userdata('clinic_id');
+					// $user_id = $this->session->userdata('user_id');
 					$header_data = get_header_data();
 					$this->load->view('templates/header',$header_data);
 					

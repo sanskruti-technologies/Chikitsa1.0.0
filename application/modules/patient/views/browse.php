@@ -34,28 +34,7 @@
 					</div>
 					<?php ?>
 					<?php echo form_open('patient/index/'); ?>
-					<!--<div class="col-md-6">
-						<select name="show_columns[]" id="show_columns" class="form-control" multiple="multiple" >
-							<option <?php if(in_array($this->lang->line('id'),$show_columns)) echo "selected";?>><?php echo $this->lang->line('id');?></option>
-							<option <?php if(in_array($this->lang->line('ssn_id'),$show_columns)) echo "selected";?>><?php echo $this->lang->line('ssn_id');?></option>
-							<option <?php if(in_array($this->lang->line('name'),$show_columns)) echo "selected";?>><?php echo $this->lang->line('name');?></option>
-							<option <?php if(in_array($this->lang->line('display')." ".$this->lang->line("name"),$show_columns)) echo "selected";?>><?php echo $this->lang->line("display")." ".$this->lang->line("name");?></option>
-							<option <?php if(in_array($this->lang->line('phone_number'),$show_columns)) echo "selected";?>><?php echo $this->lang->line("phone_number");?></option>
-							<option <?php if(in_array($this->lang->line('email'),$show_columns)) echo "selected";?>><?php echo $this->lang->line("email");?></option>
-							<option <?php if(in_array($this->lang->line('reference_by'),$show_columns)) echo "selected";?>><?php echo $this->lang->line("reference_by");?></option>
-							<option <?php if(in_array($this->lang->line('added_date'),$show_columns)) echo "selected";?>><?php echo $this->lang->line("added_date");?></option>
-							<?php if($level != "Receptionist") { ?>
-								<option <?php if(in_array($this->lang->line('visit'),$show_columns)) echo "selected";?>><?php echo $this->lang->line("visit");?></option>
-							<?php } ?>
-							<option <?php if(in_array($this->lang->line('follow_up'),$show_columns)) echo "selected";?>><?php echo $this->lang->line("follow_up");?></option>
-							<?php if($level != "Receptionist") { ?>
-								<option <?php if(in_array($this->lang->line('delete'),$show_columns)) echo "selected";?>><?php echo $this->lang->line("delete");?></option>
-							<?php } ?>
-						</select>
-					</div>
-					<div class="col-md-1">
-						<button class="btn btn-primary square-btn-adjust" type="submit" name="submit" /><?php echo $this->lang->line('go');?></button>
-					</div>-->
+					
 					<?php echo form_close(); ?>
 							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
 								<div class="modal-dialog">
@@ -67,10 +46,13 @@
 										<?php echo form_open(); ?>
 										<div class="modal-body">
 												<div class="col-md-12"><label><?php echo $this->lang->line('name');?>:</label></div>
+												<div class="col-md-12">
+												<div class="row">
 												<div class="col-md-4"><input type="text" id="first_name" name="first_name" class="form-control" placeholder="first name"/></div>
 												<div class="col-md-4"><input type="text" id="middle_name" name="middle_name" class="form-control" placeholder="middle name"/></div>
 												<div class="col-md-4"><input type="text" id="last_name" name="last_name" class="form-control" placeholder="last name"/></div>
-
+												</div>
+												</div>
 
 												<div class="col-md-12"><label><?php echo $this->lang->line('email_id');?>:</label></div>
 												<div class="col-md-12"><input type="text" id="email_id" name="email_id" class="form-control"/></div>

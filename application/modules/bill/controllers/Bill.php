@@ -136,6 +136,7 @@ class Bill extends CI_Controller {
 			$data['session_total'] = 0;
 			$data['treatment_total'] = 0;
 			$data['lab_test_total'] = 0;
+			$data['room_total'] = 0;
 			$data['item_total'] = 0;
 			$data['bill_details'] = array();
 			$data['tax_type']=$this->settings_model->get_data_value('tax_type');
