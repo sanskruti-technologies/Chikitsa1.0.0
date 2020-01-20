@@ -34,7 +34,7 @@
 					</div>
 					<?php ?>
 					<?php echo form_open('patient/index/'); ?>
-					<div class="col-md-6">
+					<!--<div class="col-md-6">
 						<select name="show_columns[]" id="show_columns" class="form-control" multiple="multiple" >
 							<option <?php if(in_array($this->lang->line('id'),$show_columns)) echo "selected";?>><?php echo $this->lang->line('id');?></option>
 							<option <?php if(in_array($this->lang->line('ssn_id'),$show_columns)) echo "selected";?>><?php echo $this->lang->line('ssn_id');?></option>
@@ -55,7 +55,7 @@
 					</div>
 					<div class="col-md-1">
 						<button class="btn btn-primary square-btn-adjust" type="submit" name="submit" /><?php echo $this->lang->line('go');?></button>
-					</div>
+					</div>-->
 					<?php echo form_close(); ?>
 							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
 								<div class="modal-dialog">
