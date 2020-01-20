@@ -72,11 +72,12 @@ $( window ).load(function() {
 										</div>
 										<?php echo form_open(); ?>
 										<div class="modal-body">
+											
 												<div class="col-md-12"><label><?php echo $this->lang->line('name');?>:</label></div>
 												<div class="col-md-4"><input type="text" id="first_name" name="first_name" class="form-control" placeholder="first name"/></div>
 												<div class="col-md-4"><input type="text" id="middle_name" name="middle_name" class="form-control" placeholder="middle name"/></div>
 												<div class="col-md-4"><input type="text" id="last_name" name="last_name" class="form-control" placeholder="last name"/></div>
-
+											
 
 												<div class="col-md-12"><label><?php echo $this->lang->line('email_id');?>:</label></div>
 												<div class="col-md-12"><input type="text" id="email_id" name="email_id" class="form-control"/></div>
@@ -84,7 +85,7 @@ $( window ).load(function() {
 
 												<div class="col-md-12"><label><?php echo $this->lang->line('mobile_no');?>:</label></div>
 												<div class="col-md-12"><input type="text" id="mobile_no" name="mobile_no" class="form-control"/></div>
-
+														
 										</div>
 										<div class="modal-footer">
 											<input id="add_inquiry_submit" type="submit" name="submit" value="Save" class="btn btn-primary" data-dismiss="modal"/>
