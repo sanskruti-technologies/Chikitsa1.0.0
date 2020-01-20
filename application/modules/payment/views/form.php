@@ -471,14 +471,17 @@
 </script>
 
 <div id="page-inner">
-	<div class="row">
-		<div class="col-md-12">
+	
+		
+		
 			<div class="panel panel-primary">
+				
 				<div class="panel-heading">
-					<div class="row">
+						
 						<h2><?php echo $this->lang->line("payment_form");?></h2>
-					</div>
+					
 				</div>
+				
 				<div class="panel-body">
 					<?php if($payment_status == 'rejected'){ ?>
 							<div class='alert alert-danger'><?php echo $this->lang->line('this_payment_is_rejected');?></div>
@@ -504,6 +507,7 @@
 								</div>
 
 								<div class="panel-body table-responsive-15">
+								<div class="row">
 					
 									<div class="col-md-3">
 										<label for="display_id"><?php echo $this->lang->line('patient_id');?></label>
@@ -523,10 +527,12 @@
 										<input type="text" <?php if(isset($patient)){echo "readonly";}?> name="phone_number" id="phone_number" value="<?php if(isset($patient)){echo $patient['phone_number']; } ?>" class="form-control"/>
 									</div>
 								</div>
+								</div>
 							</div>
 							<input type="hidden" name="patient_id" id="patient_id" value="<?= $patient_id; ?>" />
 							<?php echo form_error('patient_id','<div class="alert alert-danger">','</div>'); ?>
 					</div>
+					<div class="col-md-12">
 					<div class="row">
 						<div class="table-responsive table-responsive-10">
 							<table class="display responsive nowrap" style="width:100%" id="bill_table">
@@ -609,18 +615,27 @@
 							</table>
 						</div>
 					</div>
+					</div>
 					<div class="col-md-12">
+						
 						<div class="form-group">
+							<div class="col-md-12">
+							<div class="row">
 							<label for="title"><?=$this->lang->line('adjust_from_account');?></label>
+							</div>
+							</div>
 							<div class="checkbox">
 								<label>
 									<input type="checkbox" id="adjust_from_account" name="adjust_from_account" value="1"><span style="display:none;" id="adjust_from_account_amount"></span>
 									<span id="adjust_from_account_display"></span>
 								</label>
 							</div>
+							
 						</div>
-					</div>
+					</div>	
+					<div class="col-md-12">
 					<div class="table-responsive-30">
+					<div class="row">
 						<div class="form-group col-md-6">
 							<label for="title"><?php echo $this->lang->line('payment_amount');?></label>        
 							<input type="text" name="payment_amount" id="payment_amount" class="form-control" value="<?=$payment_pay_amount;?>" />
@@ -632,6 +647,8 @@
                             <?php echo form_error('payment_date','<div class="alert alert-danger">','</div>'); ?>
                         </div>
 					</div>
+					</div>
+					</div>
 					<div class="table-responsive-30">
 						<div class="form-group col-md-6">
 							<label for="title"><?php echo $this->lang->line('payment_mode');?></label>
@@ -642,14 +659,16 @@
 							</select>
 						</div>
 					</div>
-					<div class="col-md-12">
+					<div class="col-md-6">
 						<div class="form-group">
 							<label id="additional_detail_label" for="title"><?php echo $this->lang->line('additional_detail');?></label>
 							<input type="text" name="additional_detail" id="additional_detail" class="form-control" value="<?=$payment_additional_detail;?>" />
 							<?php echo form_error('additional_detail','<div class="alert alert-danger">','</div>'); ?>
 						</div>
 					</div>
+					
 					<div class="col-md-12" id="cash_calculator">
+						<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="title"><?php echo $this->lang->line('paid_cash');?></label>
@@ -662,6 +681,7 @@
 								<label for="title"><?php echo $this->lang->line('return_change');?></label>
 								<input type="text" name="return_change" id="return_change" readonly="readonly" class="form-control" value="" />
 							</div>
+						</div>
 						</div>
 					</div>
 					<div class="table-responsive-25">
