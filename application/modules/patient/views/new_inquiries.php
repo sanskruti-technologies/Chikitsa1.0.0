@@ -73,10 +73,13 @@ $( window ).load(function() {
 										<?php echo form_open(); ?>
 										<div class="modal-body">
 												<div class="col-md-12"><label><?php echo $this->lang->line('name');?>:</label></div>
+												<div class="col-md-12">
+												<div class="row">
 												<div class="col-md-4"><input type="text" id="first_name" name="first_name" class="form-control" placeholder="first name"/></div>
 												<div class="col-md-4"><input type="text" id="middle_name" name="middle_name" class="form-control" placeholder="middle name"/></div>
 												<div class="col-md-4"><input type="text" id="last_name" name="last_name" class="form-control" placeholder="last name"/></div>
-
+												</div>
+												</div>
 
 												<div class="col-md-12"><label><?php echo $this->lang->line('email_id');?>:</label></div>
 												<div class="col-md-12"><input type="text" id="email_id" name="email_id" class="form-control"/></div>
