@@ -61,7 +61,7 @@
 	</div>
 	
 <script type="text/javascript" charset="utf-8">
-$(window).load(function() {
+$(window).on('load', function(){
     $('#patient_table').dataTable();
 	
 	$('.confirmDelete').click(function(){
