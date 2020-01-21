@@ -76,7 +76,6 @@ class Patient extends CI_Controller {
     }
 	public function ajax_all_patients() {
 
-		$show_columns = $this->input->post('show_columns');
 		$level = $this->session->userdata('category');
 		$patients = $this->patient_model->find_patient();
 		$contact_details = $this->contact_model->get_all_contact_details();
@@ -206,16 +205,7 @@ class Patient extends CI_Controller {
 					$data['def_dateformate'] = $this->settings_model->get_date_formate();
 					$data['error'] = $file_upload['error'];
 					$data['references'] = $this->settings_model->get_reference_by();
-					$clinic_id = $this->session->userdata('clinic_id');
-					$user_id = $this->session->userdata('user_id');
-					$header_data['clinic_id'] = $clinic_id;
-					$header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
-					$header_data['active_modules'] = $this->module_model->get_active_modules();
-					$header_data['user_id'] = $user_id;
-					$header_data['user'] = $this->admin_model->get_user($user_id);
-					$header_data['login_page'] = get_main_page();
-                    $header_data['software_name']= $this->settings_model->get_data_value("software_name");
-
+					$header_data = get_header_data();
 
 					$this->load->view('templates/header',$header_data);
 					$this->load->view('templates/menu');
@@ -601,17 +591,7 @@ class Patient extends CI_Controller {
 			$data['visits'] = $this->patient_model->get_previous_visits($patient_id,$doctor_id);
 			$data['tax_type'] = $this->settings_model->get_data_value('tax_type');
 
-			$clinic_id = $this->session->userdata('clinic_id');
-			$user_id = $this->session->userdata('user_id');
-
-			$header_data['clinic_id'] = $clinic_id;
-			$header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
-			$header_data['active_modules'] = $this->module_model->get_active_modules();
-			$header_data['user_id'] = $user_id;
-			$header_data['user'] = $this->admin_model->get_user($user_id);
-			$header_data['login_page'] = get_main_page();
-            $header_data['software_name']= $this->settings_model->get_data_value("software_name");
-
+			$header_data = get_header_data();
 
 			$this->load->view('templates/header',$header_data);
 			$this->load->view('templates/menu');
@@ -712,17 +692,7 @@ class Patient extends CI_Controller {
 				}
 				$data['patient_id'] = $patient_id;
 				$data['appointment_id'] = $appointment_id;
-                $clinic_id = $this->session->userdata('clinic_id');
-				$user_id = $this->session->userdata('user_id');
-
-				$header_data['clinic_id'] = $clinic_id;
-				$header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
-				$header_data['active_modules'] = $this->module_model->get_active_modules();
-				$header_data['user_id'] = $user_id;
-				$header_data['user'] = $this->admin_model->get_user($user_id);
-				$header_data['login_page'] = get_main_page();
-                $header_data['software_name']= $this->settings_model->get_data_value("software_name");
-
+                $header_data = get_header_data();
 
 				$this->load->view('templates/header',$header_data);
 				$this->load->view('templates/menu');
@@ -1049,17 +1019,7 @@ class Patient extends CI_Controller {
 			$data['session_total'] = $this->patient_model->get_total("session",$visit_id);
 			$data['paid_amount'] = $this->payment_model->get_paid_amount($bill_id);
 			$data['discount'] = $this->bill_model->get_discount_amount($bill_id);
-			$clinic_id = $this->session->userdata('clinic_id');
-			$user_id = $this->session->userdata('user_id');
-
-			$header_data['clinic_id'] = $clinic_id;
-			$header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
-			$header_data['active_modules'] = $this->module_model->get_active_modules();
-			$header_data['user_id'] = $user_id;
-			$header_data['user'] = $this->admin_model->get_user($user_id);
-			$header_data['login_page'] = get_main_page();
-            $header_data['software_name']= $this->settings_model->get_data_value("software_name");
-
+			$header_data = get_header_data();
 			$this->load->view('templates/header',$header_data);
 			$this->load->view('templates/menu');
 			$this->load->view('bill', $data);
@@ -1402,19 +1362,8 @@ class Patient extends CI_Controller {
 				$data['bill_from_date'] = date('Y-m-d');
 				$data['bill_to_date'] = date('Y-m-d');
 				$data['reports'] = $this->bill_model->get_bill_report($data['bill_from_date'],$data['bill_to_date'],$data['selected_doctor'],$data['clinic_id']);
-				$clinic_id = $this->session->userdata('clinic_id');
-				$user_id = $this->session->userdata('user_id');
-
-				$header_data['clinic_id'] = $clinic_id;
-				$header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
-				$header_data['active_modules'] = $this->module_model->get_active_modules();
-				$header_data['user_id'] = $user_id;
-				$header_data['user'] = $this->admin_model->get_user($user_id);
-				$header_data['login_page'] = get_main_page();
-                $header_data['software_name']= $this->settings_model->get_data_value("software_name");
-
-
-				$this->load->view('templates/header_chikitsa',$header_data);
+				$header_data = get_header_data();
+				$this->load->view('templates/header',$header_data);
 				$this->load->view('templates/menu');
                 $this->load->view('patient/bill_detail_report', $data);
                 $this->load->view('templates/footer');
@@ -1465,18 +1414,10 @@ class Patient extends CI_Controller {
 					}else{
 						$data['selected_doctor'] = array();
 					}
-
-					$clinic_id = $this->session->userdata('clinic_id');
-					$user_id = $this->session->userdata('user_id');
-					$header_data['clinic_id'] = $clinic_id;
-					$header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
-					$header_data['active_modules'] = $this->module_model->get_active_modules();
-					$header_data['user_id'] = $user_id;
-					$header_data['user'] = $this->admin_model->get_user($user_id);
-					$header_data['login_page'] = get_main_page();
-			        $header_data['software_name']= $this->settings_model->get_data_value("software_name");
-
-					$this->load->view('templates/header_chikitsa',$header_data);
+					
+					$header_data = get_header_data();
+					$this->load->view('templates/header',$header_data);
+					//$this->load->view('templates/header_chikitsa',$header_data);
 					$this->load->view('templates/menu');
 					$this->load->view('patient/bill_detail_report', $data);
 					$this->load->view('templates/footer');
@@ -1557,17 +1498,7 @@ class Patient extends CI_Controller {
 				$data['doctors'] = $this->admin_model->get_doctor();
 			}
 			$data['working_days']=$this->settings_model->get_exceptional_days();
-            $clinic_id = $this->session->userdata('clinic_id');
-			$user_id = $this->session->userdata('user_id');
-
-			$header_data['clinic_id'] = $clinic_id;
-			$header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
-			$header_data['active_modules'] = $this->module_model->get_active_modules();
-			$header_data['user_id'] = $user_id;
-			$header_data['user'] = $this->admin_model->get_user($user_id);
-			$header_data['login_page'] = get_main_page();
-            $header_data['software_name']= $this->settings_model->get_data_value("software_name");
-
+            $header_data = get_header_data();
 			$this->load->view('templates/header',$header_data);
 			$this->load->view('templates/menu');
             $this->load->view('followup', $data);
@@ -1623,17 +1554,7 @@ class Patient extends CI_Controller {
 			}else{
 				$data['doctors'] = $this->admin_model->get_doctor();
 			}
-            $clinic_id = $this->session->userdata('clinic_id');
-			$user_id = $this->session->userdata('user_id');
-
-			$header_data['clinic_id'] = $clinic_id;
-			$header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
-			$header_data['active_modules'] = $this->module_model->get_active_modules();
-			$header_data['user_id'] = $user_id;
-			$header_data['user'] = $this->admin_model->get_user($user_id);
-			$header_data['login_page'] = get_main_page();
-            $header_data['software_name']= $this->settings_model->get_data_value("software_name");
-
+            $header_data = get_header_data();
 			$this->load->view('templates/header',$header_data);
 			$this->load->view('templates/menu');
             $this->load->view('followup', $data);

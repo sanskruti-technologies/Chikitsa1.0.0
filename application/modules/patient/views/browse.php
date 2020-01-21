@@ -29,9 +29,7 @@
 						<a title="<?php echo $this->lang->line("add")." ".$this->lang->line("patient");?>" href="<?php echo base_url()."index.php/patient/insert/" ?>" class="btn btn-primary square-btn-adjust"><?php echo $this->lang->line("add")." ".$this->lang->line("patient");?></a>
 						<a href="#" class="btn square-btn-adjust btn-primary" data-toggle="modal" data-target="#myModal"><?php echo $this->lang->line('add_inquiry');?></a>
 					</div>
-					<div class="col-md-1">
-						<label for="show_columns"><?php echo $this->lang->line('show_columns');?></label>
-					</div>
+					
 					<?php ?>
 					<?php echo form_open('patient/index/'); ?>
 					
@@ -73,45 +71,23 @@
 
 					<div class="col-md-12" style="margin-top:15px;">
 					<div class="table-responsive">
-						<table class="table table-striped table-bordered table-hover" id="patient_table">
+						<table class="table table-striped table-bordered table-hover display responsive nowrap" id="patient_table">
 							<thead>
 								<tr>
-									<?php if(in_array($this->lang->line('id'),$show_columns)) {?>
 									<th><?php echo $this->lang->line("id");?></th>
-									<?php } ?>
-									<?php if(in_array($this->lang->line('ssn_id'),$show_columns)) {?>
 									<th><?php echo $this->lang->line("ssn_id");?></th>
-									<?php } ?>
-									<?php if(in_array($this->lang->line('name'),$show_columns)) {?>
 									<th><?php echo $this->lang->line("name");?></th>
-									<?php } ?>
-									<?php if(in_array($this->lang->line('display')." ".$this->lang->line("name"),$show_columns)) {?>
-									<th><?php echo $this->lang->line("display")." ".$this->lang->line("name");?></th>
-									<?php } ?>
-									<?php if(in_array($this->lang->line('phone_number'),$show_columns)) {?>
+									<!--<th><?php echo $this->lang->line("display")." ".$this->lang->line("name");?></th>-->
 									<th><?php echo $this->lang->line("phone_number");?></th>
-									<?php } ?>
-									<?php if(in_array($this->lang->line('email'),$show_columns)) {?>
 									<th><?php echo $this->lang->line("email");?></th>
-									<?php } ?>
-									<?php if(in_array($this->lang->line('reference_by'),$show_columns)) {?>
 									<th><?php echo $this->lang->line("reference_by");?></th>
-									<?php } ?>
-									<?php if(in_array($this->lang->line('added_date'),$show_columns)) {?>
 									<th><?php echo $this->lang->line("added_date");?></th>
-									<?php } ?>
-									<?php if(in_array($this->lang->line('visit'),$show_columns)) {?>
 									<?php if($level != "Receptionist") { ?>
 									<th><?php echo $this->lang->line("visit");?></th>
 									<?php } ?>
-									<?php } ?>
-									<?php if(in_array($this->lang->line('follow_up'),$show_columns)) {?>
 									<th><?php echo $this->lang->line("follow_up");?></th>
-									<?php } ?>
-									<?php if(in_array($this->lang->line('delete'),$show_columns)) {?>
 									<?php if($level != "Receptionist") { ?>
 									<th><?php echo $this->lang->line("delete");?></th>
-									<?php } ?>
 									<?php } ?>
 								</tr>
 							</thead>
@@ -125,22 +101,27 @@
 
 
 <script type="text/javascript" charset="utf-8">
-$( window ).load(function() {
-	$('#show_columns').chosen();
-
-
+$(window).on('load', function(){
 
     var patient_table =  $("#patient_table").dataTable({
 		"ajax": {"url": "<?=site_url('patient/ajax_all_patients');?>"},
+		"responsive": true,
 		"columns": [
-			<?php foreach($show_columns as $show_column){ ?>
-				{ "data": "<?=$show_column;?>" },
-			<?php } ?>
-
-        ],
+			{ "data": "Id" },
+			{ "data": "Adhar Number" },
+			{ "data": "Name" },
+			//{ "data": "Display Name" },
+			{ "data": "Phone Number" },
+			{ "data": "Email" },
+			{ "data": "Reference By" },
+			{ "data": "Added Date" },
+			{ "data": "Visit" },
+			{ "data": "Follow Up" },
+			{ "data": "Delete" },
+		],
 		"pageLength": 50
 	});
-
+	/*
 	$(document).on('click', '.deletePatient' , function() {
 		if(confirm("Are you sure you want to delete?")){
 			var patient_id = $(this).data('patient_id');
@@ -169,6 +150,6 @@ $( window ).load(function() {
 				alert(data);
 				location.reload();
 			});
-	});
+	});*/
 });
 </script>
