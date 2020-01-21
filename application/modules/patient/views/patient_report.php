@@ -16,6 +16,8 @@
     along with Chikitsa.  If not, see <https://www.gnu.org/licenses/>.
 */
 ?>
+<script src="<?= base_url() ?>assets/vendor/chosen/chosen.jquery.min.js"></script>
+<link href="<?= base_url() ?>assets/vendor/chosen/chosen.min.css" rel="stylesheet">
 <!--<script src="<?= base_url() ?>assets/js/chosen.jquery.min.js"></script>
 <link href="<?= base_url() ?>assets/css/chosen.min.css" rel="stylesheet" />-->
 <script type="text/javascript" charset="utf-8">
