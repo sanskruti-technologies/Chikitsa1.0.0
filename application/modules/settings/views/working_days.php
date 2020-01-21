@@ -17,7 +17,8 @@
 */
 ?>
 <script type="text/javascript" charset="utf-8">
-	$(window).load(function(){
+	//$(window).load(function(){
+	$(window).on('load', function(){
 		$('#working_date').datetimepicker({
 			timepicker:false,
 			format: '<?=$def_dateformate;?>',

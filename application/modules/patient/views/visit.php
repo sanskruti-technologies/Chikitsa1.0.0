@@ -17,7 +17,7 @@
 */
 ?>
 <script type="text/javascript" charset="utf-8">
-    $(window).load(function() {
+	$(window).on('load', function(){
 		$(".expand-collapse-header").click(function () {
 			if($(this).find("i").hasClass("fa-arrow-circle-down"))
 			{

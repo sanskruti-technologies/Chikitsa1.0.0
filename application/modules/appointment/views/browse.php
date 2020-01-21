@@ -30,7 +30,7 @@
 <script src="<?= base_url() ?>assets/js/custom.min.js"></script>
 
 <script type="text/javascript" charset="utf-8">
-	$(window).load(function(){
+	$(window).on('load', function(){
 		$(".todo").change(function() {
 			var element = $(this);
 			var id = $(this).val();
@@ -649,18 +649,20 @@ function is_half_day($i,$s_time,$e_time){
 			</div>
 			<?php echo form_open(); ?>
 			<div class="modal-body">
-					<div class="col-md-12"><label><?=$this->lang->line('name');?>:</label></div>
-					<div class="col-md-4"><input type="text" id="first_name" name="first_name" class="form-control" placeholder="first name"/></div>
-					<div class="col-md-4"><input type="text" id="middle_name" name="middle_name" class="form-control" placeholder="middle name"/></div>
-					<div class="col-md-4"><input type="text" id="last_name" name="last_name" class="form-control" placeholder="last name"/></div>
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-12"><label><?=$this->lang->line('name');?>:</label></div>
+						<div class="col-md-4"><input type="text" id="first_name" name="first_name" class="form-control" placeholder="first name"/></div>
+						<div class="col-md-4"><input type="text" id="middle_name" name="middle_name" class="form-control" placeholder="middle name"/></div>
+						<div class="col-md-4"><input type="text" id="last_name" name="last_name" class="form-control" placeholder="last name"/></div>
+					</div>
+				</div>
+				<div class="col-md-12"><label><?=$this->lang->line('email_id');?>:</label></div>
+				<div class="col-md-12"><input type="text" id="email_id" name="email_id" class="form-control"/></div>
 
 
-					<div class="col-md-12"><label><?=$this->lang->line('email_id');?>:</label></div>
-					<div class="col-md-12"><input type="text" id="email_id" name="email_id" class="form-control"/></div>
-
-
-					<div class="col-md-12"><label><?=$this->lang->line('mobile_no');?>:</label></div>
-					<div class="col-md-12"><input type="text" id="mobile_no" name="mobile_no" class="form-control"/></div>
+				<div class="col-md-12"><label><?=$this->lang->line('mobile_no');?>:</label></div>
+				<div class="col-md-12"><input type="text" id="mobile_no" name="mobile_no" class="form-control"/></div>
 
 			</div>
 			<div class="modal-footer">

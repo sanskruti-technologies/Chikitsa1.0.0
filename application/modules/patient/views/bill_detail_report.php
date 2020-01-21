@@ -34,7 +34,7 @@
 <link href="<?= base_url() ?>assets/css/chosen.min.css" rel="stylesheet" />
 
 <script type="text/javascript">
-    $(window).load(function(){
+	$(window).on('load', function(){
 
 		var searcharrpatient=[<?php $i = 0;
 		foreach ($patients as $patient) {

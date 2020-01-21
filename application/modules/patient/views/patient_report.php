@@ -16,8 +16,12 @@
     along with Chikitsa.  If not, see <https://www.gnu.org/licenses/>.
 */
 ?>
+<script src="<?= base_url() ?>assets/vendor/chosen/chosen.jquery.min.js"></script>
+<link href="<?= base_url() ?>assets/vendor/chosen/chosen.min.css" rel="stylesheet">
+<!--<script src="<?= base_url() ?>assets/js/chosen.jquery.min.js"></script>
+<link href="<?= base_url() ?>assets/css/chosen.min.css" rel="stylesheet" />-->
 <script type="text/javascript" charset="utf-8">
-	$(window).load(function() {
+	$(window).on('load', function(){
 		$("#patient_since").datetimepicker({
 			timepicker:false,
 			format: '<?=$def_dateformate;?>',
@@ -66,6 +70,11 @@
 							<input type="hidden" name="doctor_id" id="doctor_id" value="" />
 						</select>
 						<script>jQuery('#reference').chosen();</script>
+						<!--<script>jQuery(function($){ $('#reference').chosen(); });</script>-->
+						<!--<script>$(document).ready(function(){
+									$("#reference").chosen()
+						});</script>-->
+						
 					</div>
 					</div>
 					<div class="col-md-12">

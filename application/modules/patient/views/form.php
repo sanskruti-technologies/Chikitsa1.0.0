@@ -31,7 +31,8 @@ function readURL(input) {
 	}
 }
 
-$(window).load(function(){
+$(window).on('load', function(){
+
 	$('.datetimepicker').datetimepicker({
 		timepicker:false,
 		format: '<?=$def_dateformate; ?>',
@@ -346,11 +347,11 @@ $(document).ready(function(){
 								<input type="input" name="ssn_id" class="form-control" value="<?php echo $ssn_id; ?>"/>
 								<?php echo form_error('ssn_id','<div class="alert alert-danger">','</div>'); ?>
 							</div>
-							<div class="form-group">
+							<!--<div class="form-group">
 								<label for="display_name"><?php echo $this->lang->line('display_name');?></label>
 								<input type="input" name="display_name" class="form-control" value="<?php echo $contact_display_name; ?>"/>
 								<?php echo form_error('display_name','<div class="alert alert-danger">','</div>'); ?>
-							</div>
+							</div>-->
 							<div class="form-group">
 								<label for="gender"><?php echo $this->lang->line('gender');?></label>
 								<input type="radio" name="gender" value="male" <?php if($gender == 'male'){echo "checked='checked'";}?>/><?php echo $this->lang->line("male");?>

@@ -191,7 +191,7 @@
 <!-- CUSTOM SCRIPTS -->
 <script src="<?= base_url() ?>assets/js/custom.min.js"></script>
 <script type="text/javascript" charset="utf-8">
-	$(window).load(function() {
+	$(window).on('load', function(){
 		$("#from_date").datetimepicker({
 			timepicker:false,
 			format: '<?=$def_dateformate;?>',

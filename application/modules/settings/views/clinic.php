@@ -31,7 +31,7 @@ function readURL(input) {
 	}
 }
 
-$( window ).load(function() {
+$(window).on('load', function(){
 
     $('#start_time').datetimepicker({
 		datepicker:false,

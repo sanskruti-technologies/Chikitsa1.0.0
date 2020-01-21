@@ -548,17 +548,9 @@ class Appointment extends CI_Controller {
 					$data['session_date_id']=$session_date['session_date_id'];
 				}
 
-				$clinic_id = $this->session->userdata('clinic_id');
-				$user_id = $this->session->userdata('user_id');
-				$header_data['clinic_id'] = $clinic_id;
-				$header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
-				$header_data['active_modules'] = $this->module_model->get_active_modules();
-				$header_data['user_id'] = $user_id;
-				$header_data['user'] = $this->admin_model->get_user($user_id);
-				$header_data['login_page'] = get_main_page();
-		        $header_data['software_name']= $this->settings_model->get_data_value("software_name");
-
-				$this->load->view('templates/header_chikitsa',$header_data);
+				$header_data = get_header_data();
+				
+				$this->load->view('templates/header',$header_data);
 				$this->load->view('templates/menu');
 				$this->load->view('form', $data);
 				$this->load->view('templates/footer');
@@ -688,17 +680,10 @@ class Appointment extends CI_Controller {
 			$data['paid_amount'] = $this->payment_model->get_paid_amount($bill_id);
 			$data['discount'] = $this->bill_model->get_discount_amount($bill_id);
 			$data['edit_bill'] = FALSE;
-			$clinic_id = $this->session->userdata('clinic_id');
-			$header_data['clinic_id'] = $clinic_id;
-			$user_id = $this->session->userdata('user_id');
-			$header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
-			$header_data['active_modules'] = $this->module_model->get_active_modules();
-			$header_data['user_id'] = $user_id;
-			$header_data['user'] = $this->admin_model->get_user($user_id);
-			$header_data['login_page'] = get_main_page();
-	        $header_data['software_name']= $this->settings_model->get_data_value("software_name");
 
-			$this->load->view('templates/header_chikitsa',$header_data);
+			$header_data = get_header_data();
+			
+			$this->load->view('templates/header',$header_data);
 			$this->load->view('templates/menu');
 			$this->load->view('view_appointment', $data);
 			$this->load->view('templates/footer');
@@ -791,17 +776,10 @@ class Appointment extends CI_Controller {
                 }
 				$data['doctor_id'] = $doctor_id;
 				//var_dump($data);
+				$header_data = get_header_data();
 
-				$clinic_id = $this->session->userdata('clinic_id');
-				$header_data['clinic_id'] = $clinic_id;
-				$header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
-				$header_data['active_modules'] = $this->module_model->get_active_modules();
-				$header_data['user_id'] = $user_id;
-				$header_data['user'] = $this->admin_model->get_user($user_id);
-				$header_data['login_page'] = get_main_page();
-	            $header_data['software_name']= $this->settings_model->get_data_value("software_name");
-
-				$this->load->view('templates/header_chikitsa',$header_data);
+				//$this->load->view('templates/header_chikitsa',$header_data);
+				$this->load->view('templates/header',$header_data);
                 $this->load->view('templates/menu');
                 $this->load->view('appointment/report', $data);
                 $this->load->view('templates/footer');
@@ -847,15 +825,9 @@ class Appointment extends CI_Controller {
 						$this->print_appointment_report($data['app_reports']);
 					}else{
 						$clinic_id = $this->session->userdata('clinic_id');
-						$header_data['clinic_id'] = $clinic_id;
-						$header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
-						$header_data['active_modules'] = $this->module_model->get_active_modules();
-						$header_data['user_id'] = $user_id;
-						$header_data['user'] = $this->admin_model->get_user($user_id);
-						$header_data['login_page'] = get_main_page();
-			            $header_data['software_name']= $this->settings_model->get_data_value("software_name");
+						$header_data = get_header_data();
 
-						$this->load->view('templates/header_chikitsa',$header_data);
+						$this->load->view('templates/header',$header_data);
 						$this->load->view('templates/menu');
 						$this->load->view('appointment/report', $data);
 						$this->load->view('templates/footer');
