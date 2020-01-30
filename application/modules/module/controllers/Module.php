@@ -163,15 +163,7 @@ class Module extends CI_Controller {
         } else {
 			$data['def_dateformate'] = $this->settings_model->get_date_formate();
 
-			$clinic_id = $this->session->userdata('clinic_id');
-			$user_id = $this->session->userdata('user_id');
-			$header_data['clinic_id'] = $clinic_id;
-			$header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
-			$header_data['active_modules'] = $this->module_model->get_active_modules();
-			$header_data['user_id'] = $user_id;
-			$header_data['user'] = $this->admin_model->get_user($user_id);
-			$header_data['login_page'] = get_main_page();
-			$header_data['software_name']= $this->settings_model->get_data_value("software_name");
+			$header_data = get_header_data();
 
 			$this->load->view('templates/header',$header_data);
 			$this->load->view('templates/menu');
@@ -184,7 +176,9 @@ class Module extends CI_Controller {
 		if (!$this->session->userdata('user_name') || $this->session->userdata('user_name') == '') {
             redirect('login/index');
         } else {
-			$this->load->view('templates/header');
+			$header_data = get_header_data();
+
+			$this->load->view('templates/header',$header_data);
 			$this->load->view('templates/menu');
 			$this->load->view('upload_module');
 			$this->load->view('templates/footer');
@@ -296,26 +290,34 @@ class Module extends CI_Controller {
 			$filname_without_ext = pathinfo($filename, PATHINFO_FILENAME);
 			if(isset($file_upload['error'])){
 				$data['error'] = $file_upload['error'];
-				$this->load->view('templates/header');
+				$header_data = get_header_data();
+
+			$this->load->view('templates/header',$header_data);
 				$this->load->view('templates/menu');
 				$this->load->view('upload_module',$data);
 				$this->load->view('templates/footer');
 			}elseif($file_upload['file_ext']!='.zip'){
 				$data['error'] = "The file you are trying to upload is not a .zip file. Please try again.";
-				$this->load->view('templates/header');
+				$header_data = get_header_data();
+
+			$this->load->view('templates/header',$header_data);
 				$this->load->view('templates/menu');
 				$this->load->view('upload_module',$data);
 				$this->load->view('templates/footer');
 			}elseif(preg_match('/^[a-z_]+$/',$filname_without_ext)) {
 				$data['error'] = "";
 				$data['file_upload'] = $file_upload;
-				$this->load->view('templates/header');
+				$header_data = get_header_data();
+
+			$this->load->view('templates/header',$header_data);
 				$this->load->view('templates/menu');
 				$this->load->view('extract_module',$data);
 				$this->load->view('templates/footer');
 			}else{
 				$data['error'] = "Make Sure the file-name doesn't have any special characters. File-name must be the name of module being installed.";
-				$this->load->view('templates/header');
+				$header_data = get_header_data();
+
+				$this->load->view('templates/header',$header_data);
 				$this->load->view('templates/menu');
 				$this->load->view('upload_module',$data);
 				$this->load->view('templates/footer');
@@ -480,7 +482,9 @@ class Module extends CI_Controller {
 		$this->take_backup();
 		$data['file'] = $file;
 		$data['latest_version'] = $latest_version;
-		$this->load->view('templates/header');
+		$header_data = get_header_data();
+
+				$this->load->view('templates/header',$header_data);
 		$this->load->view('templates/menu');
 		$this->load->view('blank',$data);
 		$this->load->view('templates/footer');
