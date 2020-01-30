@@ -190,15 +190,7 @@ class Payment extends CI_Controller {
 				$patient_id = $this->patient_model->get_patient_id_from_bill_id($bill_id);
 				$data['bills'] = $this->patient_model->get_pending_bills();
 				*/
-				$clinic_id = $this->session->userdata('clinic_id');
-				$user_id = $this->session->userdata('user_id');
-				$header_data['clinic_id'] = $clinic_id;
-				$header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
-				$header_data['active_modules'] = $this->module_model->get_active_modules();
-				$header_data['user_id'] = $user_id;
-				$header_data['user'] = $this->admin_model->get_user($user_id);
-				$header_data['login_page'] = get_main_page();
-                $header_data['software_name']= $this->settings_model->get_data_value("software_name");
+				$header_data = get_header_data();
 
 				$this->load->view('templates/header',$header_data);
 				$this->load->view('templates/menu');
@@ -267,15 +259,7 @@ class Payment extends CI_Controller {
 			$this->form_validation->set_rules('refund_amount', $this->lang->line('refund_amount'), "required");
 
 			if ($this->form_validation->run() === FALSE) {
-				$clinic_id = $this->session->userdata('clinic_id');
-				$user_id = $this->session->userdata('user_id');
-				$header_data['clinic_id'] = $clinic_id;
-				$header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
-				$header_data['active_modules'] = $this->module_model->get_active_modules();
-				$header_data['user_id'] = $user_id;
-				$header_data['user'] = $this->admin_model->get_user($user_id);
-				$header_data['login_page'] = get_main_page();
-                $header_data['software_name']= $this->settings_model->get_data_value("software_name");
+				$header_data = get_header_data();
 
 				$data['def_dateformate'] = $this->settings_model->get_date_formate();
 				$data['refund'] = $this->payment_model->get_refund($refund_id);
@@ -315,18 +299,9 @@ class Payment extends CI_Controller {
 
 		if ($this->form_validation->run() === FALSE) {
 
-			$clinic_id = $this->session->userdata('clinic_id');
-			$user_id = $this->session->userdata('user_id');
+			$header_data = get_header_data();
 
-			$header_data['clinic_id'] = $clinic_id;
-			$header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
-			$header_data['active_modules'] = $this->module_model->get_active_modules();
-			$header_data['user_id'] = $user_id;
-			$header_data['user'] = $this->admin_model->get_user($user_id);
-			$header_data['login_page'] = get_main_page();
-            $header_data['software_name']= $this->settings_model->get_data_value("software_name");
-
-			$this->load->view('templates/header_chikitsa',$header_data);
+			$this->load->view('templates/header',$header_data);
 			$this->load->view('templates/menu');
 			$this->load->view('payment/payment_method_form');
 			$this->load->view('templates/footer');
@@ -340,19 +315,10 @@ class Payment extends CI_Controller {
 
 		if ($this->form_validation->run() === FALSE) {
 
-			$clinic_id = $this->session->userdata('clinic_id');
-			$user_id = $this->session->userdata('user_id');
-
-			$header_data['clinic_id'] = $clinic_id;
-			$header_data['clinic'] = $this->settings_model->get_clinic($clinic_id);
-			$header_data['active_modules'] = $this->module_model->get_active_modules();
-			$header_data['user_id'] = $user_id;
-			$header_data['user'] = $this->admin_model->get_user($user_id);
-			$header_data['login_page'] = get_main_page();
-            $header_data['software_name']= $this->settings_model->get_data_value("software_name");
+			$header_data = get_header_data();
 
 			$data['payment_method'] = $this->settings_model->get_payment_method($payment_method_id);
-			$this->load->view('templates/header_chikitsa',$header_data);
+			$this->load->view('templates/header',$header_data);
 			$this->load->view('templates/menu');
 			$this->load->view('payment/payment_method_form',$data);
 			$this->load->view('templates/footer');

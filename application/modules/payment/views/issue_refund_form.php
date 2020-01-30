@@ -93,21 +93,15 @@
 		$refund_note = "";
 	}
 ?>
-<div id="page-inner">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="panel panel-primary">
-			<div class="panel-heading">
-				<div class="row">
-					<h2><?php echo $this->lang->line("issue_refund");?></h2>
-				</div>
-			</div>
-			<div class="panel-body table-responsive-25">
+<!-- Begin Page Content -->
+        <div class="container-fluid">
+<!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800"><?php echo $this->lang->line("issue_refund");?></h1>
 			<?php if(isset($refund)){ ?>
 			<?php echo form_open('payment/edit_refund/'.$refund_id) ?>
 			<?php }else{ ?>
 			<?php echo form_open('payment/add_issue_refund/') ?>
-			<?php } ?>
+			<?php } ?>			
 			<div class="col-md-12">
 				<label for="patient_name"><?php echo $this->lang->line('patient') . ' ' . $this->lang->line('name');?></label>
 				<?php if(isset($refund)){ //Edit Mode ?>
@@ -120,45 +114,42 @@
 					<input type="hidden" name="patient_id" id="patient_id" value="" />
 					<?php echo form_error('patient_id','<div class="alert alert-danger">','</div>'); ?>
 				<?php } ?>
-			</div>
-			<div class="col-md-12">
-				<div class="form-group">
-					<label for="title"><?=$this->lang->line('amount_in_account');?></label>
-					<br/>
-					<span id="adjust_from_account_display"></span>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						<label for="title"><?=$this->lang->line('amount_in_account');?></label>
+						<br/>
+						<span id="adjust_from_account_display"></span>
+					</div>
 				</div>
-			</div>
-			<div class="col-md-12">
-				<div class="form-group">
-					<label for="title"><?php echo $this->lang->line('refund_amount');?></label>
-					<input type="text" name="refund_amount" id="refund_amount" class="form-control" value="<?=$refund_amount;?>" />
-					<?php echo form_error('refund_amount','<div class="alert alert-danger">','</div>'); ?>
+				<div class="col-md-12">
+					<div class="form-group">
+						<label for="title"><?php echo $this->lang->line('refund_amount');?></label>
+						<input type="text" name="refund_amount" id="refund_amount" class="form-control" value="<?=$refund_amount;?>" />
+						<?php echo form_error('refund_amount','<div class="alert alert-danger">','</div>'); ?>
+					</div>
 				</div>
-			</div>
-			<div class="col-md-12">
-				<div class="form-group">
-					<label for="title"><?php echo $this->lang->line('refund_date');?></label>
-					<input type="text" name="refund_date" id="refund_date" class="form-control" value="<?=$refund_date;?>" />
-					<?php echo form_error('refund_date','<div class="alert alert-danger">','</div>'); ?>
+				<div class="col-md-12">
+					<div class="form-group">
+						<label for="title"><?php echo $this->lang->line('refund_date');?></label>
+						<input type="text" name="refund_date" id="refund_date" class="form-control" value="<?=$refund_date;?>" />
+						<?php echo form_error('refund_date','<div class="alert alert-danger">','</div>'); ?>
+					</div>
 				</div>
-			</div>
-			<div class="col-md-12">
-				<div class="form-group">
-					<label for="refund_note"><?php echo $this->lang->line('refund_note');?></label>
-					<textarea name="refund_note" id="refund_note" class="form-control" ><?=$refund_note;?></textarea>
-					<?php echo form_error('refund_note','<div class="alert alert-danger">','</div>'); ?>
+				<div class="col-md-12">
+					<div class="form-group">
+						<label for="refund_note"><?php echo $this->lang->line('refund_note');?></label>
+						<textarea name="refund_note" id="refund_note" class="form-control" ><?=$refund_note;?></textarea>
+						<?php echo form_error('refund_note','<div class="alert alert-danger">','</div>'); ?>
+					</div>
 				</div>
-			</div>
-			<div class="col-md-12">
-				<div class="form-group">
-					<input class="btn btn-primary btn-sm square-btn-adjust" type="submit" id="save_issue_refund" value="Save" name="submit" />
-					<a href="<?=site_url('payment/issue_refund');?>" class="btn btn-primary btn-sm square-btn-adjust"><?php echo $this->lang->line('back');?></a>
+				<div class="col-md-12">
+					<div class="form-group">
+						<input class="btn btn-primary btn-sm square-btn-adjust" type="submit" id="save_issue_refund" value="Save" name="submit" />
+						<a href="<?=site_url('payment/issue_refund');?>" class="btn btn-primary btn-sm square-btn-adjust"><?php echo $this->lang->line('back');?></a>
+					</div>
 				</div>
-			</div>
-
-			<?php echo form_close(); ?>
-			</div>
+				<?php echo form_close(); ?>
 			</div>
 		</div>
-	</div>
-</div>
+	

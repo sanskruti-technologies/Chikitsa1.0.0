@@ -17,7 +17,7 @@
 */
 ?>
 <script type="text/javascript" charset="utf-8">
-$( window ).load(function() {
+$(window).on('load', function(){
 	$("#patient_table").dataTable({
 		"pageLength": 50
 	});
@@ -39,11 +39,10 @@ function get_cases($payment_cases,$payment_id){
 ?>
 
 <!-- Begin Page Content -->
-        <div class="container-fluid">
-<!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800"><?php echo $this->lang->line("payment");?></h1>
-
-					<div class="form-group"><a 	title="<?php echo $this->lang->line("add")." ".$this->lang->line("payment");?>"                        href="<?php echo base_url()."index.php/payment/insert/0/payment" ?>"
+    <div class="container-fluid">
+		<!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800"><?php echo $this->lang->line("payment");?></h1>
+			<div class="form-group"><a 	title="<?php echo $this->lang->line("add")." ".$this->lang->line("payment");?>"                        href="<?php echo base_url()."index.php/payment/insert/0/payment" ?>"
                                                 class="btn btn-primary square-btn-adjust"><i class="fa fa-plus"></i>
                                 <?php echo $this->lang->line("add")." ".$this->lang->line("payment");?>
                             </a>
@@ -84,8 +83,9 @@ function get_cases($payment_cases,$payment_id){
 									<?php } ?>
 									<td><?php echo ucfirst($payment['payment_status']); ?></td>
 								    <td>
-									<a class="btn btn-primary btn-sm square-btn-adjust editbt" title="Edit" href="<?= site_url('payment/edit/'.$payment['payment_id'].'/payment');?>"><i class="fa fa-pencil"></i></a>
-									<a class="btn btn-danger btn-sm square-btn-adjust confirmDelete" title="delete" href="<?= site_url('payment/delete/'.$payment['payment_id'].'/payment');?>"><i class="fa fa-trash" aria-hidden="true"></i></a>
+									<a class="btn btn-primary square-btn-adjust" title="Edit" href="<?= site_url('payment/edit/'.$payment['payment_id'].'/payment');?>">Edit</a>
+								
+									<a class="btn btn-danger square-btn-adjust confirmDelete" title="delete" href="<?= site_url('payment/delete/'.$payment['payment_id'].'/payment');?>">Delete</a>
 									</td>
 								</tr>
 								<?php $i++; ?>
