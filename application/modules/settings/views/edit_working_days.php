@@ -89,67 +89,69 @@ if(isset($exceptional)){
 }
 ?>
 <!-- Begin Page Content -->
-        <div class="container-fluid">
+    <div class="container-fluid">
 	<!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800"><?php echo $this->lang->line("exceptional_days");?></h1>
+		<h1 class="h3 mb-2 text-gray-800"><?php echo $this->lang->line("exceptional_days");?></h1>
+		<?php 	if(!isset($exceptional)){
+					echo form_open('settings/save_exceptional_days');
+				}else{
+					echo form_open('settings/update_exceptional_days');
+				}
+		?>
+		<div class="col-md-12">
+			<div class="row"> 
+				<input type="hidden" id="uid" name="uid" class="form-control" value="<?=$exceptional['uid'];?>">
+				<div class="col-md-3">
+					<label><?php echo $this->lang->line("start_date");?></label>
+					<input type="text" id="working_date" name="working_date" class="form-control" value="<?= date($def_dateformate,strtotime($working_date));?>" >
+					<?php echo form_error('working_date','<div class="alert alert-danger">','</div>'); ?>
+				</div>
+				<div class="col-md-3">
+					<label><?php echo $this->lang->line("end_date");?></label>
+					<input type="text" id="end_date" name="end_date" class="form-control" value="<?= date($def_dateformate,strtotime($end_date));?>">
+					<?php echo form_error('end_date','<div class="alert alert-danger">','</div>'); ?>
+				</div>
 
-					<?php 	if(!isset($exceptional)){
-								echo form_open('settings/save_exceptional_days');
-							}else{
-								echo form_open('settings/update_exceptional_days');
-							}
-					 ?>
-					 <div class="row">
-						<input type="hidden" id="uid" name="uid" class="form-control" value="<?=$exceptional['uid'];?>">
+				<div class="col-md-3">
+					<label><?php echo $this->lang->line("status");?></label>
+					<?php
+					$option = array('Working'=>$this->lang->line('working'),
+									'Non Working'=>$this->lang->line('non_working'),
+									'Half Day'=>$this->lang->line('half_day'));
+					$attr = 'class="form-control working_status"';
+					echo form_dropdown("working_status",$option,$working_status,$attr);
+					?>
+					<?php echo form_error('working_status','<div class="alert alert-danger">','</div>'); ?>
+				</div>
+				<div class="col-md-3">
+					<label><?php echo $this->lang->line("reason");?></label>
+					<input type="text" id="working_reason" name="working_reason" value="<?=$working_reason;?>" class="form-control">
+					<?php echo form_error('working_reason','<div class="alert alert-danger">','</div>'); ?>
+				</div> <br/> &nbsp 
+				
+				<div class="col-md-12">
+					<div id="time" class="row">
 						<div class="col-md-3">
-							<label><?php echo $this->lang->line("start_date");?></label>
-							<input type="text" id="working_date" name="working_date" class="form-control" value="<?= date($def_dateformate,strtotime($working_date));?>" >
-							<?php echo form_error('working_date','<div class="alert alert-danger">','</div>'); ?>
-						</div>
-						<div class="col-md-3">
-							<label><?php echo $this->lang->line("end_date");?></label>
-							<input type="text" id="end_date" name="end_date" class="form-control" value="<?= date($def_dateformate,strtotime($end_date));?>">
-							<?php echo form_error('end_date','<div class="alert alert-danger">','</div>'); ?>
-						</div>
-
-						<div class="col-md-3">
-							<label><?php echo $this->lang->line("status");?></label>
-							<?php
-							$option = array('Working'=>$this->lang->line('working'),
-											'Non Working'=>$this->lang->line('non_working'),
-											'Half Day'=>$this->lang->line('half_day'));
-							$attr = 'class="form-control working_status"';
-							echo form_dropdown("working_status",$option,$working_status,$attr);
-							?>
-							<?php echo form_error('working_status','<div class="alert alert-danger">','</div>'); ?>
-						</div>
-						<div class="col-md-3">
-							<label><?php echo $this->lang->line("reason");?></label>
-							<input type="text" id="working_reason" name="working_reason" value="<?=$working_reason;?>" class="form-control">
-							<?php echo form_error('working_reason','<div class="alert alert-danger">','</div>'); ?>
-						</div>
-						</div>
-						<div id="time" class="row">
-							<div class="col-md-3">
-								<div class="form-group">
-									<label for="start_time"><?php echo $this->lang->line('start_time');?></label>
-									<input type="input" name="start_time" id="start_time" value="<?=$start_time; ?>" class="form-control"/>
-									<?php echo form_error('start_time','<div class="alert alert-danger">','</div>'); ?>
-								</div>
+							<div class="form-group">
+								<label for="start_time"><?php echo $this->lang->line('start_time');?></label>
+								<input type="input" name="start_time" id="start_time" value="<?=$start_time; ?>" class="form-control"/>
+								<?php echo form_error('start_time','<div class="alert alert-danger">','</div>'); ?>
 							</div>
-							<div class="col-md-3">
-								<div class="form-group">
-									<label for="end_time"><?=$this->lang->line('end_time');?></label>
-									<input type="input" name="end_time" id="end_time" value="<?=$end_time; ?>" class="form-control"/>
-									<?php echo form_error('end_time','<div class="alert alert-danger">','</div>'); ?>
-								</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="end_time"><?=$this->lang->line('end_time');?></label>
+								<input type="input" name="end_time" id="end_time" value="<?=$end_time; ?>" class="form-control"/>
+								<?php echo form_error('end_time','<div class="alert alert-danger">','</div>'); ?>
 							</div>
-						<div class="col-md-12">
-							<input type="submit" name="submit" class="btn btn-primary square-btn-adjust btn-sm" value="<?=$this->lang->line('save');?>">
-							<a href="<?=site_url('settings/working_days/');?>" class="btn btn-primary square-btn-adjust btn-sm" ><?php echo $this->lang->line('back');?></a>
 						</div>
 					</div>
-					<?php echo form_close(); ?>
-
-
 				</div>
+			</div>			
+		</div>			
+		<div class="col-md-12">
+			<input type="submit" name="submit" class="btn btn-primary square-btn-adjust btn-sm" value="<?=$this->lang->line('save');?>">
+			<a href="<?=site_url('settings/working_days/');?>" class="btn btn-primary square-btn-adjust btn-sm" ><?php echo $this->lang->line('back');?></a>
+		</div>			
+	<?php echo form_close(); ?>
+</div>
