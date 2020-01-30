@@ -17,7 +17,7 @@
 */
 ?>
 <script type="text/javascript" charset="utf-8">
-$( window ).load(function() {
+$(window).on('load', function(){
 	$("#bill_table").dataTable({
 		"pageLength": 50
 	});
@@ -27,7 +27,7 @@ $( window ).load(function() {
 });
 </script>
 <script type="text/javascript" charset="utf-8">
-    $(window).load(function() {
+    $(window).on('load', function(){
         $( "#from_date" ).datetimepicker({
 			timepicker:false,
 			format: '<?=$def_dateformate; ?>',
