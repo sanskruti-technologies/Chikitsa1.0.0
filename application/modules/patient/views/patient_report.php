@@ -16,10 +16,6 @@
     along with Chikitsa.  If not, see <https://www.gnu.org/licenses/>.
 */
 ?>
-<script src="<?= base_url() ?>assets/vendor/chosen/chosen.jquery.min.js"></script>
-<link href="<?= base_url() ?>assets/vendor/chosen/chosen.min.css" rel="stylesheet">
-<!--<script src="<?= base_url() ?>assets/js/chosen.jquery.min.js"></script>
-<link href="<?= base_url() ?>assets/css/chosen.min.css" rel="stylesheet" />-->
 <script type="text/javascript" charset="utf-8">
 	$(window).on('load', function(){
 		$("#patient_since").datetimepicker({
@@ -50,63 +46,58 @@
 		});
 	});
 </script>
-<div id="page-inner">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<?php echo $this->lang->line('patient')." ".$this->lang->line('report');?>
+<!-- Begin Page Content -->
+    <div class="container-fluid">
+		<!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800"><?php echo $this->lang->line('patient')." ".$this->lang->line('report');?></h1>	
+			<?php echo form_open('patient/patient_report'); ?>
+			<div class="row">
+				<div class="col-md-3">
+					<label for="reference" style="display:block;text-align:left;"><?=$this->lang->line('reference_by');?></label>
+					<select name="reference[]" id="reference" class="form-control" multiple="multiple">
+						<option></option>
+						<?php foreach ($reference_by as $reference) {?>
+							<option value="<?=$reference['reference_id'];?>" <?php if(!empty($selected_reference)){if(in_array($reference['reference_id'], $selected_reference)) {echo "selected";}} ?>><?= $reference['reference_option'];?></option>
+						<?php } ?>
+						<input type="hidden" name="doctor_id" id="doctor_id" value="" />
+					</select><br/>  &nbsp </br/>
+					<script>jQuery('#reference').chosen();</script>
+					<!--<script>jQuery(function($){ $('#reference').chosen(); });</script>-->
+					<!--<script>$(document).ready(function(){
+								$("#reference").chosen()
+					});</script>-->
+					
 				</div>
-				<div class="panel-body">
-					<?php echo form_open('patient/patient_report'); ?>
-					<div class="col-md-12">
-					<div class="col-md-3">
-						<label for="reference" style="display:block;text-align:left;"><?=$this->lang->line('reference_by');?></label>
-						<select name="reference[]" id="reference" class="form-control" multiple="multiple">
-							<option></option>
-							<?php foreach ($reference_by as $reference) {?>
-								<option value="<?=$reference['reference_id'];?>" <?php if(!empty($selected_reference)){if(in_array($reference['reference_id'], $selected_reference)) {echo "selected";}} ?>><?= $reference['reference_option'];?></option>
-							<?php } ?>
-							<input type="hidden" name="doctor_id" id="doctor_id" value="" />
-						</select>
-						<script>jQuery('#reference').chosen();</script>
-						<!--<script>jQuery(function($){ $('#reference').chosen(); });</script>-->
-						<!--<script>$(document).ready(function(){
-									$("#reference").chosen()
-						});</script>-->
-						
-					</div>
-					</div>
-					<div class="col-md-12">
-						<button type="submit" name="submit" class="btn btn-primary"><?php echo $this->lang->line('go');?></button>
-						<button type="submit" name="export_to_excel" class="btn btn-primary"><?php echo $this->lang->line('export_to_excel');?></button>
-						<button type="submit" name="print_report" class="btn btn-primary"><?php echo $this->lang->line('print_report');?></button>
-					</div>
-					<?php echo form_close(); ?>
+				<div class="col-md-12">
+					<button type="submit" name="submit" class="btn btn-primary"><?php echo $this->lang->line('go');?></button>
+					<button type="submit" name="export_to_excel" class="btn btn-primary"><?php echo $this->lang->line('export_to_excel');?></button>
+					<button type="submit" name="print_report" class="btn btn-primary"><?php echo $this->lang->line('print_report');?></button>
 				</div>
+				<?php echo form_close(); ?>
 			</div>
-		</div>
-		<div class="col-md-12">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<?php echo $this->lang->line('patient')." ".$this->lang->line('report');?>
-				</div>
-				<div class="panel-body">
-				<div class="table-responsive">
-					<table class="table table-striped table-bordered table-hover" id="patient_report" >
-						<thead>
-							<tr>
-								<th><?php echo $this->lang->line("sr_no");?></th>
-								<th><?php echo $this->lang->line("id");?></th>
-								<th><?php echo $this->lang->line("name");?></th>
-								<th><?php echo $this->lang->line("phone_number");?></th>
-								<th><?php echo $this->lang->line("email");?></th>
-								<th><?php echo $this->lang->line("reference_by");?></th>
-								<th><?php echo $this->lang->line("follow_up");?></th>
-							</tr>
-						</thead>
-						<tbody>
-						<?php $i=1; ?>
+	</div> <br/>
+			
+			
+	<!-- Begin Page Content -->
+    <div class="container-fluid">
+		<!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800">
+			<?php echo $this->lang->line('patient')." ".$this->lang->line('report');?></h1>
+			<div class="table-responsive">
+				<table class="table table-striped table-bordered table-hover" id="patient_report" >
+					<thead>
+						<tr>
+							<th><?php echo $this->lang->line("sr_no");?></th>
+							<th><?php echo $this->lang->line("id");?></th>
+							<th><?php echo $this->lang->line("name");?></th>
+							<th><?php echo $this->lang->line("phone_number");?></th>
+							<th><?php echo $this->lang->line("email");?></th>
+							<th><?php echo $this->lang->line("reference_by");?></th>
+							<th><?php echo $this->lang->line("follow_up");?></th>
+						</tr>
+					</thead>
+					<tbody>
+					<?php $i=1; ?>
 					<?php foreach($patient_report as $patient){
 						$followup_date = "";
 						if($patient['followup_date'] != '0000-00-00' && $patient['followup_date'] != NULL){
@@ -122,13 +113,11 @@
 							<td><?php echo $patient['reference_by'];?></td>
 							<td><?php echo $followup_date;?></td>
 						</tr>
-					<?php $i++; ?>
-					<?php }?>
+						<?php $i++; ?>
+						<?php }?>
 					</tbody>
-					</table>
-				</div>
-				</div>
+				</table>
 			</div>
-		</div>
+					
 	</div>
-</div>
+	
