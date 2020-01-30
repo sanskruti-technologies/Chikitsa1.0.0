@@ -19,16 +19,13 @@
 <?php
 	$level = $this->session->userdata('category');
 ?>
-<div id="page-inner">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<?php echo $this->lang->line('appointment')." ".$this->lang->line('report');?>
-				</div>
-				<div class="panel-body">
-					<?php echo form_open('appointment/appointment_report'); ?>
-					<div class="col-md-12">
+<!-- Begin Page Content -->
+    <div class="container-fluid">
+<!-- Page Heading -->
+		<h1 class="h3 mb-2 text-gray-800"><?php echo $this->lang->line('appointment')." ".$this->lang->line('report');?></h1>
+			<?php echo form_open('appointment/appointment_report'); ?>
+			<div class="col-md-12">
+				<div class="row">
 					<div class="col-md-3">
 						<?php echo $this->lang->line('from_date');?>
 						<input type="text" name="from_date" id="from_date" class="form-control" value="<?php if($from_date){ echo date($def_dateformate,strtotime($from_date));}?>" />
@@ -59,39 +56,38 @@
 						</div>
 					<?php }
 					?>
-					</div>
-					<div class="col-md-12">
-						<input type="hidden" name="patient_id" id="patient_id" value="<?php if(isset($curr_patient)){echo $curr_patient['patient_id']; } ?>"/>
-					
-						<div class="col-md-3">
-							<?php echo $this->lang->line('patient_id');?>
-							<input type="text" name="display_id" id="display_id" value="<?php if(isset($curr_patient)){echo $curr_patient['display_id']; } ?>" class="form-control"/>
-						</div>
-						<div class="col-md-3">
-							<?php echo $this->lang->line('patient');?>
-							<input type="text" name="patient_name" id="patient_name" value="<?php if(isset($curr_patient)){echo $curr_patient['first_name']." " .$curr_patient['middle_name']." " .$curr_patient['last_name']; } ?>" class="form-control"/>
-							<?php echo form_error('patient_id','<div class="alert alert-danger">','</div>'); ?>
-						</div>
-
-						<div class="col-md-3">
-							<?php echo $this->lang->line('mobile');?>
-							<input type="text" name="phone_number" id="phone_number" value="<?php if(isset($curr_patient)){echo $curr_patient['phone_number']; } ?>" class="form-control"/>
-						</div>
-						<div class="col-md-3">
-							<?php echo $this->lang->line('email');?>
-							<input type="text" name="email_id" id="email_id" value="<?php if(isset($curr_patient)){echo $curr_patient['email']; } ?>" class="form-control"/>
-						</div>
-					</div>
-					<div class="col-md-12">
-						<button type="submit" name="submit" class="btn btn-primary"><?php echo $this->lang->line('go');?></button>
-						<button type="submit" name="export_to_excel" class="btn btn-primary"><?php echo $this->lang->line('export_to_excel');?></button>
-						<button type="submit" name="print_report" class="btn btn-primary"><?php echo $this->lang->line('print_report');?></button>
-					</div>
-					<?php echo form_close(); ?>
 				</div>
 			</div>
-		</div>	
-		
+			<div class="col-md-12">
+				<div class="row">
+					<input type="hidden" name="patient_id" id="patient_id" value="<?php if(isset($curr_patient)){echo $curr_patient['patient_id']; } ?>"/>
+				
+					<div class="col-md-3">
+						<?php echo $this->lang->line('patient_id');?>
+						<input type="text" name="display_id" id="display_id" value="<?php if(isset($curr_patient)){echo $curr_patient['display_id']; } ?>" class="form-control"/>
+					</div>
+					<div class="col-md-3">
+						<?php echo $this->lang->line('patient');?>
+						<input type="text" name="patient_name" id="patient_name" value="<?php if(isset($curr_patient)){echo $curr_patient['first_name']." " .$curr_patient['middle_name']." " .$curr_patient['last_name']; } ?>" class="form-control"/>
+						<?php echo form_error('patient_id','<div class="alert alert-danger">','</div>'); ?>
+					</div>
+
+					<div class="col-md-3">
+						<?php echo $this->lang->line('mobile');?>
+						<input type="text" name="phone_number" id="phone_number" value="<?php if(isset($curr_patient)){echo $curr_patient['phone_number']; } ?>" class="form-control"/>
+					</div>
+					<div class="col-md-3">
+						<?php echo $this->lang->line('email');?>
+						<input type="text" name="email_id" id="email_id" value="<?php if(isset($curr_patient)){echo $curr_patient['email']; } ?>" class="form-control"/>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<button type="submit" name="submit" class="btn btn-primary"><?php echo $this->lang->line('go');?></button>
+				<button type="submit" name="export_to_excel" class="btn btn-primary"><?php echo $this->lang->line('export_to_excel');?></button>
+				<button type="submit" name="print_report" class="btn btn-primary"><?php echo $this->lang->line('print_report');?></button>
+			</div>
+			<?php echo form_close(); ?>
 			<div class="col-md-12">
 				<div class="panel panel-primary">
 					<div class="table-responsive">
@@ -171,7 +167,7 @@
 			</div>
 		
 	</div>
-</div>
+
 <!-- JQUERY SCRIPTS -->
 <script src="<?= base_url() ?>assets/js/jquery-1.11.3.min.js"></script>
 <!-- JQUERY UI SCRIPTS -->
