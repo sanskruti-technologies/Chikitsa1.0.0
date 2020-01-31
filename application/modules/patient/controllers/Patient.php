@@ -63,9 +63,7 @@ class Patient extends CI_Controller {
 			$this->lang->line('follow_up'),
 			$this->lang->line('delete'));
 
-      if($this->input->post('show_columns[]') != null){
-				$data['show_columns'] = $this->input->post('show_columns[]');
-			}
+	
 
       $header_data = get_header_data();
 			$this->load->view('templates/header',$header_data);
@@ -1007,6 +1005,11 @@ class Patient extends CI_Controller {
 				$data['treatment_total'] = $this->patient_model->get_treatment_total($visit_id);
 			}else{
 				$data['treatment_total'] = 0;
+			}
+			if (in_array("room", $active_modules)) {
+				$data['room_total'] = $this->patient_model->get_room_total($visit_id);
+			}else{
+				$data['room_total'] = 0;
 			}
 			if (in_array("lab", $active_modules)) {
 				$data['lab_test_total'] = $this->bill_model->get_total("lab_test",$bill_id);

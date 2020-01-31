@@ -16,35 +16,28 @@
     along with Chikitsa.  If not, see <https://www.gnu.org/licenses/>.
 */
 ?>
-<div id="page-inner">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<?php echo $this->lang->line('tax')." ".$this->lang->line('report');?>
-				</div>
-				<div class="panel-body">
-					<?php echo form_open('bill/tax_report'); ?>
-					<div class="col-md-12">
-					<div class="col-md-3">
-						<?php echo $this->lang->line('from_date');?>
-						<input type="text" name="from_date" id="from_date" class="form-control" value="<?php if($from_date){ echo date($def_dateformate,strtotime($from_date));}?>" />
-					</div>
-					<div class="col-md-3">
-						<?php echo $this->lang->line('to_date');?>
-						<input type="text" name="to_date" id="to_date" class="form-control" value="<?php if($to_date){ echo date($def_dateformate,strtotime($to_date));}?>" />
-					</div>
-					</div>
-					<div class="col-md-12">
-						<button type="submit" name="submit" class="btn btn-primary"><?php echo $this->lang->line('go');?></button>
-						<button type="submit" name="export_to_excel" class="btn btn-primary"><?php echo $this->lang->line('export_to_excel');?></button>
-						<button type="submit" name="print_report" class="btn btn-primary"><?php echo $this->lang->line('print_report');?></button>
-					</div>
-					<?php echo form_close(); ?>
-				</div>
+<!-- Begin Page Content -->
+        <div class="container-fluid">
+<!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800"><?php echo $this->lang->line('tax')." ".$this->lang->line('report');?></h1>
+			<?php echo form_open('bill/tax_report'); ?>
+			<div class="col-md-12">
+			<div class="col-md-3">
+				<?php echo $this->lang->line('from_date');?>
+				<input type="text" name="from_date" id="from_date" class="form-control" value="<?php if($from_date){ echo date($def_dateformate,strtotime($from_date));}?>" />
 			</div>
-		</div>
-
+			<div class="col-md-3">
+				<?php echo $this->lang->line('to_date');?>
+				<input type="text" name="to_date" id="to_date" class="form-control" value="<?php if($to_date){ echo date($def_dateformate,strtotime($to_date));}?>" />
+			</div>
+			</div>
+			<div class="col-md-12">
+				<button type="submit" name="submit" class="btn btn-primary"><?php echo $this->lang->line('go');?></button>
+				<button type="submit" name="export_to_excel" class="btn btn-primary"><?php echo $this->lang->line('export_to_excel');?></button>
+				<button type="submit" name="print_report" class="btn btn-primary"><?php echo $this->lang->line('print_report');?></button>
+			</div>
+			<?php echo form_close(); ?>
+			
 			<div class="col-md-12">
 				<div class="panel panel-primary">
 					<div class="table-responsive">

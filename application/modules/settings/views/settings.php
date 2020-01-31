@@ -670,87 +670,85 @@ $(window).load(function() {
 		</div>
 	</div>
 </div>
-<div id="page-inner">
-	<div class="row">
-		<div class="col-md-6">
-			<div class="panel panel-primary" >
-				<div class="panel-heading" >
-					<div class="row" >
-						<h2><?php echo $this->lang->line('settings');?></h2>
+<!-- Begin Page Content -->
+        <div class="container-fluid">
+<!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800"><?php echo $this->lang->line('settings');?></h1>
+					
+			<?php echo form_open('settings/save_lang'); ?>
+			<div class="col-md-12">
+				<div class="row" >
+					<div class="col-md-12">
+						<label for="default_language"><?php echo $this->lang->line('select_lang');?> </label>
+					</div>
+					<div class="col-md-8">
+						<div class="form-group" >
+							<select name="default_language" class="form-control" >
+									<?php
+									foreach ($languages as $key=>$language) {
+									if ($key !== 0) {
+										$lang = $this->config->item('language');
+										$key = rtrim($key,'\\');
+										?>
+									<option value="<?php echo $key; ?>" <?php if($lang == $key) { ?>selected="selected"<?php } ?>><?php echo $key; ?></option>
+									<?php }}?>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4" >
+						<div class="form-group" >
+							<input type="submit" name="submit" id="submit" class="btn btn-primary btn-sm square-btn-adjust" value="<?php echo $this->lang->line('save');?>" />
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group" >
+							<input type="submit" name="submit" id="submit" class="btn btn-primary btn-sm square-btn-adjust" value="<?php echo $this->lang->line('change')." ".$this->lang->line('language')." ".$this->lang->line('file');?>" />
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group" >
+							<input type="button" name="add_language" id="add_language" class="btn btn-primary btn-sm square-btn-adjust" value="<?php echo $this->lang->line('add')." ".$this->lang->line('new')." ".$this->lang->line('language');?>" />
+						</div>
 					</div>
 				</div>
-				<div class="panel-body table-responsive-15" >
-				<?php echo form_open('settings/save_lang'); ?>
-					<div class="row" >
-						<div class="col-md-12">
-							<label for="default_language"><?php echo $this->lang->line('select_lang');?> </label>
-						</div>
-						<div class="col-md-8" >
-							<div class="form-group" >
-								<select name="default_language" class="form-control" >
-										<?php
-										foreach ($languages as $key=>$language) {
-										if ($key !== 0) {
-											$lang = $this->config->item('language');
-											$key = rtrim($key,'\\');
-											?>
-										<option value="<?php echo $key; ?>" <?php if($lang == $key) { ?>selected="selected"<?php } ?>><?php echo $key; ?></option>
-										<?php }}?>
-								</select>
-							</div>
-						</div>
-						<div class="col-md-4" >
-							<div class="form-group" >
-								<input type="submit" name="submit" id="submit" class="btn btn-primary btn-sm square-btn-adjust" value="<?php echo $this->lang->line('save');?>" />
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group" >
-								<input type="submit" name="submit" id="submit" class="btn btn-primary btn-sm square-btn-adjust" value="<?php echo $this->lang->line('change')." ".$this->lang->line('language')." ".$this->lang->line('file');?>" />
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group" >
-								<input type="button" name="add_language" id="add_language" class="btn btn-primary btn-sm square-btn-adjust" value="<?php echo $this->lang->line('add')." ".$this->lang->line('new')." ".$this->lang->line('language');?>" />
-							</div>
+				<?php echo form_close(); ?>
+				<?php echo form_open('settings/upload_language'); ?>
+				<div class="row">
+					<div class="col-md-12">
+						<label for="default_language"><?php echo $this->lang->line('select_lang')." ".$this->lang->line('to')." ".$this->lang->line('upload');?> </label> 
+					</div>
+					<div class="col-md-8">
+						<div class="form-group">
+							<select  class="form-control" name="language">
+								<?php foreach ($result_language as $key=>$language) { ?>
+									<option value="<?php echo $key; ?>" ><?php echo $key; ?></option>
+								<?php }?>
+							</select>
 						</div>
 					</div>
-						<?php echo form_close(); ?>
-						<?php echo form_open('settings/upload_language'); ?>
-						<div class="col-md-12">
-							<label for="default_language"><?php echo $this->lang->line('select_lang')." ".$this->lang->line('to')." ".$this->lang->line('upload');?> </label> 
+					<div class="col-md-4">
+						<div class="form-group" >
+							<input type="submit" name="submit" class="btn btn-primary btn-sm square-btn-adjust" value="<?php echo $this->lang->line('upload');?>" />
 						</div>
-							<div class="col-md-8">
-								<div class="form-group">
-									<select  class="form-control" name="language">
-										<?php foreach ($result_language as $key=>$language) { ?>
-											<option value="<?php echo $key; ?>" ><?php echo $key; ?></option>
-										<?php }?>
-									</select>
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="form-group" >
-									<input type="submit" name="submit" class="btn btn-primary btn-sm square-btn-adjust" value="<?php echo $this->lang->line('upload');?>" />
-								</div>
 					</div>
+				</div>
 				<?php echo form_close(); ?>
 				<?php echo form_open('settings/save_timezone'); ?>
-					<div class="row">
-						<div class="col-md-12">
-							<label for="timezones"><?php echo $this->lang->line('time_zone');?></label>
-						</div>
-						<div class="col-md-8">
-							<div class="form-group" >
-								<?php echo form_dropdown('timezones', $timezone_list, $def_timezone,'class="form-control" id="zone"'); ?>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="form-group" >
-								<button type="submit" name="submit" class="btn btn-primary btn-sm square-btn-adjust" /><?php echo $this->lang->line('save');?></button>
-							</div>
+				<div class="row">
+					<div class="col-md-12">
+						<label for="timezones"><?php echo $this->lang->line('time_zone');?></label>
+					</div>
+					<div class="col-md-8">
+						<div class="form-group" >
+							<?php echo form_dropdown('timezones', $timezone_list, $def_timezone,'class="form-control" id="zone"'); ?>
 						</div>
 					</div>
+					<div class="col-md-4">
+						<div class="form-group" >
+							<button type="submit" name="submit" class="btn btn-primary btn-sm square-btn-adjust" /><?php echo $this->lang->line('save');?></button>
+						</div>
+					</div>
+				</div>
 				<?php echo form_close(); ?>
 				<?php echo form_open('settings/save_date_formate'); ?>
 					<div class="row">
@@ -768,72 +766,70 @@ $(window).load(function() {
 							</div>
 						</div>
 					</div>
-				<?php echo form_close(); ?>
-				<?php echo form_open('settings/save_time_formate'); ?>
-					<div class="row">
-						<div class="col-md-12">
-							<label for="timeformate"><?php echo $this->lang->line('time_format');?></label>
-						</div>
-						<div class="col-md-8">
-							<div class="form-group">
-								<?php echo form_dropdown('timeformate', $timeformate_list, $def_timeformate,'class="form-control" id="settime"'); ?>
+					<?php echo form_close(); ?>
+					<?php echo form_open('settings/save_time_formate'); ?>
+						<div class="row">
+							<div class="col-md-12">
+								<label for="timeformate"><?php echo $this->lang->line('time_format');?></label>
 							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="form-group" >
-								<button type="submit" name="submit" class="btn btn-primary btn-sm square-btn-adjust" /><?php echo $this->lang->line('save');?></button>
-							</div>
-						</div>
-					</div>
-				<?php echo form_close(); ?>
-				<?php echo form_open('settings/tax_type'); ?>
-					<div class="row">
-						<div class="col-md-12">
-							<label for="tax_type"><?php echo $this->lang->line('tax');?></label>
-						</div>
-						<?php
-							if($tax_type == "item"){
-								$item = "checked = 'checked'";
-								$bill = "";
-							}else{
-								$item = "";
-								$bill = "checked = 'checked'";;
-							}
-						?>
-						<div class="col-md-8">
-							<div class="form-group">
-								<div class="radio">
-									<label>
-										<input type="radio" name="tax_type" id="item" value="item" <?=$item;?>><?php echo $this->lang->line('tax')." ".$this->lang->line('on')." ".$this->lang->line('individual')." ".$this->lang->line('item');?>
-									</label>
+							<div class="col-md-8">
+								<div class="form-group">
+									<?php echo form_dropdown('timeformate', $timeformate_list, $def_timeformate,'class="form-control" id="settime"'); ?>
 								</div>
-								<div class="radio">
-									<label>
-										<input type="radio" name="tax_type" id="bill" value="bill" <?=$bill;?>><?php echo $this->lang->line('tax')." ".$this->lang->line('on')." ".$this->lang->line('bill');?>
-									</label>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group" >
+									<button type="submit" name="submit" class="btn btn-primary btn-sm square-btn-adjust" /><?php echo $this->lang->line('save');?></button>
 								</div>
 							</div>
 						</div>
-						<div class="col-md-4">
-							<div class="form-group" >
-								<button type="submit" name="submit" class="btn btn-primary btn-sm square-btn-adjust" /><?php echo $this->lang->line('save');?></button>
-							</div>
-						</div>
-					</div>
-				<?php echo form_close(); ?>
-
+						<?php echo form_close(); ?>
+						<?php echo form_open('settings/tax_type'); ?>
+							<div class="row">
+								<div class="col-md-12">
+									<label for="tax_type"><?php echo $this->lang->line('tax');?></label>
 								</div>
-			</div>
-		</div>
-		<div class="col-md-6">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<div class="row">
-						<h2><?php echo $this->lang->line('invoice_details');?></h2>
-					</div>
+								<?php
+									if($tax_type == "item"){
+										$item = "checked = 'checked'";
+										$bill = "";
+									}else{
+										$item = "";
+										$bill = "checked = 'checked'";;
+									}
+								?>
+								<div class="col-md-8">
+									<div class="form-group">
+										<div class="radio">
+											<label>
+												<input type="radio" name="tax_type" id="item" value="item" <?=$item;?>><?php echo $this->lang->line('tax')." ".$this->lang->line('on')." ".$this->lang->line('individual')." ".$this->lang->line('item');?>
+											</label>
+										</div>
+										<div class="radio">
+											<label>
+												<input type="radio" name="tax_type" id="bill" value="bill" <?=$bill;?>><?php echo $this->lang->line('tax')." ".$this->lang->line('on')." ".$this->lang->line('bill');?>
+											</label>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group" >
+										<button type="submit" name="submit" class="btn btn-primary btn-sm square-btn-adjust" /><?php echo $this->lang->line('save');?></button>
+									</div>
+								</div>
+							</div>
+						<?php echo form_close(); ?>
 				</div>
-				<div class="panel-body table-responsive-15">
-				<?php echo form_open('settings/save_invoice') ?>
+		</div>
+		
+			<!-- Begin Page Content -->
+			<div class="container-fluid">
+				<!-- Page Heading -->
+					<h1 class="h3 mb-2 text-gray-800"><?php echo $this->lang->line('invoice_details');?></h1>
+					
+					<?php echo form_open('settings/save_invoice') ?>
+					<div class="col-md-12">
+					
 						<div class="form-group">
 							 <label for="static_prefix"><?php echo $this->lang->line('static_prefix');?></label>
 							<input type="input" name="static_prefix" value="<?=$static_prefix; ?>" class="form-control"/>
@@ -857,9 +853,9 @@ $(window).load(function() {
 						<div class="form-group">
 							<button type="submit" name="submit" class="btn btn-primary btn-sm square-btn-adjust" /><?php echo $this->lang->line('save');?></button>
 						</div>
+					</div>
 				<?php echo form_close(); ?>
-				</div>
 			</div>
-		</div>
-	</div>
-</div>
+		
+					
+	

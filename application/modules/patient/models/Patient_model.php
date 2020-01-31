@@ -1053,6 +1053,12 @@ class Patient_model extends CI_Model {
         $row = $query->row();
         return $row->treatment_total;
     }
+	function get_room_total($visit_id) {
+        $this->db->select_sum('amount', 'room_total');
+        $query = $this->db->get_where('view_bill_detail_report', array('visit_id' => $visit_id, 'type' => 'room'));
+        $row = $query->row();
+        return $row->room_total;
+    }
 	function get_item_total($visit_id) {
         $this->db->select_sum('amount', 'item_total');
         $query = $this->db->get_where('view_bill_detail_report', array('visit_id' => $visit_id, 'type' => 'item'));

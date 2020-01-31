@@ -65,185 +65,193 @@
 		$patient_id = 0;
 	}
 ?>
-<div id="page-inner">
-	<div class="row">
-		<div class="col-md-12">
+<!-- Begin Page Content -->
+    <div class="container-fluid">
+		<!-- Page Heading -->
+        <div class="panel-heading expand-collapse-header">
+			<h1 class="h3 mb-2 text-gray-800"><i class="fa fa-arrow-circle-up"></i>
 			<?php if(!isset($appointment) && !isset($curr_patient)){ ?>
-			<div class="panel panel-primary">
-				<div class="panel-heading expand-collapse-header"><i class="fa fa-arrow-circle-down"></i>
-					<?php echo $this->lang->line('add')." ".$this->lang->line('patient');?> <?php echo $this->lang->line('clickto_toggle_display');?>
-				</div>
-				<div class="panel-body expand-collapse-content collapsed">
-					<?php $s_time = date('H:i',strtotime($start_time));?>
-					<?php $time = explode(":", $s_time); ?>
-					<?php echo form_open('appointment/insert_patient_add_appointment' . "/" . $time[0] . "/" . $time[1] . "/" . $appointment_date . "/" . $status . "/" . $selected_doctor_id."/0/") ?>
-					<div class="col-md-12">
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="first_name"><?php echo $this->lang->line('first')." ".$this->lang->line('name');?></label>
-								<input type="text" name="first_name" value="<?= $first_name ?>" class="form-control"/>
-								<?php echo form_error('first_name','<div class="alert alert-danger">','</div>'); ?>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="middle_name"><?php echo $this->lang->line('middle')." ".$this->lang->line('name');?></label>
-								<input type="text" name="middle_name" value="<?= $middle_name ?>"  class="form-control"/>
-								<?php echo form_error('middle_name','<div class="alert alert-danger">','</div>'); ?>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="last_name"><?php echo $this->lang->line('last')." ".$this->lang->line('name');?></label>
-								<input type="text" name="last_name" value="<?= $last_name ?>" class="form-control"/>
-								<?php echo form_error('last_name','<div class="alert alert-danger">','</div>'); ?>
-							</div>
+					<?php echo $this->lang->line('add')." ".$this->lang->line('patient');?> <?php echo $this->lang->line('clickto_toggle_display');?></h1>
+		</div>
+		<div class="panel-body expand-collapse-content collapsed">
+			<?php $s_time = date('H:i',strtotime($start_time));?>
+			<?php $time = explode(":", $s_time); ?>
+			<?php echo form_open('appointment/insert_patient_add_appointment' . "/" . $time[0] . "/" . $time[1] . "/" . $appointment_date . "/" . $status . "/" . $selected_doctor_id."/0/") ?>
+			<div class="col-md-12">
+				<div class="row" style="margin-left:10px;">
+					<div class="col-md-3">
+						<div class="form-group">
+							<label for="first_name"><?php echo $this->lang->line('first')." ".$this->lang->line('name');?></label>
+							<input type="text" name="first_name" value="<?= $first_name ?>" class="form-control"/>
+							<?php echo form_error('first_name','<div class="alert alert-danger">','</div>'); ?>
 						</div>
 					</div>
-					<div class="col-md-12">
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="phone_number"><?php echo $this->lang->line('phone_number')?></label>
-								<input type="text" name="phone_number" value="<?= $phone_number ?>" class="form-control"/>
-								<?php echo form_error('phone_number','<div class="alert alert-danger">','</div>'); ?>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="email"><?php echo $this->lang->line('email')?></label>
-								<input type="text" name="email" value="<?= $email ?>" class="form-control"/>
-								<?php echo form_error('email','<div class="alert alert-danger">','</div>'); ?>
-							</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label for="middle_name"><?php echo $this->lang->line('middle')." ".$this->lang->line('name');?></label>
+							<input type="text" name="middle_name" value="<?= $middle_name ?>"  class="form-control"/>
+							<?php echo form_error('middle_name','<div class="alert alert-danger">','</div>'); ?>
 						</div>
 					</div>
-					<div class="col-md-12">
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="type"><?php echo $this->lang->line('address_line_1');?></label>
-								<input type="input"  class="form-control" name="address_line_1" value="<?= $address_line_1 ?>"/>
-								<?php echo form_error('address_line_1','<div class="alert alert-danger">','</div>'); ?>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="type"><?php echo $this->lang->line('address_line_2');?></label>
-								<input type="input" class="form-control" name="address_line_2" value="<?= $address_line_2 ?>"/>
-								<?php echo form_error('address_line_2','<div class="alert alert-danger">','</div>'); ?>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="city"><?php echo $this->lang->line('city');?></label>
-								<input type="input" class="form-control" name="city" value="<?= $city ?>"/>
-								<?php echo form_error('city','<div class="alert alert-danger">','</div>'); ?>
-							</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label for="last_name"><?php echo $this->lang->line('last')." ".$this->lang->line('name');?></label>
+							<input type="text" name="last_name" value="<?= $last_name ?>" class="form-control"/>
+							<?php echo form_error('last_name','<div class="alert alert-danger">','</div>'); ?>
 						</div>
 					</div>
-					<div class="col-md-12">
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="gender"><?php echo $this->lang->line('gender');?></label><br/>
-								<input type="radio" name="gender" value="male" /><?php echo $this->lang->line("male");?>
-								<input type="radio" name="gender" value="female" /><?php echo $this->lang->line("female");?>
-								<input type="radio" name="gender" value="other" /><?php echo $this->lang->line("other");?>
-								<?php echo form_error('gender','<div class="alert alert-danger">','</div>'); ?>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="dob"><?php echo $this->lang->line('dob')?></label>
-								<input type="text" name="dob" id="dob" value="" class="form-control"/>
-								<?php echo form_error('dob','<div class="alert alert-danger">','</div>'); ?>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="reference_by"><?php echo $this->lang->line('reference_by')?></label>
-								<select name="reference_by" class="form-control" id="reference_by">
-									<?php foreach($reference_by as $reference){?>
-										<option reference_placeholder="<?php echo $reference['placeholder']; ?>" reference_add_option="<?php echo $reference['reference_add_option']; ?>" value="<?php echo $reference['reference_option']; ?>"><?php echo $reference['reference_option']; ?></option>
-									<?php }?>
-								</select>
-								<?php echo form_error('reference_by','<div class="alert alert-danger">','</div>'); ?>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="reference_details"><?php echo $this->lang->line('reference_details')?></label>
-								<input type="text" name="reference_details" id="reference_details" value="" class="form-control"/>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-12">
-						<div class="col-md-3">
-							<div class="form-group">
-								<button class="btn btn-primary square-btn-adjust" type="submit" name="submit" /><?php echo $this->lang->line('add')." ".$this->lang->line('patient');?></button>
-							</div>
-						</div>
-					</div>
-					<?php echo form_close(); ?>
 				</div>
 			</div>
-			<?php } ?>
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<?=$header;?>
-				</div>
-				<div class="panel-body">
-					<?php if(isset($session_date_id)){ ?>
-					<div class="alert alert-warning"><?=$this->lang->line("planned_appointment");?></div>
-					<?php } ?>
-					<?php $timezone = $this->settings_model->get_time_zone();
-						if (function_exists('date_default_timezone_set'))
-							date_default_timezone_set($timezone);
-						$appointment_date = date($def_dateformate,strtotime($appointment_date)); ?>
-					<?php if(isset($appointment)){ ?>
-					<?php echo form_open('appointment/edit_appointment/'.$appointment['appointment_id']) ?>
-					<?php }else{ ?>
-					<?php echo form_open('appointment/add/'.$year.'/'.$month.'/'.$day.'/'.$hour.'/'.$min.'/'.$status.'/'.$patient_id) ?>
-					<?php } ?>
-					<input type="hidden" name="appointment_id" value="<?= $appointment_id; ?>"/>
-					<input type="hidden" name="patient_id" id="patient_id" value="<?php if(isset($curr_patient)){echo $curr_patient['patient_id']; } ?>"/>
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<?= $this->lang->line('search')." ".$this->lang->line('patient');?>
-						</div>
-						<div class="panel-body">
-							<input type="hidden" name="title" id="title" value="<?= $title; ?>" class="form-control"/>
-							<div class="col-md-3">
-								<label for="display_id"><?php echo $this->lang->line('patient_id');?></label>
-								<input type="text" <?php if(isset($session_date_id)){echo "readonly";}?> name="display_id" id="display_id" value="<?php if(isset($curr_patient)){echo $curr_patient['display_id']; } ?>" class="form-control"/>
-							</div>
-							<div class="col-md-3">
-								<label for="ssn_id"><?php echo $this->lang->line('ssn_id');?></label>
-								<input type="text" <?php if(isset($session_date_id)){echo "readonly";}?> name="ssn_id" id="ssn_id" value="<?php if(isset($curr_patient)){echo $curr_patient['ssn_id']; } ?>" class="form-control"/>
-							</div>
-							<div class="col-md-3">
-								<label for="patient"><?php echo $this->lang->line('patient_name');?></label>
-								<input type="text" <?php if(isset($session_date_id)){echo "readonly";}?> name="patient_name" id="patient_name" value="<?php if(isset($curr_patient)){echo $curr_patient['first_name']." " .$curr_patient['middle_name']." " .$curr_patient['last_name']; } ?>" class="form-control"/>
-								<?php echo form_error('patient_id','<div class="alert alert-danger">','</div>'); ?>
-							</div>
-
-							<div class="col-md-3">
-								<label for="phone"><?php echo $this->lang->line('mobile');?></label>
-								<input type="text" <?php if(isset($session_date_id)){echo "readonly";}?> name="phone_number" id="phone_number" value="<?php if(isset($curr_patient)){echo $curr_patient['phone_number']; } ?>" class="form-control"/>
-							</div>
-
-						</div>
-					</div>
-					<input type="hidden" name="session_date_id" value="<?=@$session_date_id;?>" />
-
-					<?php if($level =="Doctor" || isset($session_date_id)) {?>
-					<div class="col-md-6">
+			<div class="col-md-12">
+				<div class="row" style="margin-left:10px;">
+					<div class="col-md-3">
 						<div class="form-group">
-							<label for="doctor"><?php echo $this->lang->line('doctor')." ".$this->lang->line('name');?></label>
-							<input type="hidden" name="doctor_id" value="<?=$doctor['doctor_id'];?>" />
-							<input type="text" class="form-control" name="doctor_name" value="<?=$doctor['name'];?>" readonly/>
-							<?php //echo form_dropdown('doctor_id', $doctor_detail, $selected_doctor_id,'class="form-control"'); ?>
-							<?php //echo form_error('doctor_id','<div class="alert alert-danger">','</div>'); ?>
+							<label for="phone_number"><?php echo $this->lang->line('phone_number')?></label>
+							<input type="text" name="phone_number" value="<?= $phone_number ?>" class="form-control"/>
+							<?php echo form_error('phone_number','<div class="alert alert-danger">','</div>'); ?>
 						</div>
 					</div>
-					<?php }else{ ?>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label for="email"><?php echo $this->lang->line('email')?></label>
+							<input type="text" name="email" value="<?= $email ?>" class="form-control"/>
+							<?php echo form_error('email','<div class="alert alert-danger">','</div>'); ?>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="row" style="margin-left:10px;">
+					<div class="col-md-3">
+						<div class="form-group">
+							<label for="type"><?php echo $this->lang->line('address_line_1');?></label>
+							<input type="input"  class="form-control" name="address_line_1" value="<?= $address_line_1 ?>"/>
+							<?php echo form_error('address_line_1','<div class="alert alert-danger">','</div>'); ?>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label for="type"><?php echo $this->lang->line('address_line_2');?></label>
+							<input type="input" class="form-control" name="address_line_2" value="<?= $address_line_2 ?>"/>
+							<?php echo form_error('address_line_2','<div class="alert alert-danger">','</div>'); ?>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label for="city"><?php echo $this->lang->line('city');?></label>
+							<input type="input" class="form-control" name="city" value="<?= $city ?>"/>
+							<?php echo form_error('city','<div class="alert alert-danger">','</div>'); ?>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="row" style="margin-left:10px;">
+					<div class="col-md-3">
+						<div class="form-group">
+							<label for="gender"><?php echo $this->lang->line('gender');?></label><br/>
+							<input type="radio" name="gender" value="male" /><?php echo $this->lang->line("male");?>
+							<input type="radio" name="gender" value="female" /><?php echo $this->lang->line("female");?>
+							<input type="radio" name="gender" value="other" /><?php echo $this->lang->line("other");?>
+							<?php echo form_error('gender','<div class="alert alert-danger">','</div>'); ?>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label for="dob"><?php echo $this->lang->line('dob')?></label>
+							<input type="text" name="dob" id="dob" value="" class="form-control"/>
+							<?php echo form_error('dob','<div class="alert alert-danger">','</div>'); ?>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label for="reference_by"><?php echo $this->lang->line('reference_by')?></label>
+							<select name="reference_by" class="form-control" id="reference_by">
+								<?php foreach($reference_by as $reference){?>
+									<option reference_placeholder="<?php echo $reference['placeholder']; ?>" reference_add_option="<?php echo $reference['reference_add_option']; ?>" value="<?php echo $reference['reference_option']; ?>"><?php echo $reference['reference_option']; ?></option>
+								<?php }?>
+							</select>
+							<?php echo form_error('reference_by','<div class="alert alert-danger">','</div>'); ?>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label for="reference_details"><?php echo $this->lang->line('reference_details')?></label>
+							<input type="text" name="reference_details" id="reference_details" value="" class="form-control"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="col-md-3">
+					<div class="form-group">
+						<button class="btn btn-primary square-btn-adjust" type="submit" name="submit" /><?php echo $this->lang->line('add')." ".$this->lang->line('patient');?></button>
+					</div>
+				</div>
+			</div>
+			<?php echo form_close(); ?>		
+			<?php } ?>
+		</div>
+	</div>	
+	<!-- Begin Page Content -->
+    <div class="container-fluid">
+		<!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800"><?=$header;?></h1>
+			<div class="panel-body">
+				<?php if(isset($session_date_id)){ ?>
+				<div class="alert alert-warning"><?=$this->lang->line("planned_appointment");?></div>
+				<?php } ?>
+				<?php $timezone = $this->settings_model->get_time_zone();
+					if (function_exists('date_default_timezone_set'))
+						date_default_timezone_set($timezone);
+					$appointment_date = date($def_dateformate,strtotime($appointment_date)); ?>
+				<?php if(isset($appointment)){ ?>
+				<?php echo form_open('appointment/edit_appointment/'.$appointment['appointment_id']) ?>
+				<?php }else{ ?>
+				<?php echo form_open('appointment/add/'.$year.'/'.$month.'/'.$day.'/'.$hour.'/'.$min.'/'.$status.'/'.$patient_id) ?>
+				<?php } ?>
+				<input type="hidden" name="appointment_id" value="<?= $appointment_id; ?>"/>
+				<input type="hidden" name="patient_id" id="patient_id" value="<?php if(isset($curr_patient)){echo $curr_patient['patient_id']; } ?>"/>
+				<div class="panel panel-default" style="margin-left:10px;">
+					<div class="panel-heading">
+						<?= $this->lang->line('search')." ".$this->lang->line('patient');?>
+					</div>
+					<div class="row">
+						<input type="hidden" name="title" id="title" value="<?= $title; ?>" class="form-control"/>
+						<div class="col-md-3">
+							<label for="display_id"><?php echo $this->lang->line('patient_id');?></label>
+							<input type="text" <?php if(isset($session_date_id)){echo "readonly";}?> name="display_id" id="display_id" value="<?php if(isset($curr_patient)){echo $curr_patient['display_id']; } ?>" class="form-control"/>
+						</div>
+						<div class="col-md-3">
+							<label for="ssn_id"><?php echo $this->lang->line('ssn_id');?></label>
+							<input type="text" <?php if(isset($session_date_id)){echo "readonly";}?> name="ssn_id" id="ssn_id" value="<?php if(isset($curr_patient)){echo $curr_patient['ssn_id']; } ?>" class="form-control"/>
+						</div>
+						<div class="col-md-3">
+							<label for="patient"><?php echo $this->lang->line('patient_name');?></label>
+							<input type="text" <?php if(isset($session_date_id)){echo "readonly";}?> name="patient_name" id="patient_name" value="<?php if(isset($curr_patient)){echo $curr_patient['first_name']." " .$curr_patient['middle_name']." " .$curr_patient['last_name']; } ?>" class="form-control"/>
+							<?php echo form_error('patient_id','<div class="alert alert-danger">','</div>'); ?>
+						</div>
+
+						<div class="col-md-3">
+							<label for="phone"><?php echo $this->lang->line('mobile');?></label>
+							<input type="text" <?php if(isset($session_date_id)){echo "readonly";}?> name="phone_number" id="phone_number" value="<?php if(isset($curr_patient)){echo $curr_patient['phone_number']; } ?>" class="form-control"/>
+						</div>
+					</div>
+				</div>
+				<input type="hidden" name="session_date_id" value="<?=@$session_date_id;?>" /><br/>
+
+				<?php if($level =="Doctor" || isset($session_date_id)) {?>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="doctor"><?php echo $this->lang->line('doctor')." ".$this->lang->line('name');?></label>
+						<input type="hidden" name="doctor_id" value="<?=$doctor['doctor_id'];?>" />
+						<input type="text" class="form-control" name="doctor_name" value="<?=$doctor['name'];?>" readonly/>
+						<?php //echo form_dropdown('doctor_id', $doctor_detail, $selected_doctor_id,'class="form-control"'); ?>
+						<?php //echo form_error('doctor_id','<div class="alert alert-danger">','</div>'); ?>
+					</div>
+				</div>
+				<?php }else{ ?>
+				<div class="row" style="margin-left:0px;">
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="doctor"><?php echo $this->lang->line('doctor')." ".$this->lang->line('name');?></label>
@@ -265,6 +273,8 @@
 							<?php echo form_error('appointment_date','<div class="alert alert-danger">','</div>'); ?>
 						</div>
 					</div>
+				</div>
+				<div class="row" style="margin-left:0px;">
 					<div class="col-md-4">
 						<div class="form-group">
 							<label for="start_time"><?php echo $this->lang->line('start_time');?></label>
@@ -279,73 +289,57 @@
 							<?php echo form_error('end_time','<div class="alert alert-danger">','</div>'); ?>
 						</div>
 					</div>
-
-					<div class="col-md-12">
-						<div class="form-group">
-							<label><?=$this->lang->line('reason');?></label>
-							<input type="text" name="appointment_reason" id="appointment_reason" value="<?= $appointment_reason; ?>" class="form-control"/>
-							<?php echo form_error('appointment_reason','<div class="alert alert-danger">','</div>'); ?>
-						</div>
-					</div>
-					<br/>
-					<div class="col-md-12">
-						<div class="form-group">
-							<button class="btn btn-primary square-btn-adjust" type="submit" name="submit" value="save"/><?php echo $this->lang->line('save');?></button>
-							<a class="btn btn-primary square-btn-adjust" href="<?=base_url() . "index.php/appointment/index/";?>"><?=$this->lang->line('back_to_app');?></a>
-							<?php if(isset($appointment)){ ?>
-								<?php if(isset($bill)) {?>
-								<a class="btn btn-primary square-btn-adjust" href="<?=site_url("bill/edit/".$bill['bill_id']);?>"><?=$this->lang->line('bill');?></a>
-								<?php } else{  ?>
-								<a class="btn btn-primary square-btn-adjust" href="<?=base_url() . "index.php/bill/insert/".$patient_id."/".$doctor['doctor_id']."/".$appointment['appointment_id'];?>"><?=$this->lang->line('bill');?></a>
-								<?php } ?>
-							<?php }else{ ?>
-								<button class="btn btn-primary square-btn-adjust" type="submit" name="submit" value="save_and_bill"/><?php echo $this->lang->line('save_and_bill');?></button>
-							<?php } ?>
-						</div>
-					</div>
-					<br/>
-					<div class="col-md-12">
-						<div class="form-group">
-					<?php if(isset($appointment)){ ?>
-						<?php if ($status != 'Appointments') { ?>
-							<a class="btn btn-primary square-btn-adjust" href="<?=base_url() . "index.php/appointment/change_status/" . $appointment_id . "/Appointments";?>" ><?php echo $this->lang->line('appointment');?></a>
-						<?php } ?>
-						<?php if ($status != 'Cancel') { ?>
-							<a class="btn btn-info square-btn-adjust" href="<?=base_url() . "index.php/appointment/change_status/" . $appointment_id . "/Cancel";?>" ><?php echo $this->lang->line('cancel')." ".$this->lang->line('appointment');?></a>
-						<?php } ?>
-						<?php if ($status != 'Waiting') { ?>
-							<a class="btn btn-warning square-btn-adjust" href="<?=base_url() . "index.php/appointment/change_status/" . $appointment_id . "/Waiting";?>"><?php echo $this->lang->line('waiting');?></a>
-						<?php } ?>
-						<?php if ($status != 'Consultation') { ?>
-							<a class="btn btn-danger square-btn-adjust" href="<?=base_url() . "index.php/appointment/change_status/" . $appointment_id . "/Consultation";?>"><?php echo $this->lang->line('consultation');?></a>
-						<?php } ?>
-					<?php } ?>
-					</div>
-
-					</div>
-					<?php echo form_close() ?>
 				</div>
+				<div class="col-md-12">
+					<div class="form-group">
+						<label><?=$this->lang->line('reason');?></label>
+						<input type="text" name="appointment_reason" id="appointment_reason" value="<?= $appointment_reason; ?>" class="form-control"/>
+						<?php echo form_error('appointment_reason','<div class="alert alert-danger">','</div>'); ?>
+					</div>
+				</div>
+				<br/>
+				<div class="col-md-12">
+					<div class="form-group">
+						<button class="btn btn-primary square-btn-adjust" type="submit" name="submit" value="save"/><?php echo $this->lang->line('save');?></button>
+						<a class="btn btn-primary square-btn-adjust" href="<?=base_url() . "index.php/appointment/index/";?>"><?=$this->lang->line('back_to_app');?></a>
+						<?php if(isset($appointment)){ ?>
+							<?php if(isset($bill)) {?>
+							<a class="btn btn-primary square-btn-adjust" href="<?=site_url("bill/edit/".$bill['bill_id']);?>"><?=$this->lang->line('bill');?></a>
+							<?php } else{  ?>
+							<a class="btn btn-primary square-btn-adjust" href="<?=base_url() . "index.php/bill/insert/".$patient_id."/".$doctor['doctor_id']."/".$appointment['appointment_id'];?>"><?=$this->lang->line('bill');?></a>
+							<?php } ?>
+						<?php }else{ ?>
+							<button class="btn btn-primary square-btn-adjust" type="submit" name="submit" value="save_and_bill"/><?php echo $this->lang->line('save_and_bill');?></button>
+						<?php } ?>
+					</div>
+				</div>
+				<br/>
+				<div class="col-md-12">
+					<div class="form-group">
+				<?php if(isset($appointment)){ ?>
+					<?php if ($status != 'Appointments') { ?>
+						<a class="btn btn-primary square-btn-adjust" href="<?=base_url() . "index.php/appointment/change_status/" . $appointment_id . "/Appointments";?>" ><?php echo $this->lang->line('appointment');?></a>
+					<?php } ?>
+					<?php if ($status != 'Cancel') { ?>
+						<a class="btn btn-info square-btn-adjust" href="<?=base_url() . "index.php/appointment/change_status/" . $appointment_id . "/Cancel";?>" ><?php echo $this->lang->line('cancel')." ".$this->lang->line('appointment');?></a>
+					<?php } ?>
+					<?php if ($status != 'Waiting') { ?>
+						<a class="btn btn-warning square-btn-adjust" href="<?=base_url() . "index.php/appointment/change_status/" . $appointment_id . "/Waiting";?>"><?php echo $this->lang->line('waiting');?></a>
+					<?php } ?>
+					<?php if ($status != 'Consultation') { ?>
+						<a class="btn btn-danger square-btn-adjust" href="<?=base_url() . "index.php/appointment/change_status/" . $appointment_id . "/Consultation";?>"><?php echo $this->lang->line('consultation');?></a>
+					<?php } ?>
+				<?php } ?>
+				</div>
+
+				</div>
+				<?php echo form_close() ?>
 			</div>
-		</div>
 	</div>
-</div>
-<!-- JQUERY SCRIPTS -->
-<script src="<?= base_url() ?>assets/js/jquery-1.11.3.min.js"></script>
-<!-- JQUERY UI SCRIPTS -->
-<script src="<?= base_url() ?>assets/js/jquery-ui.min.js"></script>
-<!-- BOOTSTRAP SCRIPTS -->
-<script src="<?= base_url() ?>assets/js/bootstrap.min.js"></script>
-<!-- METISMENU SCRIPTS -->
-<script src="<?= base_url() ?>assets/js/jquery.metisMenu.min.js"></script>
-<!-- TimePicker SCRIPTS-->
-<script src="<?= base_url() ?>assets/js/jquery.datetimepicker.min.js"></script>
-<script src="<?= base_url() ?>/assets/js/dataTables/moment.min.js"></script>
-<!-- CUSTOM SCRIPTS -->
-<script src="<?= base_url() ?>assets/js/custom.min.js"></script>
 
 <script type="text/javascript">
 
-    $(window).load(function(){
+    $(window).on('load', function(){
 		$(".expand-collapse-header").click(function () {
 			if($(this).find("i").hasClass("fa-arrow-circle-down"))
 			{

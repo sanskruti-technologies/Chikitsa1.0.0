@@ -16,49 +16,41 @@
     along with Chikitsa.  If not, see <https://www.gnu.org/licenses/>.
 */
 ?>
-<div id="page-inner">
-	<div class="row">
-		<div class="col-md-12">
-			<!-- Advanced Tables -->
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<?php echo $this->lang->line('tax_rates');?>
-				</div>
-				<div class="panel-body">
-					<a href="<?= site_url("settings/insert_tax_rate/");?>" class="btn btn-primary square-btn-adjust"><?php echo $this->lang->line("add")." ".$this->lang->line("tax_rate");?></a>
-					<div class="table-responsive">
-						<table class="table table-striped table-bordered table-hover" id="tax_rate_table">
-							<thead>
-								<tr>
-									<th><?php echo $this->lang->line("id");?></th>
-									<th><?php echo $this->lang->line("tax_rate")." ".$this->lang->line("name");?></th>
-									<th><?php echo $this->lang->line("tax_rate")." ".$this->lang->line("percentage");?></th>
-									<th><?php echo $this->lang->line("action");?></th>
-								</tr>
-							</thead>
-							<tbody>
-								<?php $i = 1; ?>
-								<?php foreach($tax_rates as $tax_rate){ ?>
-									<tr>
-										<td><?=$i;?></td>
-										<td><?=$tax_rate['tax_rate_name'];?></td>
-										<td><?=$tax_rate['tax_rate'];?></td>
-										<td>
-											<a class="btn btn-primary btn-sm square-btn-adjust editbt" href="<?=site_url('settings/edit_tax_rate/'.$tax_rate['tax_id']);?>"><i class="fa fa-pencil"></i></a>
-											<a class="btn btn-danger btn-sm square-btn-adjust confirmDelete" href="<?=site_url('settings/delete_tax_rate/'.$tax_rate['tax_id']);?>"><i class="fa fa-trash" aria-hidden="true"></i></a>
-										</td>
-									</tr>
-									<?php $i++; ?>
-								<?php }?>
-							</tbody>
-						</table>
-					</div>
-				</div>
+<!-- Begin Page Content -->
+        <div class="container-fluid">
+		<!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800"><?php echo $this->lang->line('tax_rates');?></h1>	
+			<a href="<?= site_url("settings/insert_tax_rate/");?>" class="btn btn-primary square-btn-adjust"><?php echo $this->lang->line("add")." ".$this->lang->line("tax_rate");?></a>
+			<div class="table-responsive">
+				<table class="table table-striped table-bordered table-hover" id="tax_rate_table">
+					<thead>
+						<tr>
+							<th><?php echo $this->lang->line("id");?></th>
+							<th><?php echo $this->lang->line("tax_rate")." ".$this->lang->line("name");?></th>
+							<th><?php echo $this->lang->line("tax_rate")." ".$this->lang->line("percentage");?></th>
+							<th><?php echo $this->lang->line("action");?></th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php $i = 1; ?>
+						<?php foreach($tax_rates as $tax_rate){ ?>
+							<tr>
+								<td><?=$i;?></td>
+								<td><?=$tax_rate['tax_rate_name'];?></td>
+								<td><?=$tax_rate['tax_rate'];?></td>
+								<td>
+									<a class="btn btn-primary square-btn-adjust" href="<?=site_url('settings/edit_tax_rate/'.$tax_rate['tax_id']);?>">Edit</a>
+									<a class="btn btn-danger square-btn-adjust confirmDelete" href="<?=site_url('settings/delete_tax_rate/'.$tax_rate['tax_id']);?>">Delete</a>
+								</td>
+							</tr>
+							<?php $i++; ?>
+						<?php }?>
+					</tbody>
+				</table>
 			</div>
 			<!--End Advanced Tables -->
 		</div>
-	</div>
-</div>
+	
 <script type="text/javascript" charset="utf-8">
 $( window ).load(function() {
 

@@ -464,335 +464,323 @@ $(window).load(function(){
 </script>
 
 <!-- Begin Page Content -->
-        <div class="container-fluid">
-<!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800"><?=$this->lang->line("new")." ".$this->lang->line("bill");?></h1>
+    <div class="container-fluid">
+		<!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800"><?=$this->lang->line("new")." ".$this->lang->line("bill");?></h1>
+			<?php echo form_open('bill/edit/'.$bill_id); ?>
+			<div class="form-group">
+				<?php if($bill_id != 0){?>
+				<a class="btn btn-primary btn-sm" target="_blank" href="<?php echo site_url("bill/print_receipt/" . $bill_id); ?>"><?php echo $this->lang->line("receipt");?></a>
+				<a class="btn btn-primary btn-sm" href="<?php echo site_url("payment/insert/" .$patient_id . "/bill"); ?>"><?php echo $this->lang->line("bill")." ".$this->lang->line("payment");?></a>
+				<a class="btn btn-primary btn-sm" href="<?php echo site_url("patient/visit/" .$patient_id); ?>">Back to Visit</a>
+				<a class="btn btn-primary btn-sm" href="<?php echo site_url("bill/index"); ?>">Back to Bills</a>
+				<?php if (in_array("alert", $active_modules)) {	?>
+					<a class="btn btn-primary btn-sm" href="<?php echo site_url("patient/email_bill/" . $bill_id."/".$patient_id ); ?>">Email Bill</a>
+				<?php } ?>
+				<?php
 
-				<?php echo form_open('bill/edit/'.$bill_id); ?>
-				<div class="form-group">
-					<?php if($bill_id != 0){?>
-					<a class="btn btn-primary btn-sm" target="_blank" href="<?php echo site_url("bill/print_receipt/" . $bill_id); ?>"><?php echo $this->lang->line("receipt");?></a>
-					<a class="btn btn-primary btn-sm" href="<?php echo site_url("payment/insert/" .$patient_id . "/bill"); ?>"><?php echo $this->lang->line("bill")." ".$this->lang->line("payment");?></a>
-					<a class="btn btn-primary btn-sm" href="<?php echo site_url("patient/visit/" .$patient_id); ?>">Back to Visit</a>
-					<a class="btn btn-primary btn-sm" href="<?php echo site_url("bill/index"); ?>">Back to Bills</a>
-					<?php if (in_array("alert", $active_modules)) {	?>
-						<a class="btn btn-primary btn-sm" href="<?php echo site_url("patient/email_bill/" . $bill_id."/".$patient_id ); ?>">Email Bill</a>
-					<?php } ?>
-					<?php
-
-						$bill_date = date($def_dateformate,strtotime($bill['bill_date']));
-						$bill_time = date($def_timeformate,strtotime($bill['bill_time']));
-					}else{
-						$bill_date = date($def_dateformate);
-						$bill_time = date($def_timeformate);
-					}?>
-					<span class="alert-danger"><?php echo validation_errors(); ?></span>
-				</div>
-				
-					<input type="hidden" name="bill_id" value="<?=$bill_id?>"/>
-					
-						<div class="panel panel-default">
-								<div class="panel-heading">
-									<?= $this->lang->line('search')." ".$this->lang->line('patient');?>
-								</div>
-								<div class="row">
-									<div class="col-md-3">
-									<label for="display_id"><?php echo $this->lang->line('patient_id');?></label>
-									<input type="hidden" name="patient_id" id="patient_id" value="<?=$patient_id; ?>">
-										<?php if(isset($visit_id)){ ?>
-												<input type="text" name="display_id" id="display_id" value="<?=$display_id; ?>" class="form-control" readonly/>
-											<?php	}else { ?>
-												<input type="text" name="display_id" id="display_id" value="<?=$display_id; ?>" class="form-control"/>
-											<?php } ?>
-									</div>
-									<div class="col-md-3">
-										<label for="ssn_id"><?php echo $this->lang->line('ssn_id');?></label>
-										<?php if(isset($visit_id)){ ?>
-												<input type="text" name="ssn_id" id="ssn_id" value="<?=$ssn_id; ?>" class="form-control" readonly/>
-											<?php }else { ?>
-												<input type="text" name="ssn_id" id="ssn_id" value="<?=$ssn_id; ?>" class="form-control"/>
-											<?php } ?>
-									</div>
-									<div class="col-md-3">
-										<label for="patient"><?php echo $this->lang->line('patient_name');?></label>
-										<?php if(isset($visit_id))
-												{ ?>
-												<input type="text" name="patient_name" id="patient_name" value="<?=$patient_name; ?>" class="form-control" readonly/>
-											<?php	}else { ?>
-												<input type="text" name="patient_name" id="patient_name" value="<?=$patient_name; ?>" class="form-control"/>
-											<?php } ?>
-										<?php echo form_error('patient_id','<div class="alert alert-danger">','</div>'); ?>
-									</div>
-									<div class="col-md-3">
-										<label for="phone"><?php echo $this->lang->line('mobile');?></label>
-										<?php if(isset($visit_id))
-												{ ?>
-												<input type="text" name="phone_number" id="phone_number" value="<?=$phone_number; ?>" class="form-control" readonly/>
-											<?php	}else { ?>
-												<input type="text" name="phone_number" id="phone_number" value="<?=$phone_number; ?>" class="form-control"/>
-											<?php } ?>
-									</div>
-								</div>
-						</div>
-					
-					<div class="row">
-						<div class="col-md-6">
-							<label for="patient_name"><?php echo $this->lang->line("doctor");?></label>
-							<?php if(isset($visit_id)){
-									 $doctor_id=$doctor['doctor_id'];?>
-									<input type="text" name="doctor_name" id="doctor_name" value="<?=$doctor_name; ?>" class="form-control" readonly/>
-									<input type="hidden" name="doctor_id" id="doctor_id" value="<?= $doctor_id ?>"/>
-									<input type="hidden" name="doctor_department" id="doctor_department" value="<?=$doctor_department;?>" />
-								<?php	}else { ?>
-									<input type="text" name="doctor_name" id="doctor_name" value="<?=$doctor_name; ?>" class="form-control"/>
-									<input type="hidden" name="doctor_id" id="doctor_id" value="<?= @$doctor_id ?>"/>
-									<input type="hidden" name="doctor_department" id="doctor_department" value="<?=$doctor_department;?>" />
-								<?php } ?>
-							<input type="hidden" name="appointment_id" id="appointment_id" value="<?=@$appointment_id ?>"/>
-							<?php echo form_error('doctor_id','<div class="alert alert-danger">','</div>'); ?>
-						</div>
+					$bill_date = date($def_dateformate,strtotime($bill['bill_date']));
+					$bill_time = date($def_timeformate,strtotime($bill['bill_time']));
+				}else{
+					$bill_date = date($def_dateformate);
+					$bill_time = date($def_timeformate);
+				}?>
+				<span class="alert-danger"><?php echo validation_errors(); ?></span>
+			</div>				
+			<input type="hidden" name="bill_id" value="<?=$bill_id?>"/>		
+			<div class="panel panel-default">
+					<div class="panel-heading">
+						<?= $this->lang->line('search')." ".$this->lang->line('patient');?>
 					</div>
-					
 					<div class="row">
-						<div class="form-group col-md-6">
-							<label for="bill_date"><?php echo $this->lang->line("date");?></label>
-							<?php if(isset($visit_id)){
-									 ?>
-									<input type="text" name="bill_date" id="" value="<?=$bill_date; ?>" class="form-control" readonly/>
+						<div class="col-md-3">
+						<label for="display_id"><?php echo $this->lang->line('patient_id');?></label>
+						<input type="hidden" name="patient_id" id="patient_id" value="<?=$patient_id; ?>">
+							<?php if(isset($visit_id)){ ?>
+									<input type="text" name="display_id" id="display_id" value="<?=$display_id; ?>" class="form-control" readonly/>
 								<?php	}else { ?>
-									<input type="text" name="bill_date" id="bill_date" value="<?=$bill_date; ?>" class="form-control"/>
+									<input type="text" name="display_id" id="display_id" value="<?=$display_id; ?>" class="form-control"/>
 								<?php } ?>
-
-							<?php echo form_error('bill_date','<div class="alert alert-danger">','</div>'); ?>
 						</div>
-						<div class="form-group col-md-6">
-							<label for="bill_time"><?php echo $this->lang->line("time");?></label>
+						<div class="col-md-3">
+							<label for="ssn_id"><?php echo $this->lang->line('ssn_id');?></label>
+							<?php if(isset($visit_id)){ ?>
+									<input type="text" name="ssn_id" id="ssn_id" value="<?=$ssn_id; ?>" class="form-control" readonly/>
+								<?php }else { ?>
+									<input type="text" name="ssn_id" id="ssn_id" value="<?=$ssn_id; ?>" class="form-control"/>
+								<?php } ?>
+						</div>
+						<div class="col-md-3">
+							<label for="patient"><?php echo $this->lang->line('patient_name');?></label>
 							<?php if(isset($visit_id))
 									{ ?>
-									<input type="text" name="bill_time" id="" value="<?=$bill_time; ?>" class="form-control" readonly/>
+									<input type="text" name="patient_name" id="patient_name" value="<?=$patient_name; ?>" class="form-control" readonly/>
 								<?php	}else { ?>
-									<input type="text" name="bill_time" id="bill_time" value="<?=$bill_time; ?>" class="form-control"/>
+									<input type="text" name="patient_name" id="patient_name" value="<?=$patient_name; ?>" class="form-control"/>
 								<?php } ?>
-
-							<?php echo form_error('bill_time','<div class="alert alert-danger">','</div>'); ?>
+							<?php echo form_error('patient_id','<div class="alert alert-danger">','</div>'); ?>
+						</div>
+						<div class="col-md-3">
+							<label for="phone"><?php echo $this->lang->line('mobile');?></label>
+							<?php if(isset($visit_id))
+									{ ?>
+									<input type="text" name="phone_number" id="phone_number" value="<?=$phone_number; ?>" class="form-control" readonly/>
+								<?php	}else { ?>
+									<input type="text" name="phone_number" id="phone_number" value="<?=$phone_number; ?>" class="form-control"/>
+								<?php } ?>
 						</div>
 					</div>
-
-
-            
-					<div class="panel panel-primary">
-						<div class="panel-body table-responsive-60">
-								<div class="form-group">
-									<div class="row">
-										<div class="col-md-3">
-											<?php echo $this->lang->line("particular");?>
-											<input type="hidden" name="action" value="particular">
-											<input name="particular" id="particular" class="form-control" value=""/>
-										</div>
-										<div class="col-md-2">
-											<?php echo $this->lang->line("amount");?>
-											<input type="text" name="particular_amount" id="particular_amount" class="form-control" id="amount"/>
-										</div>
-										<?php if($tax_type == "item"){?>
-										<div class="col-md-2">
-											<?php echo $this->lang->line("tax");?>
-											<select name="tax_id" class="form-control" id="bill_tax_rate">
-												<?php foreach($tax_rates as $tax_rate){?>
-													<option tax_rate="<?=$tax_rate['tax_rate'];?>" value="<?=$tax_rate['tax_id'];?>"><?=$tax_rate['tax_rate_name'];?></option>
-												<?php } ?>
-											</select>
-										</div>
-										<div class="col-md-3">
-											<?php echo $this->lang->line("rate");?>
-											<input type="text" style="text-align:right;" name="tax_amount" id="tax_amount" class="form-control" readonly />
-										</div>
-										<?php } ?>
-										<div class="col-md-2">
-											<br/>
-											<button class="btn btn-primary square-btn-adjust" type="submit" name="submit" value="particular" /><?php echo $this->lang->line("add");?></button>
-
-										</div>
-									</div>
-								</div>
-								<?php if (in_array("stock",$active_modules)) { ?>
-								<div class="form-group">
-									<div class="row">
-										<div class="col-md-3">
-											<?php echo $this->lang->line("item");?>
-											<input type="hidden" name="action" value="item">
-											<input type="hidden" name="item_id" id="item_id" value="">
-											<input name="item_name" id="item_name" class="form-control" value=""/>
-										</div>
-										<div class="col-md-2">
-											<?php echo $this->lang->line("quantity");?>
-											<input type="text" name="item_quantity" id="item_quantity" class="form-control" />
-										</div>
-										<div class="col-md-2">
-											<?php echo $this->lang->line("available");?>
-											<input type="text" name="available_quantity" id="available_quantity" class="form-control" readonly="readonly" />
-
-										</div>
-										<div class="col-md-2">
-											<?php echo $this->lang->line("amount");?>
-											<input type="text" name="item_amount" id="item_amount" class="form-control" />
-
-										</div>
-										<div class="col-md-3">
-											<br/>
-											<button class="btn btn-primary square-btn-adjust" type="submit" name="submit" value="item" /><?php echo $this->lang->line("add");?></button>
-
-										</div>
-									</div>
-								</div>
-								<?php }?>
-								<?php if (in_array("doctor",$active_modules)) {?>
-								<div id="fees_section">
-								<div class="form-group">
-									<div class="row">
-										<div class="col-md-3">
-											<?php echo $this->lang->line("fees");?>
-											<input type="hidden" name="action" value="fees">
-											<input name="fees_detail" id="fees_detail" class="form-control" value=""/>
-										</div>
-										<div class="col-md-3">
-											<?php echo $this->lang->line("amount");?>
-											<input type="text" name="fees_amount" id="fees_amount" class="form-control" id="amount"/>
-
-										</div>
-										<div class="col-md-3">
-											<br/>
-											<button class="btn btn-primary  square-btn-adjust" type="submit" name="submit" value="fees" /><?php echo $this->lang->line("add");?></button>
-										</div>
-									</div>
-								</div>
-
-								</div>
-
-								<?php }?>
-								<?php if (in_array("treatment",$active_modules)) {?>
-								<div class="form-group">
-									<div class="row">
-										<div class="col-md-3">
-											<?php echo $this->lang->line("treatment");?>
-											<input type="hidden" name="action" value="treatment">
-											<input name="treatment" id="treatment" class="form-control" value=""/>
-
-										</div>
-										<div class="col-md-2">
-											<?php echo $this->lang->line("amount");?>
-											<input type="text" name="treatment_price" id="treatment_price" class="form-control"/>
-
-										</div>
-										<?php if($tax_type == "item"){?>
-										<div class="col-md-2">
-											<?php echo $this->lang->line("tax_rate_name");?>
-											<input type="text" name="treatment_rate_name" readonly id="treatment_rate_name" class="form-control" />
-
-										</div>
-										<div class="col-md-2">
-											<?php echo $this->lang->line("rate");?>
-											<input type="text" style="text-align:right;" name="treatment_rate" id="treatment_rate" readonly class="form-control"  />
-
-										</div>
-										<?php } ?>
-										<div class="col-md-3">
-											<br/>
-											<button class="btn btn-primary square-btn-adjust" type="submit" name="submit" value="treatment" /><?php echo $this->lang->line("add");?></button>
-
-										</div>
-									</div>
-								</div>
-
-								<?php }?>
-								<?php if (in_array("lab",$active_modules)) {?>
-								<div class="form-group">
-									<div class="col-md-12">
-										<div class="col-md-3">
-											<?php echo $this->lang->line("lab_test");?>
-											<input type="hidden" name="action" value="lab_test">
-											<input type="hidden" id="lab_test_id" name="lab_test_id" class="form-control" value=""/>
-											<input name="lab_test" id="lab_test" class="form-control" value=""/>
-
-										</div>
-										<div class="col-md-2">
-											<?php echo $this->lang->line("amount");?>
-											<input type="text" name="test_price" id="test_price" class="form-control"/>
-
-										</div>
-										<?php if($tax_type == "item"){?>
-										<div class="col-md-2">
-											<?php echo $this->lang->line("tax_rate_name");?>
-											<input type="text" name="lab_test_rate_name" readonly id="lab_test_rate_name" class="form-control" />
-
-										</div>
-										<div class="col-md-2">
-											<?php echo $this->lang->line("rate");?>
-											<input type="text" style="text-align:right;" name="lab_test_rate" id="lab_test_rate" readonly class="form-control"  />
-
-										</div>
-										<?php } ?>
-										<div class="col-md-3">
-											<br/>
-											<button class="btn btn-primary square-btn-adjust" type="submit" name="submit" value="lab_test" /><?php echo $this->lang->line("add");?></button>
-
-										</div>
-									</div>
-								</div>
-
-								<?php } ?>
-								<div class="form-group">
-									<div class="row">
-										<div class="col-md-3">
-											<?php echo $this->lang->line("discount");?>
-											<input name="discount" id="discount" class="form-control" value=""/>
-										</div>
-										<div class="col-md-2">
-											<?php if (in_array("doctor", $active_modules)) { ?>
-											<?php echo $this->lang->line("foc");?>
-											<input type="checkbox" name="foc" id="foc" class="form-control" value=""/>
-											<?php } ?>
-										</div>
-										<div class="col-md-3">
-											<br/>
-											<button class="btn btn-primary square-btn-adjust" type="submit" name="submit" value="discount" /><?php echo $this->lang->line("add");?></button>
-										</div>
-									</div>
-								</div>
-								<?php if($tax_type == "bill"){?>
-
-								<div class="form-group">
-									<div class="row">
-										<div class="col-md-3">
-											<?php echo $this->lang->line("tax");?>
-											<select name="bill_tax_rate" class="form-control" id="bill_tax_rate">
-												<?php foreach($tax_rates as $tax_rate){?>
-													<option value="<?=$tax_rate['tax_id'];?>" tax_rate="<?=$tax_rate['tax_rate'];?>"><?=$tax_rate['tax_rate_name'];?></option>
-												<?php } ?>
-											</select>
-										</div>
-										<div class="col-md-2">
-											<?php echo $this->lang->line("percentage");?>
-											<input type="text" style="text-align:right;" name="bill_tax_amount" id="bill_tax_amount" class="form-control" readonly />
-										</div>
-										<div class="col-md-3">
-											<br/>
-											<button class="btn btn-primary square-btn-adjust" type="submit" name="submit" value="tax" /><?php echo $this->lang->line("add");?></button>
-										</div>
-									</div>
-								</div>
-								<?php } ?>
-							<?php echo form_close(); ?>
-						</div>
-					</div>
-
-
-					<div class="panel panel-primary">
-						<div class="panel-body table-responsive-25">
-								<?php $this->load->view('bill/bill_table'); ?>
-
-						</div>
-					</div>
+			</div>					
+			<div class="row">
+				<div class="col-md-6">
+					<label for="patient_name"><?php echo $this->lang->line("doctor");?></label>
+					<?php if(isset($visit_id)){
+							 $doctor_id=$doctor['doctor_id'];?>
+							<input type="text" name="doctor_name" id="doctor_name" value="<?=$doctor_name; ?>" class="form-control" readonly/>
+							<input type="hidden" name="doctor_id" id="doctor_id" value="<?= $doctor_id ?>"/>
+							<input type="hidden" name="doctor_department" id="doctor_department" value="<?=$doctor_department;?>" />
+						<?php	}else { ?>
+							<input type="text" name="doctor_name" id="doctor_name" value="<?=$doctor_name; ?>" class="form-control"/>
+							<input type="hidden" name="doctor_id" id="doctor_id" value="<?= @$doctor_id ?>"/>
+							<input type="hidden" name="doctor_department" id="doctor_department" value="<?=$doctor_department;?>" />
+						<?php } ?>
+					<input type="hidden" name="appointment_id" id="appointment_id" value="<?=@$appointment_id ?>"/>
+					<?php echo form_error('doctor_id','<div class="alert alert-danger">','</div>'); ?>
+				</div>
 			</div>
-		</div>
+			<div class="row">
+				<div class="form-group col-md-6">
+					<label for="bill_date"><?php echo $this->lang->line("date");?></label>
+					<?php if(isset($visit_id)){
+							 ?>
+							<input type="text" name="bill_date" id="" value="<?=$bill_date; ?>" class="form-control" readonly/>
+						<?php	}else { ?>
+							<input type="text" name="bill_date" id="bill_date" value="<?=$bill_date; ?>" class="form-control"/>
+						<?php } ?>
+
+					<?php echo form_error('bill_date','<div class="alert alert-danger">','</div>'); ?>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="bill_time"><?php echo $this->lang->line("time");?></label>
+					<?php if(isset($visit_id))
+							{ ?>
+							<input type="text" name="bill_time" id="" value="<?=$bill_time; ?>" class="form-control" readonly/>
+						<?php	}else { ?>
+							<input type="text" name="bill_time" id="bill_time" value="<?=$bill_time; ?>" class="form-control"/>
+						<?php } ?>
+
+					<?php echo form_error('bill_time','<div class="alert alert-danger">','</div>'); ?>
+				</div>
+			</div>            
+			<div class="panel panel-primary">
+				<div class="panel-body table-responsive-60">
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-3">
+									<?php echo $this->lang->line("particular");?>
+									<input type="hidden" name="action" value="particular">
+									<input name="particular" id="particular" class="form-control" value=""/>
+								</div>
+								<div class="col-md-2">
+									<?php echo $this->lang->line("amount");?>
+									<input type="text" name="particular_amount" id="particular_amount" class="form-control" id="amount"/>
+								</div>
+								<?php if($tax_type == "item"){?>
+								<div class="col-md-2">
+									<?php echo $this->lang->line("tax");?>
+									<select name="tax_id" class="form-control" id="bill_tax_rate">
+										<?php foreach($tax_rates as $tax_rate){?>
+											<option tax_rate="<?=$tax_rate['tax_rate'];?>" value="<?=$tax_rate['tax_id'];?>"><?=$tax_rate['tax_rate_name'];?></option>
+										<?php } ?>
+									</select>
+								</div>
+								<div class="col-md-3">
+									<?php echo $this->lang->line("rate");?>
+									<input type="text" style="text-align:right;" name="tax_amount" id="tax_amount" class="form-control" readonly />
+								</div>
+								<?php } ?>
+								<div class="col-md-2">
+									<br/>
+									<button class="btn btn-primary square-btn-adjust" type="submit" name="submit" value="particular" /><?php echo $this->lang->line("add");?></button>
+
+								</div>
+							</div>
+						</div>
+						<?php if (in_array("stock",$active_modules)) { ?>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-3">
+									<?php echo $this->lang->line("item");?>
+									<input type="hidden" name="action" value="item">
+									<input type="hidden" name="item_id" id="item_id" value="">
+									<input name="item_name" id="item_name" class="form-control" value=""/>
+								</div>
+								<div class="col-md-2">
+									<?php echo $this->lang->line("quantity");?>
+									<input type="text" name="item_quantity" id="item_quantity" class="form-control" />
+								</div>
+								<div class="col-md-2">
+									<?php echo $this->lang->line("available");?>
+									<input type="text" name="available_quantity" id="available_quantity" class="form-control" readonly="readonly" />
+
+								</div>
+								<div class="col-md-2">
+									<?php echo $this->lang->line("amount");?>
+									<input type="text" name="item_amount" id="item_amount" class="form-control" />
+
+								</div>
+								<div class="col-md-3">
+									<br/>
+									<button class="btn btn-primary square-btn-adjust" type="submit" name="submit" value="item" /><?php echo $this->lang->line("add");?></button>
+
+								</div>
+							</div>
+						</div>
+						<?php }?>
+						<?php if (in_array("doctor",$active_modules)) {?>
+						<div id="fees_section">
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-3">
+									<?php echo $this->lang->line("fees");?>
+									<input type="hidden" name="action" value="fees">
+									<input name="fees_detail" id="fees_detail" class="form-control" value=""/>
+								</div>
+								<div class="col-md-3">
+									<?php echo $this->lang->line("amount");?>
+									<input type="text" name="fees_amount" id="fees_amount" class="form-control" id="amount"/>
+
+								</div>
+								<div class="col-md-3">
+									<br/>
+									<button class="btn btn-primary  square-btn-adjust" type="submit" name="submit" value="fees" /><?php echo $this->lang->line("add");?></button>
+								</div>
+							</div>
+						</div>
+
+						</div>
+
+						<?php }?>
+						<?php if (in_array("treatment",$active_modules)) {?>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-3">
+									<?php echo $this->lang->line("treatment");?>
+									<input type="hidden" name="action" value="treatment">
+									<input name="treatment" id="treatment" class="form-control" value=""/>
+
+								</div>
+								<div class="col-md-2">
+									<?php echo $this->lang->line("amount");?>
+									<input type="text" name="treatment_price" id="treatment_price" class="form-control"/>
+
+								</div>
+								<?php if($tax_type == "item"){?>
+								<div class="col-md-2">
+									<?php echo $this->lang->line("tax_rate_name");?>
+									<input type="text" name="treatment_rate_name" readonly id="treatment_rate_name" class="form-control" />
+
+								</div>
+								<div class="col-md-2">
+									<?php echo $this->lang->line("rate");?>
+									<input type="text" style="text-align:right;" name="treatment_rate" id="treatment_rate" readonly class="form-control"  />
+
+								</div>
+								<?php } ?>
+								<div class="col-md-3">
+									<br/>
+									<button class="btn btn-primary square-btn-adjust" type="submit" name="submit" value="treatment" /><?php echo $this->lang->line("add");?></button>
+
+								</div>
+							</div>
+						</div>
+
+						<?php }?>
+						<?php if (in_array("lab",$active_modules)) {?>
+						<div class="form-group">
+							<div class="col-md-12">
+								<div class="col-md-3">
+									<?php echo $this->lang->line("lab_test");?>
+									<input type="hidden" name="action" value="lab_test">
+									<input type="hidden" id="lab_test_id" name="lab_test_id" class="form-control" value=""/>
+									<input name="lab_test" id="lab_test" class="form-control" value=""/>
+
+								</div>
+								<div class="col-md-2">
+									<?php echo $this->lang->line("amount");?>
+									<input type="text" name="test_price" id="test_price" class="form-control"/>
+
+								</div>
+								<?php if($tax_type == "item"){?>
+								<div class="col-md-2">
+									<?php echo $this->lang->line("tax_rate_name");?>
+									<input type="text" name="lab_test_rate_name" readonly id="lab_test_rate_name" class="form-control" />
+
+								</div>
+								<div class="col-md-2">
+									<?php echo $this->lang->line("rate");?>
+									<input type="text" style="text-align:right;" name="lab_test_rate" id="lab_test_rate" readonly class="form-control"  />
+
+								</div>
+								<?php } ?>
+								<div class="col-md-3">
+									<br/>
+									<button class="btn btn-primary square-btn-adjust" type="submit" name="submit" value="lab_test" /><?php echo $this->lang->line("add");?></button>
+
+								</div>
+							</div>
+						</div>
+
+						<?php } ?>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-3">
+									<?php echo $this->lang->line("discount");?>
+									<input name="discount" id="discount" class="form-control" value=""/>
+								</div>
+								<div class="col-md-2">
+									<?php if (in_array("doctor", $active_modules)) { ?>
+									<?php echo $this->lang->line("foc");?>
+									<input type="checkbox" name="foc" id="foc" class="form-control" value=""/>
+									<?php } ?>
+								</div>
+								<div class="col-md-3">
+									<br/>
+									<button class="btn btn-primary square-btn-adjust" type="submit" name="submit" value="discount" /><?php echo $this->lang->line("add");?></button>
+								</div>
+							</div>
+						</div>
+						<?php if($tax_type == "bill"){?>
+
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-3">
+									<?php echo $this->lang->line("tax");?>
+									<select name="bill_tax_rate" class="form-control" id="bill_tax_rate">
+										<?php foreach($tax_rates as $tax_rate){?>
+											<option value="<?=$tax_rate['tax_id'];?>" tax_rate="<?=$tax_rate['tax_rate'];?>"><?=$tax_rate['tax_rate_name'];?></option>
+										<?php } ?>
+									</select>
+								</div>
+								<div class="col-md-2">
+									<?php echo $this->lang->line("percentage");?>
+									<input type="text" style="text-align:right;" name="bill_tax_amount" id="bill_tax_amount" class="form-control" readonly />
+								</div>
+								<div class="col-md-3">
+									<br/>
+									<button class="btn btn-primary square-btn-adjust" type="submit" name="submit" value="tax" /><?php echo $this->lang->line("add");?></button>
+								</div>
+							</div>
+						</div>
+						<?php } ?>
+					<?php echo form_close(); ?>
+				</div>
+			</div>
+			<div class="panel panel-primary">
+				<div class="panel-body table-responsive-25">
+						<?php $this->load->view('bill/bill_table'); ?>
+
+				</div>
+			</div>
 	</div>
-</div>
+

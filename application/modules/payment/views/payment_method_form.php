@@ -16,6 +16,7 @@
     along with Chikitsa.  If not, see <https://www.gnu.org/licenses/>.
 */
 ?>
+
 <?php 
 	$has_additional_details = "";
 	$needs_cash_calc = "";
@@ -38,14 +39,11 @@
 		$additional_detail_label = set_value('additional_detail_label','');
 	}
 ?>
-<div id="page-inner">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="panel panel-primary">
-			<div class="panel-heading">
-				<?php echo $this->lang->line('payment_method');?>
-			</div>
-			<div class="panel-body">
+<!-- Begin Page Content -->
+        <div class="container-fluid">
+<!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800"><?php echo $this->lang->line('payment_method');?></h1>
+			
 				<?php if($edit){ ?>
 				<?php echo form_open('payment/edit_payment_method/'.$payment_method_id) ?>
 				<?php }else{ ?>
@@ -87,10 +85,9 @@
 						<a class="btn btn-info square-btn-adjust" href="<?=site_url('settings/payment_methods'); ?>"><?php echo $this->lang->line('back');?></a>
 					</div>
 				<?php echo form_close(); ?>
-			</div>
+			
 		</div>
-	</div>
-</div>
+	
 <!-- JQUERY SCRIPTS -->
 <script src="<?= base_url() ?>assets/js/jquery-1.11.3.min.js"></script>
 <!-- DATA TABLE SCRIPTS -->

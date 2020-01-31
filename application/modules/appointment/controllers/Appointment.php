@@ -204,6 +204,7 @@ class Appointment extends CI_Controller {
 							break;
 					}
 				}
+				/*
 				$row['start_position'] = $start_position;
 				$row['end_position'] = $end_position;
 				$row['href'] = $href;
@@ -211,10 +212,18 @@ class Appointment extends CI_Controller {
 				$row['appointment_class'] = $class;
 				$row['next_link'] = $next_link;
 				$row['cancel_link'] = $cancel_link;
-
+				*/
+				
+				$row['title'] = substr($appointment_title,0,8);
+				$row['resource'] = $appointment['doctor_id'];
+				$row['event_class'] = $class;
+				$row['fromTime'] = substr($appointment['start_time'],0,-3);
+				$row['toTime'] =substr($appointment['end_time'],0,-3);
+				$row['url'] = $href;
+				
 				$appointment_array[] = $row;
 			}
-		echo json_encode($appointment_array);
+			echo json_encode($appointment_array);
 	}
 	public function index($year = NULL, $month = NULL, $day = NULL) {
 		// Check If user has logged in or not
@@ -245,7 +254,7 @@ class Appointment extends CI_Controller {
 
 			//Fetch Task Details
             $data['todos'] = $this->appointment_model->get_todos();
-
+			$data['def_dateformate'] = $this->settings_model->get_date_formate();
 			//Display Followups for next 8 days
 			$followup_date = date('Y-m-d', strtotime("+8 days"));
 			//Fetch Level of Current User
@@ -306,7 +315,7 @@ class Appointment extends CI_Controller {
 			//Fetch details of all Doctors
 			$data['doctors'] = $this->doctor_model->get_doctors();
 			//Load the view
-      $header_data = get_header_data();
+			$header_data = get_header_data();
 			$this->load->view('templates/header',$header_data);
 			$this->load->view('templates/menu');
 			$this->load->view('browse', $data);

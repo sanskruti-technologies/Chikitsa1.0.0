@@ -56,28 +56,25 @@
         });
 	});
 </script>
-<div class="panel panel-primary">
-	<div class="panel-heading">
-
-			<h2><?=$this->lang->line("take_backup");?></h2>
-
-	</div>
-	<div class="panel-body">
+<!-- Begin Page Content -->
+	<div class="container-fluid">
+		<!-- Page Heading -->
+		<h1 class="h3 mb-2 text-gray-800"><?=$this->lang->line("take_backup");?></h1>
 		<a class="btn btn-success square-btn-adjust" href="<?php echo site_url("settings/take_backup/"); ?>"><?php echo $this->lang->line('take_backup');?></a>
 		<br/><br/>
 		<?php if(isset($error)){?>
-			<div class="alert alert-danger">
-				<?=$error;?>
-			</div>
+		<div class="alert alert-danger">
+			<?=$error;?>
+		</div>
 		<?php } ?>
 
 	</div>
-</div>
-<div class="panel panel-primary">
-	<div class="panel-heading">
-		<h2><?php echo $this->lang->line("restore_backup");?></h2>
-	</div>
-	<div class="panel-body">
+
+<!-- Begin Page Content -->
+    <div class="container-fluid">
+		<!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800"><?php echo $this->lang->line("restore_backup");?></h1>
+	
 		<?php echo form_open_multipart('settings/restore_backup/'); ?>
 			<?php if(isset($message)){?>
 			<div class="alert alert-success">
@@ -95,45 +92,45 @@
 				<button class="btn btn-primary btn-sm square-btn-adjust confirmRestore" type="submit" name="submit" /><?php echo $this->lang->line('restore');?></button>
 			</div>
 		<?php echo form_close(); ?>
-	</div>
-</div>
-<?php if(in_array("sync", $active_modules)) { ?>
-<div class="panel panel-primary">
-	<div class="panel-heading">
-		Synchronize
-	</div>
-	<div class="panel-body">
-		<?php echo form_open('settings/synchronize/'); ?>
-			<div class="form-group">
-				<div class="checkbox">
-					<label>
-						<input type="checkbox" id="enable_sync" name="enable_sync" value="1" <?php if($enable_sync == 1){echo "checked";};?>>Enable Sync
-					</label>
-				</div>
+	
+		<?php if(in_array("sync", $active_modules)) { ?>
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				Synchronize
 			</div>
-			<div class="form-group" id="sync_status_div" style="display:none;">
-				<div class="radio">
-					<label>
-						<input type="radio" name="sync_status" id="sync_status" value="offline" <?php if($sync_status == "offline"){ echo "checked";}?>>Offline
-					</label>
-				</div>
-				<div class="form-group" id="offline_div" style="display:none;">
+			<div class="panel-body">
+				<?php echo form_open('settings/synchronize/'); ?>
 					<div class="form-group">
-						<label for="online_url">Online URL</label>
-						<input type="input" name="online_url" value="<?=$online_url;?>" class="form-control"/>
-						<?php echo form_error('online_url','<div class="alert alert-danger">','</div>'); ?>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" id="enable_sync" name="enable_sync" value="1" <?php if($enable_sync == 1){echo "checked";};?>>Enable Sync
+							</label>
+						</div>
 					</div>
-				</div>
-				<div class="radio">
-					<label>
-						<input type="radio" name="sync_status" id="sync_status" <?php if($sync_status == "online"){ echo "checked";}?> value="online">Online
-					</label>
-				</div>
+					<div class="form-group" id="sync_status_div" style="display:none;">
+						<div class="radio">
+							<label>
+								<input type="radio" name="sync_status" id="sync_status" value="offline" <?php if($sync_status == "offline"){ echo "checked";}?>>Offline
+							</label>
+						</div>
+						<div class="form-group" id="offline_div" style="display:none;">
+							<div class="form-group">
+								<label for="online_url">Online URL</label>
+								<input type="input" name="online_url" value="<?=$online_url;?>" class="form-control"/>
+								<?php echo form_error('online_url','<div class="alert alert-danger">','</div>'); ?>
+							</div>
+						</div>
+						<div class="radio">
+							<label>
+								<input type="radio" name="sync_status" id="sync_status" <?php if($sync_status == "online"){ echo "checked";}?> value="online">Online
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<button class="btn btn-primary btn-sm square-btn-adjust" type="submit" name="submit" />Save</button>
+					</div>
+				<?php echo form_close(); ?>
 			</div>
-			<div class="form-group">
-				<button class="btn btn-primary btn-sm square-btn-adjust" type="submit" name="submit" />Save</button>
-			</div>
-		<?php echo form_close(); ?>
+		</div>
+		<?php } ?>
 	</div>
-</div>
-<?php } ?>
