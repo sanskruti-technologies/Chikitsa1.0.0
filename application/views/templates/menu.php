@@ -1,7 +1,7 @@
 <!-- Sidebar -->
 
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
+		
         <!-- Sidebar - Brand -->
 	    <?php if($clinic['clinic_logo'] != NULL){  ?>
 			<a class="sidebar-brand d-flex align-items-center justify-content-center" style="padding:0px;background:#FFF;" href="<?= site_url($login_page); ?>">
