@@ -16,6 +16,13 @@
     along with Chikitsa.  If not, see <https://www.gnu.org/licenses/>.
 */
 ?>
+<script type="text/javascript" charset="utf-8">
+$(window).on('load', function(){
+	$("#patient_table").dataTable({
+		"pageLength": 50
+	});
+});
+</script>
 <!-- Begin Page Content -->
         <div class="container-fluid">
 <!-- Page Heading -->
@@ -25,7 +32,7 @@
 			</div>
 
 			<div class="table-responsive ">
-				<table class="table table-striped table-hover display responsive nowrap" id="patient_table">
+				<table class="table table-striped table-bordered table-hover" id="patient_table">
 					<thead>
 						<tr>
 							<th><?php echo $this->lang->line("sr_no");?></th>
