@@ -32,28 +32,30 @@ $( window ).load(function() {
 			<a href="#" class="btn square-btn-adjust btn-primary" data-toggle="modal" data-target="#myModal"><?php echo $this->lang->line('add_inquiry');?></a><br/> &nbsp; <br/>
 
 			<?php if ($patients_detail) { ?>
-			<table class="table table-striped table-bordered table-hover dataTable no-footer" id="new_inquires" >
-				<thead>
-				<tr>
-					<th><?php echo $this->lang->line("patient")." ".$this->lang->line("name");?></th>
-					<th><?php echo $this->lang->line("phone_number");?></th>
-					<th><?php echo $this->lang->line("email");?></th>
-					<th><?php echo $this->lang->line("visit");?></th>
-				</tr>
-				</thead>
-				<tbody>
-				<?php foreach ($patients_detail as $patient_detail) { ?>
+			<div class="table-responsive">
+				<table class="table table-striped table-bordered table-hover display responsive nowrap" id="new_inquires" >
+					<thead>
 					<tr>
-						<td><?php echo $patient_detail['patient_name']; ?></td>
-						<td><?php echo $patient_detail['phone_number']; ?></td>
-						<td><?php echo $patient_detail['email']; ?></td>
-						<td><?php echo $patient_detail['count']; ?></td>
+						<th><?php echo $this->lang->line("patient")." ".$this->lang->line("name");?></th>
+						<th><?php echo $this->lang->line("phone_number");?></th>
+						<th><?php echo $this->lang->line("email");?></th>
+						<th><?php echo $this->lang->line("visit");?></th>
 					</tr>
-				<?php
-				}
-				?>
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+					<?php foreach ($patients_detail as $patient_detail) { ?>
+						<tr>
+							<td><?php echo $patient_detail['patient_name']; ?></td>
+							<td><?php echo $patient_detail['phone_number']; ?></td>
+							<td><?php echo $patient_detail['email']; ?></td>
+							<td><?php echo $patient_detail['count']; ?></td>
+						</tr>
+					<?php
+					}
+					?>
+					</tbody>
+				</table>
+			</div>
 			<?php }else{ ?>
 				<?php echo $this->lang->line("no") . " " .$this->lang->line("new_inquires") . " " . $this->lang->line("found");?>
 			<?php } ?>
@@ -62,8 +64,8 @@ $( window ).load(function() {
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">�</button>
 							<h4 class="modal-title" id="myModalLabel"><?php echo $this->lang->line('add_inquiry');?></h4>
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 						</div>
 						<?php echo form_open(); ?>
 						<div class="modal-body">
@@ -113,5 +115,4 @@ $( window ).load(function() {
 	});
 });
 </script>
-    </body>
-</html>
+    
