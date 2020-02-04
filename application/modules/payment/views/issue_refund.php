@@ -16,6 +16,7 @@
     along with Chikitsa.  If not, see <https://www.gnu.org/licenses/>.
 */
 ?>
+
 <script type="text/javascript" charset="utf-8">
 $(window).on('load', function(){
 	$("#patient_table").dataTable({
@@ -52,7 +53,7 @@ $(window).on('load', function(){
 								<td><?php echo currency_format($refund['refund_amount']); ?></td>
 								<td>
 								<!--a href="<?= site_url('payment/edit_refund/'.$refund['refund_id']);?>" class="btn btn-sm btn-primary square-btn-adjust"><?php echo $this->lang->line("edit");?></a-->
-								<a class="btn btn-primary square-btn-adjust" style="color:#fff;" title="Edit" "<?= site_url('payment/edit_refund/'.$refund['refund_id']);?>">Edit</a>
+								<a class="btn btn-primary square-btn-adjust" style="color:#fff;" title="Edit" href="<?= site_url('payment/edit_refund/'.$refund['refund_id']);?>">Edit</a>
 								
 								<!--a href="<?= site_url('payment/delete_refund/'.$refund['refund_id']);?>" class="btn btn-sm btn-danger square-btn-adjust confirmDelete"><?php echo $this->lang->line("delete");?></a-->
 								<a class="btn btn-danger square-btn-adjust confirmDelete" title="delete" href="<?= site_url('payment/delete_refund/'.$refund['refund_id']);?>">Delete</a>

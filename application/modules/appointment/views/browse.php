@@ -1,4 +1,3 @@
-<html>
 <?php 
 
 $start_string='{';
@@ -13,7 +12,7 @@ $doctor_str.=$end_string;
 //echo $doctor_str;
 
 ?>
-	<head>	
+	
 		<meta charset="utf-8"/>
 			
 			<link href="<?= base_url() ?>assets/vendor/scheduler/st_scheduler.css" rel="stylesheet" />
@@ -94,8 +93,8 @@ $doctor_str.=$end_string;
 			});
 		</script>
 	
-	</head>
-	<body>
+	
+	
 	
 	<div class="col-md-4">
 			<input type="text" id="select_date" name="select_date" class="btn btn-success" value="<?=date('d F Y, l', strtotime($day . "-" . $month . "-" . $year));?>"/>
@@ -251,5 +250,3 @@ $doctor_str.=$end_string;
 </div>
 
 
-</body>
-</html>

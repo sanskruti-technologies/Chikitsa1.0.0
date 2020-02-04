@@ -121,7 +121,7 @@ $(window).on('load', function(){
 		],
 		"pageLength": 50
 	});
-	/*
+	
 	$(document).on('click', '.deletePatient' , function() {
 		if(confirm("Are you sure you want to delete?")){
 			var patient_id = $(this).data('patient_id');
@@ -150,6 +150,6 @@ $(window).on('load', function(){
 				alert(data);
 				location.reload();
 			});
-	});*/
+	});
 });
 </script>
