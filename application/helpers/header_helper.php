@@ -7,8 +7,7 @@ function get_header_data(){
   $CI->load->model('module/module_model');
 
 	$clinic_id = $CI->session->userdata('clinic_id');
-  $user_id = $CI->session->userdata('user_id');
-
+	$user_id = $CI->session->userdata('id');
 	$header_data = array();
 	$header_data['active_modules'] = $CI->module_model->get_active_modules();
 	$header_data['clinic'] = $CI->settings_model->get_clinic($clinic_id);

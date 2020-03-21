@@ -1,5 +1,14 @@
 <?php
-
+function get_decimal_places(){
+	$ci=& get_instance();
+    $ci->load->database();
+	$query = $ci->db->get('invoice');
+	//$results=$query->row(); 
+	 foreach($query->result() as $row){
+		 $deci=$row->decimal_places;
+	 }
+	return $deci;
+}
 function get_currency_symbol()
   {
     //the database functions can not be called from within the helper
@@ -33,7 +42,8 @@ if ( ! function_exists('currency_format'))
   function currency_format($number)
   {
     $currencySymbol = get_currency_symbol();
-    return $currencySymbol. number_format($number, 2, '.', ',');
+	$decimal=get_decimal_places();
+    return $currencySymbol. number_format($number, $decimal, '.', ',');
   }
 }
 
@@ -81,7 +91,8 @@ function numberTowords($num){
 		"Trillion", 
 		"Quadrillion" 
 		); 
-	$num = number_format($num,2,".",","); 
+	$decimal=get_decimal_places();
+	$num = number_format($num,$decimal,".",","); 
 	$num_arr = explode(".",$num); 
 	$wholenum = $num_arr[0]; 
 	$decnum = $num_arr[1]; 
