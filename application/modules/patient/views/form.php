@@ -46,7 +46,7 @@ $(window).on('load', function(){
 		contact_detail_count = contact_detail_count + 1;
 		$( "#contact_detail_count" ).val(contact_detail_count);
 
-		var contact_detail = "<div class='row' style='padding-left:0;'><div class='col-md-3'><div class='radio'><label><input type='radio' name='default' value='"+contact_detail_count+"'>Default</label></div></div><div class='col-md-3' style='padding-left:0;'><select name='contact_type[]' class='form-control'><option value='mobile'>Mobile</option><option value='office'>Office</option><option value='residence'>Residence</option></select></div><div class='col-md-3'><input type='input' name='contact_detail[]' value='' class='form-control'/></div><div class='col-md-3'><a href='#' id='delete_contact_detail"+contact_detail_count+"' class='btn btn-danger btn-sm square-btn-adjust'>Delete</a></div></div>";
+		var contact_detail = "<div class='row' style='padding-left:0;'><div class='col-md-3'><div class='radio'><label><input type='radio' name='default' value='"+contact_detail_count+"'>Default</label></div></div><div class='col-md-3' style='padding-left:0;'><select name='contact_type[]' class='form-control'><option value='mobile'>Mobile</option><option value='office'>Office</option><option value='residence'>Residence</option></select></div><div class='col-md-3'><input type='input' name='contact_detail[]' value='' class='form-control'/></div><div class='col-md-3'><a href='#' id='delete_contact_detail"+contact_detail_count+"' class='btn btn-danger btn-sm square-btn-adjust'><i class='fa fa-trash'></i>&nbsp;Delete</a></div></div>";
 		$( "#contact_detail_list" ).append(contact_detail);
 
 		$("#delete_contact_detail"+contact_detail_count).click(function(e) {
@@ -414,7 +414,7 @@ $(document).ready(function(){
 							</div>
 							<div id="contact_detail_list">
 							<div class="form-group">
-							<a href="#" id="add_contact_detail" class="btn btn-primary square-btn-adjust"><?php echo $this->lang->line('add_more_contact_number');?></a>
+							<a href="#" id="add_contact_detail" class="btn btn-primary square-btn-adjust btn-sm"><i class="fa fa-plus"></i>&nbsp;<?php echo $this->lang->line('add_more_contact_number');?></a>
 							</div>
 							<?php
 								$count = 0;
@@ -440,10 +440,10 @@ $(document).ready(function(){
 										</select>
 									</div>
 									<div class="col-md-3">
-										<input type="input" name="contact_detail[]" value="<?=$contact_detail['detail'];?>" placeholder="Contact Number"  class="form-control"/>
+										<input type="input" name="contact_detail[]" value="<?=$contact_detail['detail'];?>" placeholder="Contact Number"  class="form-control" pattern="[789][0-9]{9}"/>
 									</div>
 									<div class='col-md-3'>
-										<a href='#' id='delete_contact_detail<?=$i;?>' class='btn btn-danger btn-sm square-btn-adjust'><?php echo $this->lang->line('delete');?></a>
+										<a href='#' id='delete_contact_detail<?=$i;?>' class='btn btn-danger btn-sm square-btn-adjust'><i class="fa fa-trash"></i>&nbsp;<?php echo $this->lang->line('delete');?></a>
 									</div>
 									</div>
 									<?php $i++; ?>

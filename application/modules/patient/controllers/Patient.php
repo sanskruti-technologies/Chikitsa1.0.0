@@ -113,7 +113,7 @@ class Patient extends CI_Controller {
 			}
 			$col[$this->lang->line("follow_up")] = "<a class='btn btn-success btn-sm square-btn-adjust' title='Follow Up' href='".site_url("patient/followup/" . $patient['patient_id'])."'>".$followup_date."</a>";
 			if($level != "Receptionist") {
-				$col[$this->lang->line('delete')]="<a class='btn btn-danger btn-sm square-btn-adjust confirmDelete deletePatient' data-patient_id='".$patient['patient_id']."' title='".$this->lang->line('delete')."' >".$this->lang->line("delete")."</a>";
+				$col[$this->lang->line('delete')]="<a class='btn btn-danger btn-sm square-btn-adjust confirmDelete deletePatient' data-patient_id='".$patient['patient_id']."' title='".$this->lang->line('delete')."' ><i class='fa fa-trash'></i>&nbsp;".$this->lang->line("delete")."</a>";
 			}
 			$ajax_data[] = $col;
 		}
@@ -1477,7 +1477,7 @@ class Patient extends CI_Controller {
 			if($called_from == "visit"){
 				$this->visit($patient_id, $visit_id);
 			}else{
-				$this->bill($visit_id, $patient_id);
+        		redirect('bill/edit/'.$bill_id);
 			}
         }
 	}
@@ -1637,6 +1637,33 @@ class Patient extends CI_Controller {
 			$data['patient_report']=  $result;
 			$this->load->view('patient/print_report', $data);
 		}
+	}
+	  function print_visit_history($visit_id){
+    $patient_id = $this->patient_model->get_patient_id($visit_id);
+    $data['patient'] = $this->patient_model->get_patient_detail($patient_id);
+    $data['contact'] = $this->contact_model->get_contact_address($data['patient']['contact_id']);
+    $data['visit'] = $this->patient_model->get_visit_data($visit_id);
+    $data['def_dateformate'] = $this->settings_model->get_date_formate();
+    $data['def_timeformate'] = $this->settings_model->get_time_formate();
+    $data['doctor'] = $this->doctor_model->get_doctor_details($data['visit']['doctor_id']);
+    $data['clinic'] = $this->settings_model->get_clinic_settings();
+    $active_modules = $this->module_model->get_active_modules();
+  //  print_r($active_modules );
+    if (in_array("history", $active_modules)) {
+          $this->load->model('history/history_model');
+  		$data['section_master'] = $this->history_model->get_section_by_display_in("visits");
+  		$data['section_fields'] = $this->history_model->get_fields_by_display_in("visits");
+  		$data['section_conditions'] = $this->history_model->get_conditions_by_display_in("visits");
+  		$data['field_options'] = $this->history_model->get_field_options_by_display_in("visits");
+  		$data['patient_history_details'] = $this->history_model->get_visit_history_details($visit_id);
+  		$data['section_patient_master'] = $this->history_model->get_section_by_display_in("patient_detail");
+  		$data['section_patient_fields'] = $this->history_model->get_fields_by_display_in("patient_detail");
+  		$data['section_patient_conditions'] = $this->history_model->get_conditions_by_display_in("patient_detail");
+  		$data['field_patient_options'] = $this->history_model->get_field_options_by_display_in("patient_detail");
+  		$data['patient_detail_field_history'] = $this->history_model->get_patient_history_details_by_patient_id($patient_id);
+    }
+
+		$this->load->view('print_fields',$data);
 	}
 }
 ?>

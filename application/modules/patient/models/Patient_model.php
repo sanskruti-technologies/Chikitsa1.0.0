@@ -1229,24 +1229,25 @@ class Patient_model extends CI_Model {
 		//echo $this->db->last_query()."<br/>";
 	}
 	function get_patient_report(){
-
-		if($this->session->userdata('clinic_code')){
+		/*if($this->session->userdata('clinic_code')){
 			$clinic_code = $this->session->userdata('clinic_code');
 			$this->db->where("clinic_code", $clinic_code);
-
-		}
+		}*/
 		if($this->input->post('reference')){
 			$reference = $this->input->post('reference');
 			$reference_by = array();
 			foreach($reference as $reference_id){
 				$query = $this->db->get_where('reference_by', array('reference_id' => $reference_id));
+				//echo $this->db->last_query()."<br/>";
 				$row = $query->row_array();
+				
 				$reference_by[] = $row['reference_option'];
 			}
 			$this->db->where_in("reference_by", $reference_by);
 		}
 
 		$query = $this->db->get('view_patient');
+		//echo $this->db->last_query()."<br/>";
 		return $query->result_array();
 	}
 }

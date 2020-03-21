@@ -89,6 +89,7 @@
 			$('#reference_details').parent().hide();
 		}
 	});
+	
     });
 
 $(document).ready(function(){
@@ -297,7 +298,7 @@ $(document).ready(function(){
 			<div class="row" style="margin-left: 10px;">
 			<div class="col-md-4">
 				<div class="form-group">
-					<a class="btn btn-primary" title="Edit" href="<?php echo site_url("patient/edit/" . $patient['patient_id']."/visit"); ?>">Edit</a>
+					<a class="btn btn-primary btn-sm" title="Edit" href="<?php echo site_url("patient/edit/" . $patient['patient_id']."/visit"); ?>"><i class="fa fa-edit"></i>&nbsp;Edit</a>
 				</div>
 			</div>
 			</div>
@@ -766,7 +767,8 @@ $(document).ready(function(){
 		<div class="panel-body expand-collapse-content">
 			<div class="col-md-12">
 				<div class="row" style="margin-left:20px;">
-					<table class="table table-striped table-bordered table-hover" id="visit_table">
+				    <div class="table-responsive">
+					<table class="table table-striped table-bordered table-hover display responsive nowrap" id="visit_table">
 					<thead>
 						<tr>
 							<th style="display:none;"></th>
@@ -821,10 +823,10 @@ $(document).ready(function(){
 							<td><?= $visit['patient_notes']; ?><br/>
 							<?php if (in_array("prescription", $active_modules)) { ?>
 								<?php if ($this->prescription_model->is_prescription($visit['visit_id'])){ ?>
-									<a target="_blank" class="btn btn-xs btn-primary square-btn-adjust" href="<?= site_url('prescription/print_prescription') . "/" . $visit['visit_id']; ?>"><?php echo $this->lang->line('print') . ' ' . $this->lang->line('prescription');?></a></br>
-									<a class="btn btn-primary btn-xs square-btn-adjust" href="<?= site_url('prescription/edit_prescription') . "/" . $visit['visit_id']; ?>"><?php echo $this->lang->line('edit') . ' ' . $this->lang->line('prescription');?></a>
+									<a target="_blank" class="btn btn-xs btn-primary square-btn-adjust btn-sm" href="<?= site_url('prescription/print_prescription') . "/" . $visit['visit_id']; ?>"><?php echo $this->lang->line('print') . ' ' . $this->lang->line('prescription');?></a></br>
+									<a class="btn btn-primary btn-xs square-btn-adjust btn-sm" href="<?= site_url('prescription/edit_prescription') . "/" . $visit['visit_id']; ?>"><i class="fa fa-edit"></i>&nbsp;<?php echo $this->lang->line('edit') . ' ' . $this->lang->line('prescription');?></a>
 								<?php }else{ ?>
-									<a target="_blank" class="btn btn-xs btn-primary square-btn-adjust" href="<?= site_url('prescription/add_prescription') . "/" . $visit['visit_id']; ?>"><?php echo $this->lang->line('add') . ' ' . $this->lang->line('prescription');?></a></br>
+									<a target="_blank" class="btn btn-xs btn-primary square-btn-adjust btn-sm" href="<?= site_url('prescription/add_prescription') . "/" . $visit['visit_id']; ?>"><?php echo $this->lang->line('add') . ' ' . $this->lang->line('prescription');?></a></br>
 								<?php } ?>
 							<?php } ?>
 							<?php
@@ -860,8 +862,10 @@ $(document).ready(function(){
 							<?php $bal_amount=$bal_amount+$visit['due_amount']; ?>
 							<td>
 								<center>
-									<a class="btn btn-sm btn-primary square-btn-adjust" href="<?= site_url('patient/edit_visit') . "/" . $visit['visit_id'] . "/" . $visit['patient_id']; ?>"><?php echo $this->lang->line('edit');?></a>
-									<a class="btn btn-sm btn-primary square-btn-adjust" href="<?= site_url('history/print_visit_history') . "/" . $visit['visit_id']; ?>"><?php echo $this->lang->line('print').' '.$this->lang->line('history');?></a>
+									<a class="btn btn-sm btn-primary square-btn-adjust" href="<?= site_url('patient/edit_visit') . "/" . $visit['visit_id'] . "/" . $visit['patient_id']; ?>"><i class="fa fa-edit"></i>&nbsp;<?php echo $this->lang->line('edit');?></a>
+								<!--	<a class="btn btn-sm btn-primary square-btn-adjust" href="<?= site_url('history/print_visit_history') . "/" . $visit['visit_id']; ?>"><?php echo $this->lang->line('print').' '.$this->lang->line('history');?></a>-->
+							   <a target="_blank" class="btn btn-sm btn-primary square-btn-adjust" href="<?= site_url('patient/print_visit_history') . "/" . $visit['visit_id']; ?>"><?php echo $this->lang->line('print').' '.$this->lang->line('history');?></a>
+
 								</center>
 							</td>
 						</tr>
@@ -888,6 +892,7 @@ $(document).ready(function(){
 						</tr>
 					</tfoot>
 					</table>
+					</div>
 					<script>
 						$(document).ready	(function() {
 							$('#visit_table').dataTable( {

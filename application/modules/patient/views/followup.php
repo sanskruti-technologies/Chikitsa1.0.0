@@ -74,6 +74,13 @@ $( window ).load(function() {
 		scrollMonth:false,
 		scrollTime:false,
 	});   
+	
+	$("#payment_table").dataTable({
+		"pageLength": 50
+	});
+	$('.confirmDelete').click(function(){
+	return confirm('<?=$this->lang->line('areyousure_delete');?>');
+	});
 });
 </script>
 <?php
@@ -101,7 +108,7 @@ $time = explode(":", $t);
         <h1 class="h3 mb-2 text-gray-800"><?php echo $this->lang->line("follow_up");?></h1>
 			<div class="form-group">
 
-				<a class="btn btn-primary" href="<?php echo base_url() . '/index.php/patient/edit/' . $patient_id ."/followup"?> "><?php echo $this->lang->line("edit")." ".$this->lang->line("patient");?></a>
+				<a class="btn btn-primary btn-sm" href="<?php echo base_url() . 'index.php/patient/edit/' . $patient_id ."/followup"?> "><i class="fa fa-edit"></i>&nbsp;<?php echo $this->lang->line("edit")." ".$this->lang->line("patient");?></a>
 			</div>
 			<?php echo form_open('patient/change_followup_date/' . $patient_id) ?>
 			<div class="form-group">
@@ -141,7 +148,7 @@ $time = explode(":", $t);
 				</div>
 				<div class="panel-body">
 					<div class="table-responsive">
-						<table class="table table-striped table-bordered table-hover" id="patient_table">
+						<table class="table table-striped table-bordered table-hover display responsive nowrap" id="payment_table">
 						<thead>
 							<tr>
 								<th><?php echo $this->lang->line("sr_no");?></th>
@@ -176,9 +183,9 @@ $time = explode(":", $t);
 								</td>
 								<?php $followup_date = date($def_dateformate,strtotime($followup['followup_date'])); ?>
 								<td><?=$followup_date;?></td>
-								<td><a class="btn btn-primary btn-sm " href='<?=base_url() . "index.php/appointment/add/" . $y . "/" . $m . "/" . $d . "/" . $time[0] . "/" . $time[1] . "/Appointments/" . $patient_id . "/". $followup['doctor_id'] ?>' ><?php echo $this->lang->line("add")." ".$this->lang->line("appointment");?></a>
-									<a class="btn btn-primary btn-sm" href="<?=site_url('/patient/edit_followup/'.$followup['id']);?>"><?php echo $this->lang->line("edit");?></a>
-									<a class="btn btn-danger btn-sm" href="<?=site_url('/patient/dismiss_followup/'.$followup['id']);?>"><?php echo $this->lang->line("delete");?></a></td>
+								<td><a class="btn btn-primary btn-sm " href='<?=base_url() . "index.php/appointment/add/" . $y . "/" . $m . "/" . $d . "/" . $time[0] . "/" . $time[1] . "/Appointments/" . $patient_id . "/". $followup['doctor_id'] ?>' ><i class="fa fa-plus"></i>&nbsp;<?php echo $this->lang->line("add")." ".$this->lang->line("appointment");?></a>
+									<a class="btn btn-primary btn-sm" href="<?=site_url('/patient/edit_followup/'.$followup['id']);?>"><i class="fa fa-edit"></i>&nbsp;<?php echo $this->lang->line("edit");?></a>
+									<a class="btn btn-danger btn-sm" href="<?=site_url('/patient/dismiss_followup/'.$followup['id']);?>"><i class="fa fa-trash"></i>&nbsp;<?php echo $this->lang->line("delete");?></a></td>
 							</tr>
 						<?php }?>
 						</table>

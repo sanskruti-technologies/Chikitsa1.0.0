@@ -29,7 +29,7 @@ $( window ).load(function() {
 <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800"><?php echo $this->lang->line("new_inquires");?></h1>
 				
-			<a href="#" class="btn square-btn-adjust btn-primary" data-toggle="modal" data-target="#myModal"><?php echo $this->lang->line('add_inquiry');?></a><br/> &nbsp; <br/>
+			<a href="#" class="btn square-btn-adjust btn-primary btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i>&nbsp;<?php echo $this->lang->line('add_inquiry');?></a><br/> &nbsp; <br/>
 
 			<?php if ($patients_detail) { ?>
 			<div class="table-responsive">
@@ -72,7 +72,7 @@ $( window ).load(function() {
 								<div class="col-md-12"><label><?php echo $this->lang->line('name');?>:</label></div>
 								<div class="col-md-12">
 								<div class="row">
-								<div class="col-md-4"><input type="text" id="first_name" name="first_name" class="form-control" placeholder="first name"/></div>
+								<div class="col-md-4"><input type="text" id="first_name" name="first_name" class="form-control" placeholder="first name" required/></div>
 								<div class="col-md-4"><input type="text" id="middle_name" name="middle_name" class="form-control" placeholder="middle name"/></div>
 								<div class="col-md-4"><input type="text" id="last_name" name="last_name" class="form-control" placeholder="last name"/></div>
 								</div>
