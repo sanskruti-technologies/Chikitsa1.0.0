@@ -201,6 +201,7 @@ class Admin extends CI_Controller {
 				$data['user'] = $this->admin_model->get_user_detail($user_id);
 
         $header_data = get_header_data();
+			
   			$this->load->view('templates/header',$header_data);
 				$this->load->view('templates/menu');
 				$this->load->view('edit_profile', $data);
@@ -249,6 +250,7 @@ class Admin extends CI_Controller {
 			}
         }
     }
+     
     public function password_check($str, $user_id) {
         $data['user'] = $this->admin_model->get_user_detail($user_id);
         $password = base64_decode($data['user']['password']);

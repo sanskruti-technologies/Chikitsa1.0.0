@@ -23,7 +23,7 @@
 			<?php if($message != NULL){ ?>
 			<div class='alert alert-<?=$message['type'];?>'><?=$message['text'];?></div>
 		<?php } ?>
-		<a href='<?=site_url('admin/add_user');?>' class='btn btn-primary btn-sm'><?php echo $this->lang->line('add_new_user');?></a>
+		<a href='<?=site_url('admin/add_user');?>' class='btn btn-primary btn-sm'><i class="fa fa-plus"></i>&nbsp;<?php echo $this->lang->line('add_new_user');?></a>
 		<div class="table-responsive">
 			<table class="table table-striped table-bordered table-hover" id="patient_table">
 			<thead>
@@ -48,8 +48,8 @@
 				<td><?php echo $u['username']; ?></td>        
 				<td><?php echo $u['level']; ?></td>
 				<td><?php if($u['is_active']) {echo "Yes";}else {echo "No";} ?></td>
-				<td><a <?php if ($u['level'] == 'System Administrator') echo 'style="display:none;"' ?> class="btn btn-primary btn-sm" title="Visit" href="<?php echo site_url("admin/edit_user/" . $u['userid']); ?>"><?php echo $this->lang->line('edit_user');?></a></td>
-				<td><a <?php if ($u['level'] == 'System Administrator') echo 'style="display:none;"' ?> class="btn btn-danger btn-sm confirmDelete" title="<?php echo $this->lang->line('delete_user')." : " . $u['username'] ?>" href="<?php echo site_url("admin/delete/" . $u['userid']); ?>"><?php echo $this->lang->line('delete_user');?></a></td>
+				<td><a <?php if ($u['level'] == 'System Administrator') echo 'style="display:none;"' ?> class="btn btn-primary btn-sm" title="Visit" href="<?php echo site_url("admin/edit_user/" . $u['userid']); ?>"><i class="fa fa-edit"></i>&nbsp;<?php echo $this->lang->line('edit_user');?></a></td>
+				<td><a <?php if ($u['level'] == 'System Administrator') echo 'style="display:none;"' ?> class="btn btn-danger btn-sm confirmDelete" title="<?php echo $this->lang->line('delete_user')." : " . $u['username'] ?>" href="<?php echo site_url("admin/delete/" . $u['userid']); ?>"><i class="fa fa-trash"></i>&nbsp;<?php echo $this->lang->line('delete_user');?></a></td>
 			</tr>
 			<?php $i++; ?>
 			<?php } ?>
