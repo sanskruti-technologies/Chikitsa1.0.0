@@ -37,6 +37,7 @@
 				<?php }else{ ?>
 				<?php echo form_open('settings/insert_tax_rate') ?>
 				<?php } ?>
+				<div class="col-md-12">
 				<div class="form-group">
 						<label for="tax_rate_name"><?php echo $this->lang->line('tax_rate')." ".$this->lang->line('name');?></label>
 						<input type="text" name="tax_rate_name" id="tax_rate_name" value="<?=$tax_rate_name;?>" class="form-control"/>
@@ -51,5 +52,6 @@
 					<button type="submit" name="submit" class="btn btn-primary" /><?php echo $this->lang->line('save');?></button>
 				</div>
 				<?php echo form_close(); ?>
+				</div>
 		</div>
 		

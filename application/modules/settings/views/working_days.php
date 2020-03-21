@@ -88,11 +88,11 @@
 		<div class="col-md-12">
 			<div class="row">
 				<div class="col-md-3">
-					<a href="<?=site_url('settings/edit_exceptional_days/');?>" class="btn btn-primary square-btn-adjust btn-sm" ><?php echo $this->lang->line('add');?></a> <br/> &nbsp <br/>
+					<a href="<?=site_url('settings/edit_exceptional_days/');?>" class="btn btn-primary square-btn-adjust btn-sm" ><i class="fa fa-plus"></i>&nbsp;<?php echo $this->lang->line('add');?></a> <br/> &nbsp <br/>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-12">
+		<div class="col-md-12" style="margin-left:10px;">
 			<div class="row">
 				<div class="table-responsive">
 					<table class="table table-striped table-hover display responsive nowrap" id="working_table">
@@ -121,8 +121,8 @@
 							<td><?php echo $exceptional_day['working_status'];?></td>
 							<td><?php echo $exceptional_day['working_reason'];?></td>
 							<td>
-								<a class="btn btn-primary square-btn-adjust" title="Edit" href="<?=site_url('settings/edit_exceptional_days/'.$exceptional_day['uid']);?>">Edit</a>
-								<a class="btn btn-danger square-btn-adjust confirmDelete" title="delete" href="<?=site_url('settings/delete_exceptional_days/'.$exceptional_day['uid']);?>">Delete</a>
+								<a class="btn btn-primary square-btn-adjust btn-sm" title="Edit" href="<?=site_url('settings/edit_exceptional_days/'.$exceptional_day['uid']);?>"><i class="fa fa-edit"></i>&nbsp;Edit</a>
+								<a class="btn btn-danger square-btn-adjust confirmDelete btn-sm" title="delete" href="<?=site_url('settings/delete_exceptional_days/'.$exceptional_day['uid']);?>"><i class="fa fa-trash"></i>&nbsp;Delete</a>
 							</td>
 						</tr>
 

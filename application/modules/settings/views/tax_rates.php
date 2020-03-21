@@ -20,9 +20,9 @@
         <div class="container-fluid">
 		<!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800"><?php echo $this->lang->line('tax_rates');?></h1>	
-			<a href="<?= site_url("settings/insert_tax_rate/");?>" class="btn btn-primary square-btn-adjust"><?php echo $this->lang->line("add")." ".$this->lang->line("tax_rate");?></a>
+			<a href="<?= site_url("settings/insert_tax_rate/");?>" class="btn btn-primary square-btn-adjust btn-sm"><i class="fa fa-plus"></i>&nbsp;<?php echo $this->lang->line("add")." ".$this->lang->line("tax_rate");?></a>
 			<div class="table-responsive">
-				<table class="table table-striped table-bordered table-hover" id="tax_rate_table">
+				<table class="table table-striped table-bordered table-hover display responsive nowrap" id="tax_rate_table">
 					<thead>
 						<tr>
 							<th><?php echo $this->lang->line("id");?></th>
@@ -39,8 +39,8 @@
 								<td><?=$tax_rate['tax_rate_name'];?></td>
 								<td><?=$tax_rate['tax_rate'];?></td>
 								<td>
-									<a class="btn btn-primary square-btn-adjust" href="<?=site_url('settings/edit_tax_rate/'.$tax_rate['tax_id']);?>">Edit</a>
-									<a class="btn btn-danger square-btn-adjust confirmDelete" href="<?=site_url('settings/delete_tax_rate/'.$tax_rate['tax_id']);?>">Delete</a>
+									<a class="btn btn-primary square-btn-adjust btn-sm" href="<?=site_url('settings/edit_tax_rate/'.$tax_rate['tax_id']);?>"><i class="fa fa-edit"></i>&nbsp;Edit</a>
+									<a class="btn btn-danger square-btn-adjust confirmDelete btn-sm" href="<?=site_url('settings/delete_tax_rate/'.$tax_rate['tax_id']);?>"><i class="fa fa-trash"></i>&nbsp;Delete</a>
 								</td>
 							</tr>
 							<?php $i++; ?>
@@ -55,8 +55,8 @@
 $( window ).load(function() {
 
 	$('.confirmDelete').click(function(){
-		return confirm(<?=$this->lang->line('areyousure_delete');?>);
-	})
+		return confirm('<?=$this->lang->line('areyousure_delete');?>');
+	});
 
     $("#tax_rate_table").dataTable({
 		"pageLength": 50

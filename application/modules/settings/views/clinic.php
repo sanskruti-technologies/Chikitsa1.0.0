@@ -105,6 +105,7 @@ $(window).on('load', function(){
 		$twitter = set_value('twitter',$center['twitter']);
 		$google_plus = set_value('google_plus',$center['google_plus']);
 		$max_patient = set_value('max_patient',$center['max_patient']);
+		
     }
 ?>
 
@@ -144,9 +145,9 @@ $(window).on('load', function(){
 							<label for="clinic_logo"><?php echo $this->lang->line('center_logo');?></label><br/>
 
 							<?php if($clinic_logo!=""){ ?>
-							<img id="PreviewImage" src="<?php echo base_url().$clinic_logo; ?>" alt="Clinic Logo"   />
+							<img id="PreviewImage" src="<?php echo base_url().$clinic_logo; ?>" alt="Clinic Logo"  width="250"  />
 							<?php }else{ ?>
-							<img id="PreviewImage" src="<?php echo base_url()."uploads/images/blank_logo.png"; ?>" alt="Clinic Logo"   />
+							<img id="PreviewImage" src="<?php echo base_url()."uploads/images/blank_logo.png"; ?>" alt="Clinic Logo"   width="250"  />
 							<?php } ?>
 							<a href="<?= site_url("settings/remove_clinic_logo"); ?>" class="btn btn-sm square-btn-adjust btn-danger" ><?php echo $this->lang->line('remove_logo');?></a>
 							<br>
@@ -211,7 +212,7 @@ $(window).on('load', function(){
 					</div>
 					</div>
 					<div class="row">
-					<div class="col-md-3">
+					<!--<div class="col-md-3">
 						<div class="form-group">
 							<label for="full_day"><?php echo $this->lang->line('full_day');?></label>
 							<div class="checkbox">
@@ -221,7 +222,7 @@ $(window).on('load', function(){
 							</div>
 							<?php echo form_error('full_day','<div class="alert alert-danger">','</div>'); ?>
 						</div>
-					</div>
+					</div>-->
 					<div class="col-md-3">
 						<div class="form-group">
 							<label for="start_time"><?php echo $this->lang->line('start_time');?></label>
@@ -247,6 +248,8 @@ $(window).on('load', function(){
 					</div>
 						</div>
 					<div class="row">
+					
+					<!--
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="next_followup_days"><?php echo $this->lang->line('next_follow_up');?></label>
@@ -261,7 +264,7 @@ $(window).on('load', function(){
 							<input type="input" class="form-control" name="max_patient" id="max_patient" value="<?=$max_patient; ?>"/>
 							<?php echo form_error('max_patient','<div class="alert alert-danger">','</div>'); ?>
 						</div>
-					</div>
+					</div>-->
 					</div>
 
 					<div class="col-md-12">
@@ -271,7 +274,4 @@ $(window).on('load', function(){
 					</div>
 					<?php echo form_close(); ?>
 				</div>
-			</div>
-		</div>
-	</div>
-</div>
+			

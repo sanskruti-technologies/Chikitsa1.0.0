@@ -21,11 +21,11 @@
 			<!-- Page Heading -->
 			<h1 class="h3 mb-2 text-gray-800"><?php echo $this->lang->line('reference_by');?></h1>	
 				<div class="col-md-12">
-					<a href="<?=site_url('settings/add_reference');?>" class="btn btn-primary btn-sm square-btn-adjust"><?php echo $this->lang->line("add_reference_by");?></a>
-				</div>
+					<a href="<?=site_url('settings/add_reference');?>" class="btn btn-primary btn-sm square-btn-adjust"><i class="fa fa-plus"></i>&nbsp;<?php echo $this->lang->line("add_reference_by");?></a>
+				</div></br>
 				<div class="col-md-12">
 					<div class="table-responsive">
-						<table class="table table-striped table-bordered table-hover" id="patient_table">
+						<table class="table table-striped table-bordered table-hover display responsive nowrap" id="patient_table">
 							<thead>
 								<tr>
 									<th><?php echo $this->lang->line("option");?></th>
@@ -41,8 +41,8 @@
 									<td><?=$reference['reference_option'];?></td>
 									<td><?php if($reference['reference_add_option'] ==1) {echo "Yes";}else{echo "No";} ?></td>
 									<td><?=$reference['placeholder'];?></td>
-									<td><a class="btn btn-primary btn-sm square-btn-adjust" href="<?=site_url('settings/edit_reference/'.$reference['reference_id']);?>"><?php echo $this->lang->line("edit");?></a></td>
-									<td><a class="btn btn-danger btn-sm square-btn-adjust confirmDelete" href="<?=site_url('settings/delete_reference/'.$reference['reference_id']);?>"><?php echo $this->lang->line("delete");?></a></td>
+									<td><a class="btn btn-primary btn-sm square-btn-adjust" href="<?=site_url('settings/edit_reference/'.$reference['reference_id']);?>"><i class="fa fa-edit"></i>&nbsp;<?php echo $this->lang->line("edit");?></a></td>
+									<td><a class="btn btn-danger btn-sm square-btn-adjust confirmDelete" href="<?=site_url('settings/delete_reference/'.$reference['reference_id']);?>"><i class="fa fa-trash"></i>&nbsp;<?php echo $this->lang->line("delete");?></a></td>
 								</tr>
 								<?php }?>
 							</tbody>
@@ -50,4 +50,17 @@
 					</div>
 				</div>
 		</div>
+		
+<script type="text/javascript" charset="utf-8">
+$( window ).load(function() {
+
+	$('.confirmDelete').click(function(){
+		return confirm('<?=$this->lang->line('areyousure_delete');?>');
+	});
+
+    $("#patient_table").dataTable({
+		"pageLength": 50
+	});
+});
+</script>		
 			

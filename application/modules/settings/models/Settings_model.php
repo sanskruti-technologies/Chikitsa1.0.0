@@ -209,6 +209,8 @@ class Settings_model extends CI_Model {
         $data['left_pad'] = $this->input->post('left_pad');
         $data['currency_symbol'] = $this->input->post('currency_symbol');
         $data['currency_postfix'] = $this->input->post('currency_postfix');
+		$data['decimal_places'] = $this->input->post('decimal_places');
+
 		$data['sync_status'] = 0;
         $this->db->update('invoice', $data, array('invoice_id' => 1));
     }

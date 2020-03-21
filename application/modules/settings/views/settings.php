@@ -614,11 +614,13 @@
         $left_pad = '';
         $currency_symbol = '';
         $currency_postfix = '';
+        $decimal_places = '';
     }else{
         $static_prefix = $invoice['static_prefix'];
         $left_pad = $invoice['left_pad'];
         $currency_symbol = $invoice['currency_symbol'];
         $currency_postfix = $invoice['currency_postfix'];
+		$decimal_places = $invoice['decimal_places'];
     }
 ?>
 <script type="text/javascript" charset="utf-8">
@@ -670,6 +672,8 @@ $(window).load(function() {
 		</div>
 	</div>
 </div>
+<div class="row">
+<div class="col-md-6">
 <!-- Begin Page Content -->
         <div class="container-fluid">
 <!-- Page Heading -->
@@ -707,7 +711,9 @@ $(window).load(function() {
 					</div>
 					<div class="col-md-6">
 						<div class="form-group" >
-							<input type="button" name="add_language" id="add_language" class="btn btn-primary btn-sm square-btn-adjust" value="<?php echo $this->lang->line('add')." ".$this->lang->line('new')." ".$this->lang->line('language');?>" />
+						    <button type="button" name="add_language" id="add_language" class="btn btn-primary btn-sm square-btn-adjust" value="<?php echo $this->lang->line('add')." ".$this->lang->line('new')." ".$this->lang->line('language');?>"><i class="fa fa-plus"></i>&nbsp; Add New Language
+						    </button>
+							<!--<input type="button" name="add_language" id="add_language" class="btn btn-primary btn-sm square-btn-adjust" value="<?php echo $this->lang->line('add')." ".$this->lang->line('new')." ".$this->lang->line('language');?>" />-->
 						</div>
 					</div>
 				</div>
@@ -821,14 +827,16 @@ $(window).load(function() {
 						<?php echo form_close(); ?>
 				</div>
 		</div>
-		
+		</div>
+		    <div class="col-md-6">
 			<!-- Begin Page Content -->
 			<div class="container-fluid">
 				<!-- Page Heading -->
 					<h1 class="h3 mb-2 text-gray-800"><?php echo $this->lang->line('invoice_details');?></h1>
 					
 					<?php echo form_open('settings/save_invoice') ?>
-					<div class="col-md-12">
+					
+					<div class="col-md-10">
 					
 						<div class="form-group">
 							 <label for="static_prefix"><?php echo $this->lang->line('static_prefix');?></label>
@@ -850,11 +858,20 @@ $(window).load(function() {
 							<input type="input" name="currency_postfix" value="<?=$currency_postfix; ?>" class="form-control"/>
 							<?php echo form_error('currency_postfix','<div class="alert alert-danger">','</div>'); ?>
 						</div>
+						
+						<div class="form-group">
+							<label for="decimal_places"><?php echo $this->lang->line('decimal_places');?></label>
+							<input type="input" class="form-control" name="decimal_places" id="decimal_places" value="<?=$decimal_places; ?>"/>
+							<?php echo form_error('decimal_places','<div class="alert alert-danger">','</div>'); ?>
+						</div>
 						<div class="form-group">
 							<button type="submit" name="submit" class="btn btn-primary btn-sm square-btn-adjust" /><?php echo $this->lang->line('save');?></button>
 						</div>
 					</div>
+					</div>
 				<?php echo form_close(); ?>
+			
+			</div>
 			</div>
 		
 					

@@ -178,6 +178,7 @@ class Settings extends CI_Controller {
 		if (!$this->session->userdata('user_name') || $this->session->userdata('user_name') == '') {
             redirect('login/index');
         } else {
+			
 			$active_modules = $this->module_model->get_active_modules();
 			$clinic_id = $this->session->userdata('clinic_id');
 			$user_id = $this->session->userdata('user_id');
