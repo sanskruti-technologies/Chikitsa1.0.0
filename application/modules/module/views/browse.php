@@ -65,10 +65,13 @@ $(window).load(function() {
 				<?php } ?>
 
 			</div>
-			<div class="col-md-12">
-				<h3><?php echo $this->lang->line('extensions'); ?></h3>
-				<a href="<?=base_url() . "index.php/module/add/";?>" class="btn btn-success square-btn-adjust"><?=$this->lang->line('add_extension');?></a>
+			
+			    <div class="container-fluid">
+				<h1 class="h3 mb-2 text-gray-800"><?php echo $this->lang->line('extensions'); ?></h1>
+				
+				<a href="<?=base_url() . "index.php/module/add/";?>" class="btn btn-success square-btn-adjust btn-sm"><i class="fa fa-plus"></i>&nbsp;<?=$this->lang->line('add_extension');?></a>
 			</div>
+			<div class="col-md-12">
 			<?php foreach($modules as $module) { ?>
 				<div class="col-md-4">
 				 <?php if($module['module_status']==1) { ?>
@@ -122,6 +125,7 @@ $(window).load(function() {
 					 </div>
 				</div>
 			<?php } ?>
+		</div>
 		</div>
 	</div>
 </div>

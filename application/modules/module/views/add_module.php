@@ -23,17 +23,20 @@ $(window).load(function() {
 	});
 } )
 </script>
-<div id="page-inner">
-	<div class="row">
-		<div class="col-md-12">
+
+<!-- Begin Page Content -->
+	<div class="container-fluid">
+	
 			<div class="col-md-12">
-				<h3><?=$this->lang->line('add');?> <?=$this->lang->line('extensions');?></h3>
+		<!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800"><?=$this->lang->line('add');?> <?=$this->lang->line('extensions');?></h1>
 				<a href="<?=base_url() . "index.php/module/upload/";?>" class="btn btn-success square-btn-adjust confirmDeactivate"><?=$this->lang->line('upload_extension');?></a>
 				<a href="<?=base_url() . "index.php/module/index/";?>" class="btn btn-success square-btn-adjust confirmDeactivate"><?=$this->lang->line('back');?></a>
 				<br/><br/>
 				<?php if (isset($error)) { ?><div class="alert alert-danger"><?php echo $error; ?></div> <?php } ?>
 				<br/>
 			</div>
+		<div class="row">
 			<div class="col-md-12">
 				<?php
 					$doc = new DOMDocument();
@@ -69,11 +72,11 @@ $(window).load(function() {
 
 
 						?>
-						<div class="col-md-4 single-module">
-							<span class='image'><img src='<?=$image;?>'/></span>
-							<span class='extension_name'><?=$title;?></span>
-							<span class='extension_description'><?=$description;?></span>
-							<span class='extension_price'>$<?=$usd_price;?></span>
+					<div class="col-md-4 single-module" style="float:left; height:450px;">
+						<span class='image'><img src='<?=$image;?>' height="180px" width="auto"/></span></br>
+						<span class='extension_name' style="color:#333; font-size:large; font-weight:550;"><?=$title;?></span></br>
+						<span class='extension_description'><?=$description;?></span></br>
+						<span class='extension_price'>$<?=$usd_price;?></span></br>
 							<span class='extension_last_updated'><?=$this->lang->line('last')." ".$this->lang->line('update').":";?><?=date($def_dateformate,strtotime($last_updated));?></span>
 							<div class='extension_is_compatible alert <?=$compatible_class;?>'><?=$is_compatible;?></div>
 							<a class="btn btn-primary square-btn-adjust" href='<?=$link;?>'><?=$this->lang->line('stock_purchase');?></a>
@@ -81,9 +84,6 @@ $(window).load(function() {
 						<?php
 					}
 				?>
+		</div>	</div>	
 
-			</div>
-
-		</div>
-	</div>
 </div>
