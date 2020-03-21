@@ -95,76 +95,8 @@
 				}
 			}
 		}
-	  /*
-			//List all top level menus
-			$parent_name="";
-			$result_top_menu = $this->menu_model->find_menu($parent_name,$level);
-			foreach ($result_top_menu as $top_menu):
-				$id = $top_menu['id'];
-				$parent_name = $top_menu['menu_name'];
-				//Does the user have access to this menu?
-				if($this->menu_model->has_access($top_menu['menu_name'],$level)){
-					if($this->menu_model->is_module_active($top_menu['required_module'])){ ?>
-
-					<li class="nav-item">
-						<a class="nav-link" href="<?= site_url( $top_menu['menu_url'] ); ?>" <?php if($this->menu_model->is_active_menu($current_page,$top_menu['menu_name'])) echo "class='active-menu'";?>><i class="fas fa-fw <?php echo $top_menu['menu_icon']; ?>"></i><?php echo $this->lang->line($top_menu['menu_text']);  ?>
-							<?php if($top_menu['menu_name'] == "modules" && $updates_available != "") {echo "<span class='available_updates'>".$updates_available."</span>";} ?>
-						</a>
-
-					<?php
-						//Select all Childs
-						$result_sub_menu = $this->menu_model->find_menu($parent_name,$level);
-						$rowcount= count($result_sub_menu);
-						if($rowcount != 0){?>
-							<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-							  <div class="bg-white py-2 collapse-inner rounded">
-								<h6 class="collapse-header">Custom Components:</h6>
-								<a class="collapse-item" href="buttons.html">Buttons</a>
-								<a class="collapse-item" href="cards.html">Cards</a>
-							  </div>
-							</div>
-							<ul class="navbar-nav">
-								<?php
-								foreach ($result_sub_menu as $sub_menu){
-									//Check access for sub menu
-									if($this->menu_model->has_access($sub_menu['menu_name'],$level)){
-										if($this->menu_model->is_module_active($sub_menu['required_module'])){ ?>
-										<li>
-											<a href="<?php echo site_url($sub_menu['menu_url']); ?>" <?php if($this->menu_model->is_active_menu($current_page,$sub_menu['menu_name'])) echo "class='active-menu'";?>><?php echo  $this->lang->line($sub_menu['menu_text']); ?></a>
-											<?php //Select all Childs
-												$result_sub_menu2 = $this->menu_model->find_menu($sub_menu['menu_name'],$level);
-												$rowcount2= count($result_sub_menu2);
-												if($rowcount2 != 0){?>
-													<ul class="nav nav-third-level">
-													<?php
-													foreach ($result_sub_menu2 as $sub_menu2):
-														if($this->menu_model->has_access($sub_menu2['menu_name'],$level)){
-															if($this->menu_model->is_module_active($sub_menu2['required_module'])){ ?>
-																<li><a href="<?php echo site_url($sub_menu2['menu_url']); ?>" <?php if($this->menu_model->is_active_menu($current_page,$sub_menu2['menu_name'])) echo "class='active-menu'";?>><?php echo $this->lang->line($sub_menu2['menu_text']); ?></a></li>
-													<?php
-															}
-														}
-													endforeach;
 													?>
 													</ul>
-												<?php  } ?>
-										</li>
-										<?php  } ?>
-									<?php  } ?>
-								<?php  } ?>
-							</ul>
-						<?php  } ?>
-				</li>
-					<?php
-					}
-					}
-			endforeach;
-*/
-			?>
-
-
-
-    </ul>
     <!-- End of Sidebar -->
 
 	<!-- Content Wrapper -->

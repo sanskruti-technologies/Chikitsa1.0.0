@@ -205,6 +205,7 @@ class Menu_model extends CI_Model {
     }
   }
 	public function get_updates_available(){
+		
 		$updates_available = 0;
 		//Chikitsa Core Update
 		$current_version = $this->config->item('current_version');
@@ -268,7 +269,7 @@ class Menu_model extends CI_Model {
 		}else{
 			return "";
 		}
-
+		return "";
 	}
 }
 ?>
