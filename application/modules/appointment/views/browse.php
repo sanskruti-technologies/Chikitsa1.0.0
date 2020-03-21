@@ -9,7 +9,8 @@ foreach($doctors as $doctor){
 	$doctor_str.=$string;
 }
 $doctor_str.=$end_string;
-//echo $doctor_str;
+
+
 
 ?>
 	
@@ -20,6 +21,11 @@ $doctor_str.=$end_string;
 			<script src="<?= base_url() ?>assets/vendor/scheduler/jquery-3.4.1.js" ></script>
 			<script src="<?= base_url() ?>assets/vendor/scheduler/js/moment.js" ></script>
 			<script src="<?= base_url() ?>assets/vendor/scheduler/st_scheduler.js" ></script>
+
+			<!-- Page level plugins -->
+			<script src="<?= base_url() ?>assets/vendor/datatables/jquery.dataTables.min.js"></script>
+			<script src="<?= base_url() ?>assets/vendor/datatables/dataTables.responsive.min.js"></script>
+			<script src="<?= base_url() ?>assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 			<!-- Datetime Picker -->
 		<link href="<?= base_url() ?>assets/vendor/datetimepicker/jquery.datetimepicker.min.css" rel="stylesheet">
 		<script src="<?= base_url() ?>assets/vendor/datetimepicker/jquery.datetimepicker.min.js"></script>
@@ -28,30 +34,51 @@ $doctor_str.=$end_string;
 			$( document ).ready(function() {
 				var appointments;
 				
-				var events_array = [{title:'Dhara Shah',resource:"1",event_class:'',fromTime:'09:00',toTime:'09:30',url:'<?php echo base_url(); ?>index.php/appointment/edit_appointment/1'},
-				{title:'Yashvi Shah',resource:"2",event_class:'',fromTime:'10:00',toTime:'10:30',url:'<?php echo base_url(); ?>index.php/appointment/edit_appointment/1'}]
-			
 				setInterval(function(){
 					fetch_appointments();
 				}, 60000);
 					
 					fetch_appointments();
-				
-						
 				function fetch_appointments(){
-					
 					$.get('<?=site_url("appointment/ajax_appointments/".$appointment_date);?>', function(data, status){
-					  console.log(data);
+					  //console.log(data);
 					  appointments = JSON.parse(data);
 					  var s = <?php  echo $doctor_str?>;
+						var is_blocked_date="";
+						//call function to check weeken or not.
+						if(!is_weekend()){
+							is_blocked_date = ["Weekend"];
+						}
+						var reason=is_exceptional_date();
+						if(reason!=false){
+							if(reason!="Working"){
+								is_blocked_date = [is_exceptional_date()];
+							}else{
+								is_blocked_date="";
+							}
+						}
+					
+					  var year = <?php  echo $year?>;
+					  var month = <?php  echo $month?>;
+					  var day = <?php  echo $day?>;
+					  var show_date = year +'-'+ month +'-' + day;
+					
+									
+						
+					  //alert(year +' '+ month +' '+ day);
+					  var doctor = <?php  echo $doctor['doctor_id']?>;
 					  					 
 							//console.log(appointments);
 							$("#scheduler").schedule({startTime:'<?php echo $start_time; ?>',
 									    endTime:'<?php echo $end_time; ?>',
 									    interval:'<?php echo $time_interval; ?>',
-										create_even_url:'<?php echo base_url(); ?>index.php/appointment/add/',
+										showDate: show_date,
+										//create_even_url:'<?php echo base_url(); ?>index.php/appointment/add/'+year+'/'+month+'/'+day + '/' + doctor,
+										create_event_url:'<?php echo base_url(); ?>index.php/appointment/add/[show_date]/[appointment_time]/Appointment/null/[resource]',
 										resources:s,
-										events: appointments});
+										events: appointments,
+										is_blocked_date : is_blocked_date
+										});
 			
 					});
 					
@@ -69,9 +96,104 @@ $doctor_str.=$end_string;
 						window.location='<?php echo base_url(); ?>index.php/appointment/index/'+dp.getFullYear()+'/'+month+'/'+dp.getDate();
 					}
 				});
+						function is_weekend(){
+							var working_days = <?php echo json_encode($working_days); ?>;
+							new_date = new Date($('#select_date').val())
+							day = new_date.getDay();
+							if(day==0){
+								day=7;
+							}
+							var ans=checkValue(day,working_days);
+								console.log(ans);
+								return ans;
+						}
+						function is_exceptional_date(){
+							var date=$('#select_date').val();
+							var new_date= formatDate(date);
+							console.log(new_date);
+							
+							var exceptional_date = <?php echo json_encode($exceptional_days); ?>;
+							//console.log(exceptional_date);
+							var reason=false;
+							var ans=false;
+							var i=0;
+							for(i=0;i<exceptional_date.length;i++){
+								if((exceptional_date[i]['working_date']<=new_date)&&(exceptional_date[i]['end_date']>=new_date)){
+									if ((exceptional_date[i]['working_date']==new_date)){
+										if(exceptional_date[i]['working_status']=='Non Working'){
+											reason= exceptional_date[i]['working_reason'];
+										}else if(exceptional_date[i]['working_status']=='Half Day'){
+											reason= exceptional_date[i]['working_reason'];
+										}else{
+											reason= exceptional_date[i]['working_status'];
+										}
+									}else{
+										reason= exceptional_date[i]['working_reason'];
+									}
+								}
+							}
+							return reason;
+						}
+						
+						/*function is_exceptional_date(){
+							var date=$('#select_date').val();
+							var new_date= formatDate(date);
+							console.log(new_date);
+							
+							var exceptional_date = <?php echo json_encode($exceptional_days); ?>;
+							//console.log(exceptional_date);
+							var ans=false;
+							var i=0;
+							for(i=0;i<exceptional_date.length;i++){
+								/*if(exceptional_date[i]['working_date']==new_date){
+									ans=true;
+									break;
+								}*/
+							/*	var compare_dates = function(date1,date2){
+								if (date1>date2)
+									return ("Date1 > Date2");
+								else if (date1<date2)
+									return ("Date2 > Date1");
+								else
+									return ("Date1 = Date2"); 
+							  }
+								console.log(compare_dates(new Date(new_date), new Date((exceptional_date[i]['working_date']))));	
+
+							}
+							
+								
+							
+
 				
+						return ans;		
+						}
+						*/
+						function checkValue(value,arr){
+							  var status = false;
+							  for(var i=0; i<arr.length; i++){
+								var name = arr[i];
+								if(name == value){
+								  status = true;
+								  break;
+								}
+							  }
 				
+							  return status;
+						}
+
+						function formatDate(date) {
+							var d = new Date(date),
+								month = '' + (d.getMonth() + 1),
+								day = '' + d.getDate(),
+								year = d.getFullYear();
 				
+							if (month.length < 2) 
+								month = '0' + month;
+							if (day.length < 2) 
+								day = '0' + day;
+
+							return [year, month, day].join('-');
+						}
 				
 				
 			$("#add_inquiry_submit").click(function(event) {
@@ -91,11 +213,14 @@ $doctor_str.=$end_string;
 				});	
 			
 			});
+	
+	
+	
 		</script>
+
+
 	
-	
-	
-	
+<div class="col-md-12">
 	<div class="col-md-4">
 			<input type="text" id="select_date" name="select_date" class="btn btn-success" value="<?=date('d F Y, l', strtotime($day . "-" . $month . "-" . $year));?>"/>
 	</div>
@@ -104,22 +229,22 @@ $doctor_str.=$end_string;
 	<?php if ($level == 'Doctor') {?>
 	<!--------------------------- Display Doctor's Screen  ------------------------------->
 			<div class="col-md-4">				
-				<a href="<?=site_url('appointment/add');?>" class="btn square-btn-adjust btn-primary"><?=$this->lang->line('add_appointment');?></a>
-				<a href="#" class="btn square-btn-adjust btn-primary" data-toggle="modal" data-target="#myModal"><?=$this->lang->line('add_inquiry');?></a>
+				<a href="<?=site_url('appointment/add/'.date('Y-m-d',strtotime($appointment_date)));?>" class="btn square-btn-adjust btn-primary btn-sm"><i class="fa fa-plus"></i>&nbsp;<?=$this->lang->line('add_appointment');?></a>
+				<a href="#" class="btn square-btn-adjust btn-primary btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i>&nbsp;<?=$this->lang->line('add_inquiry');?></a>
 			</div>
 
 	<?php }else { ?>
 		<!--------------------------- Display Administration's Screen / Staff Scrren  ------------------------------->
 		<div class="col-md-4">
-			<a href="<?=site_url('appointment/add');?>" class="btn square-btn-adjust btn-primary"><?=$this->lang->line('add_appointment');?></a>
-			<a href="#" class="btn square-btn-adjust btn-primary" data-toggle="modal" data-target="#myModal"><?=$this->lang->line('add_inquiry');?></a>
+			<a href="<?=site_url('appointment/add/'.date('Y-m-d',strtotime($appointment_date)));?>" class="btn square-btn-adjust btn-primary btn-sm"><i class="fa fa-plus"></i>&nbsp;<?=$this->lang->line('add_appointment');?></a>
+			<a href="#" class="btn square-btn-adjust btn-primary btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i>&nbsp;<?=$this->lang->line('add_inquiry');?></a>
 		</div>
 	<?php } ?>
 	<!--  calender -->
-<div class="col-md-4">
+	<div class="col-md-12">
 	<div id="scheduler"></div>
-</div><br/>
-<div class="col-md-12 col-sm-12 col-xs-12">
+	</div><br/>
+	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="col-md-2">
 			<span class="btn square-btn-adjust btn-primary"><?=$this->lang->line('appointment');?></span>
 		</div>
@@ -141,8 +266,8 @@ $doctor_str.=$end_string;
 		<!--div class="col-md-2">
 			<span class="btn square-btn-adjust btn_pending"><?=$this->lang->line('pending');?></span>
 		</div-->
-</div>
-<br/>
+	</div>
+	<br/>
 <div class="col-md-4">
 	<!--------------------------- Display Follow-Up  ------------------------------->
 	<div class="panel panel-primary">
@@ -213,7 +338,7 @@ $doctor_str.=$end_string;
 	</div>
 	<!--------------------------- Display To Do  ------------------------------->
 </div>
-	
+</div>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
 	<div class="modal-dialog">

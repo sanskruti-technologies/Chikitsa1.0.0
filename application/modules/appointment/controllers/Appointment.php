@@ -101,7 +101,7 @@ class Appointment extends CI_Controller {
 			if ($level == 'Doctor') {
 				switch($appointment['status']){
 					case 'Appointments':
-						$class = "btn-primary";
+						$class = "bg-primary";
 						$start_position = "app".$start_position;
 						$end_position = "app".$end_position;
 						$nxt=true;
@@ -110,7 +110,7 @@ class Appointment extends CI_Controller {
 						$cancelapp= base_url() ."index.php/appointment/change_status/". $appointment_id."/Cancel";
 						break;
 					case 'Consultation':
-						$class = "btn-danger";
+						$class = "bg-danger";
 						$start_position = "con".$start_position;
 						$end_position = "con".$end_position;
 						$appointment = $this->appointment_model->get_appointments_id($appointment_id);
@@ -124,7 +124,7 @@ class Appointment extends CI_Controller {
 						$ca=false;
 						break;
 					case 'Complete':
-						$class = "btn btn-success";
+						$class = "btn bg-success";
 						$start_position = "com".$start_position;
 						$end_position = "com".$end_position;
 						$href = site_url("patient/visit/" . $patient_id ."/" . $appointment_id) ;
@@ -132,7 +132,7 @@ class Appointment extends CI_Controller {
 						$ca=false;
 						break;
 					case 'Cancel':
-						$class = "btn btn-info";
+						$class = "btn bg-info";
 						$start_position = "can".$start_position;
 						$end_position = "can".$end_position;
 						$nxt=false;
@@ -146,7 +146,7 @@ class Appointment extends CI_Controller {
 						$ca=false;
 						break;
 					case 'Waiting':
-						$class = "btn-warning";
+						$class = "bg-warning";
 						$start_position = "wai".$start_position;
 						$end_position = "wai".$end_position;
 						$nxt=true;
@@ -169,7 +169,7 @@ class Appointment extends CI_Controller {
 					$end_position = $appointment['doctor_id']."_".$end_position;
 					switch($appointment['status']){
 						case 'Appointments':
-							$class = "btn-primary";
+							$class = "bg-primary";
 
 							break;
 						case 'Consultation':
@@ -200,7 +200,7 @@ class Appointment extends CI_Controller {
 							$class = "btn_pending";
 							break;
 						default:
-							$class = "btn-primary";
+							$class = "bg-primary";
 							break;
 					}
 				}
@@ -302,6 +302,7 @@ class Appointment extends CI_Controller {
 				$data['start_time'] = $this->settings_model->get_clinic_start_time(1);
 				$data['end_time'] = $this->settings_model->get_clinic_end_time(1);
 			}
+			
 			//For Doctor's login
             if ($level == 'Doctor') {
 				//Fetch this doctor's appointments for the date
@@ -323,7 +324,7 @@ class Appointment extends CI_Controller {
         }
     }
 	/** Add Appointment */
-	public function add($year = NULL, $month = NULL, $day = NULL, $hour = NULL, $min = NULL,$status = NULL,$patient_id=NULL,$doctor_id=NULL,$session_date_id=NULL) {
+	public function add($show_date=NULL,$appoinment_time=NULL,$status = NULL,$patient_id=NULL,$doctor_id=NULL,$session_date_id=NULL) {
 		//Check if user has logged in
 		if (!$this->session->userdata('user_name') || $this->session->userdata('user_name') == '') {
             redirect('login/index');
@@ -334,26 +335,28 @@ class Appointment extends CI_Controller {
 
 			$level = $this->session->userdata('category');
 			$data['level'] = $level;
-            if ($year == NULL) { $year = date("Y");}
+            /*if ($year == NULL) { $year = date("Y");}
             if ($month == NULL) { $month = date("m");}
             if ($day == NULL) { $day = date("d");}
 
 			if ($hour == NULL) { $hour = date("H");}
-            if ($min == NULL) { $min = date("i");}
+            if ($min == NULL) { $min = date("i");}*/
 
-			$data['year'] = $year;
+			/*$data['year'] = $year;
 			$data['month'] = $month;
-			$data['day'] = $day;
+			$data['day'] = $day;*/
 
             $today = date('Y-m-d');
 
-			$data['hour'] = $hour;
-			$data['min'] = $min;
-			$time = $hour . ":" . $min;
+			/*$data['hour'] = $hour;
+			$data['min'] = $min;*/
+			//$time = $hour . ":" . $min;
+			$time = $appoinment_time;
 
-            $appointment_dt = date("Y-m-d", strtotime($year."-".$month."-".$day));
+           // $appointment_dt = date("Y-m-d", strtotime($year."-".$month."-".$day));
+            $appointment_dt = date("Y-m-d", strtotime($today));
 
-            $data['appointment_date'] = $appointment_dt;
+            $data['appointment_date'] = $show_date;
 			$data['appointment_time'] = $time;
 			$data['appointment_id']=0;
 			if($status == NULL){
@@ -403,13 +406,14 @@ class Appointment extends CI_Controller {
 				$this->load->view('form', $data);
 				$this->load->view('templates/footer');
 			}else{
-				$appointment_id = $this->appointment_model->add_appointment($status);
+				//$appointment_id = $this->appointment_model->add_appointment($status);
+				$appointment_id = $this->appointment_model->add_appointment($data['app_status']);
 				$patient_id = $this->input->post('patient_id');
 				$doctor_id = $this->input->post('doctor_id');
 
-				$year = date("Y", strtotime($this->input->post('appointment_date')));
+				/*$year = date("Y", strtotime($this->input->post('appointment_date')));
 				$month = date("m", strtotime($this->input->post('appointment_date')));
-				$day = date("d", strtotime($this->input->post('appointment_date')));
+				$day = date("d", strtotime($this->input->post('appointment_date')));*/
 
 				$active_modules = $this->module_model->get_active_modules();
 				if (in_array("sessions", $active_modules)) {
@@ -587,10 +591,14 @@ class Appointment extends CI_Controller {
             }else{
 				$contact_id = $this->contact_model->insert_contact();
 				$today = date('Y-m-d');
+				$show_date="0";
+				$appoinment_time="0";
                 $patient_id = $this->patient_model->insert_patient($contact_id,$today);
 				$appointment_date = date('Y-m-d',strtotime($appointment_date));
 				list($year, $month, $day) = explode('-', $appointment_date);
-				redirect('appointment/add/' . $year . '/' . $month . '/' . $day . '/' . $hour . "/" . $min . '/Appointments/' . $patient_id . "/" . $doc_id );
+			//	redirect('appointment/add/' . $year . '/' . $month . '/' . $day . '/' . $hour . "/" . $min . '/Appointments/' . $patient_id . "/" . $doc_id );
+				redirect('appointment/add/'. $show_date . '/'. $appoinment_time . '/' . $year . '/' . $month . '/' . $day . '/' . $hour . "/" . $min . '/Appointments/' . $patient_id . "/" . $doc_id );
+
             }
         }
     }

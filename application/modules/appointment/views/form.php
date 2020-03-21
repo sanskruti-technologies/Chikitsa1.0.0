@@ -65,138 +65,96 @@
 		$patient_id = 0;
 	}
 ?>
-<!-- Begin Page Content -->
-    <div class="container-fluid">
-		<!-- Page Heading -->
-        <div class="panel-heading expand-collapse-header">
-			<h1 class="h3 mb-2 text-gray-800"><i class="fa fa-arrow-circle-up"></i>
-			<?php if(!isset($appointment) && !isset($curr_patient)){ ?>
-					<?php echo $this->lang->line('add')." ".$this->lang->line('patient');?> <?php echo $this->lang->line('clickto_toggle_display');?></h1>
+
+
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+				<div class="modal-dialog">
+					<div class="modal-content">
+
+						<div class="modal-header">
+							<h4 class="modal-title" id="myModalLabel"><?php echo $this->lang->line('add')." ".$this->lang->line('patient');?></h4>
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 		</div>
-		<div class="panel-body expand-collapse-content collapsed">
+						<div class="modal-body">
 			<?php $s_time = date('H:i',strtotime($start_time));?>
 			<?php $time = explode(":", $s_time); ?>
 			<?php echo form_open('appointment/insert_patient_add_appointment' . "/" . $time[0] . "/" . $time[1] . "/" . $appointment_date . "/" . $status . "/" . $selected_doctor_id."/0/") ?>
 			<div class="col-md-12">
-				<div class="row" style="margin-left:10px;">
-					<div class="col-md-3">
-						<div class="form-group">
-							<label for="first_name"><?php echo $this->lang->line('first')." ".$this->lang->line('name');?></label>
-							<input type="text" name="first_name" value="<?= $first_name ?>" class="form-control"/>
-							<?php echo form_error('first_name','<div class="alert alert-danger">','</div>'); ?>
-						</div>
-					</div>
-					<div class="col-md-3">
-						<div class="form-group">
-							<label for="middle_name"><?php echo $this->lang->line('middle')." ".$this->lang->line('name');?></label>
-							<input type="text" name="middle_name" value="<?= $middle_name ?>"  class="form-control"/>
-							<?php echo form_error('middle_name','<div class="alert alert-danger">','</div>'); ?>
-						</div>
-					</div>
-					<div class="col-md-3">
-						<div class="form-group">
-							<label for="last_name"><?php echo $this->lang->line('last')." ".$this->lang->line('name');?></label>
-							<input type="text" name="last_name" value="<?= $last_name ?>" class="form-control"/>
-							<?php echo form_error('last_name','<div class="alert alert-danger">','</div>'); ?>
-						</div>
-					</div>
+									<label><?php echo $this->lang->line('name');?>:</label>
+			</div>
+			<div class="col-md-12">
+								<div class="row">
+								<div class="col-md-4"><input type="text" id="first_name" name="first_name" class="form-control" placeholder="first name" required/></div>
+								<div class="col-md-4"><input type="text" id="middle_name" name="middle_name" class="form-control" placeholder="middle name"/></div>
+								<div class="col-md-4"><input type="text" id="last_name" name="last_name" class="form-control" placeholder="last name"/></div>
+								</div>
+								</div>
+								<div class="col-md-12"><label><?php echo $this->lang->line('email');?>:</label></div>
+								<div class="col-md-12"><input type="text" id="email" name="email" class="form-control"/></div>
+								
+								<div class="col-md-12"><label><?php echo $this->lang->line('phone_number');?>:</label></div>
+								<div class="col-md-12"><input type="text" id="phone_number" name="phone_number" class="form-control"/></div>
+
+								<div class="col-md-12"><label><?php echo $this->lang->line('address_line_1');?>:</label></div>
+								<div class="col-md-12"><input type="text" id="address_line_1" name="address_line_1" class="form-control"/></div>
+
+								<div class="col-md-12"><label><?php echo $this->lang->line('address_line_2');?>:</label></div>
+								<div class="col-md-12"><input type="text" id="address_line_2" name="address_line_2" class="form-control"/></div>
+								
+								<div class="col-md-12"><label><?php echo $this->lang->line('city');?>:</label></div>
+								<div class="col-md-12"><input type="text" id="city" name="city" class="form-control"/></div>
+			<div class="col-md-12">
+									<div class="row">
+									<div class="col-md-6"><label><?php echo $this->lang->line('gender');?>:</label></div>
+									<div class="col-md-6"><label><?php echo $this->lang->line('dob');?>:</label></div>
 				</div>
 			</div>
 			<div class="col-md-12">
-				<div class="row" style="margin-left:10px;">
-					<div class="col-md-3">
-						<div class="form-group">
-							<label for="phone_number"><?php echo $this->lang->line('phone_number')?></label>
-							<input type="text" name="phone_number" value="<?= $phone_number ?>" class="form-control"/>
-							<?php echo form_error('phone_number','<div class="alert alert-danger">','</div>'); ?>
-						</div>
-					</div>
-					<div class="col-md-3">
-						<div class="form-group">
-							<label for="email"><?php echo $this->lang->line('email')?></label>
-							<input type="text" name="email" value="<?= $email ?>" class="form-control"/>
-							<?php echo form_error('email','<div class="alert alert-danger">','</div>'); ?>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-12">
-				<div class="row" style="margin-left:10px;">
-					<div class="col-md-3">
-						<div class="form-group">
-							<label for="type"><?php echo $this->lang->line('address_line_1');?></label>
-							<input type="input"  class="form-control" name="address_line_1" value="<?= $address_line_1 ?>"/>
-							<?php echo form_error('address_line_1','<div class="alert alert-danger">','</div>'); ?>
-						</div>
-					</div>
-					<div class="col-md-3">
-						<div class="form-group">
-							<label for="type"><?php echo $this->lang->line('address_line_2');?></label>
-							<input type="input" class="form-control" name="address_line_2" value="<?= $address_line_2 ?>"/>
-							<?php echo form_error('address_line_2','<div class="alert alert-danger">','</div>'); ?>
-						</div>
-					</div>
-					<div class="col-md-3">
-						<div class="form-group">
-							<label for="city"><?php echo $this->lang->line('city');?></label>
-							<input type="input" class="form-control" name="city" value="<?= $city ?>"/>
-							<?php echo form_error('city','<div class="alert alert-danger">','</div>'); ?>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-12">
-				<div class="row" style="margin-left:10px;">
-					<div class="col-md-3">
-						<div class="form-group">
-							<label for="gender"><?php echo $this->lang->line('gender');?></label><br/>
-							<input type="radio" name="gender" value="male" /><?php echo $this->lang->line("male");?>
+									<div class="row">
+									<div class="col-md-6"><input type="radio" name="gender" value="male" /><?php echo $this->lang->line("male");?>
 							<input type="radio" name="gender" value="female" /><?php echo $this->lang->line("female");?>
 							<input type="radio" name="gender" value="other" /><?php echo $this->lang->line("other");?>
-							<?php echo form_error('gender','<div class="alert alert-danger">','</div>'); ?>
 						</div>
+									<div class="col-md-6"><input type="text" name="dob" id="dob" value="" class="form-control"/></div>
 					</div>
-					<div class="col-md-3">
-						<div class="form-group">
-							<label for="dob"><?php echo $this->lang->line('dob')?></label>
-							<input type="text" name="dob" id="dob" value="" class="form-control"/>
-							<?php echo form_error('dob','<div class="alert alert-danger">','</div>'); ?>
 						</div>
+								<div class="col-md-12">
+									<div class="row">
+									<div class="col-md-6"><label><?php echo $this->lang->line('reference_by');?>:</label></div>
+									<div class="col-md-6"><label><?php echo $this->lang->line('reference_details');?>:</label></div>
 					</div>
-					<div class="col-md-3">
-						<div class="form-group">
-							<label for="reference_by"><?php echo $this->lang->line('reference_by')?></label>
+								</div>
+								<div class="col-md-12">
+									<div class="row">
+									<div class="col-md-6">
 							<select name="reference_by" class="form-control" id="reference_by">
 								<?php foreach($reference_by as $reference){?>
 									<option reference_placeholder="<?php echo $reference['placeholder']; ?>" reference_add_option="<?php echo $reference['reference_add_option']; ?>" value="<?php echo $reference['reference_option']; ?>"><?php echo $reference['reference_option']; ?></option>
 								<?php }?>
 							</select>
-							<?php echo form_error('reference_by','<div class="alert alert-danger">','</div>'); ?>
-						</div>
 					</div>
-					<div class="col-md-3">
-						<div class="form-group">
-							<label for="reference_details"><?php echo $this->lang->line('reference_details')?></label>
-							<input type="text" name="reference_details" id="reference_details" value="" class="form-control"/>
-						</div>
-					</div>
+									<div class="col-md-6"><input type="text" name="reference_details" id="reference_details" value="" class="form-control"/></div>
 				</div>
 			</div>
-			<div class="col-md-12">
-				<div class="col-md-3">
-					<div class="form-group">
-						<button class="btn btn-primary square-btn-adjust" type="submit" name="submit" /><?php echo $this->lang->line('add')." ".$this->lang->line('patient');?></button>
-					</div>
+								
+							
 				</div>
+														
+						<div class="modal-footer">
+							<button class="btn btn-primary square-btn-adjust btn-sm" type="submit" name="submit" /><i class="fa fa-plus"></i>&nbsp;<?php echo $this->lang->line('add')." ".$this->lang->line('patient');?></button>
+							<button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $this->lang->line('close');?></button>
 			</div>
 			<?php echo form_close(); ?>		
-			<?php } ?>
 		</div>
 	</div>	
+	</div>
+
 	<!-- Begin Page Content -->
     <div class="container-fluid">
 		<!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800"><?=$header;?></h1>
+		<a href="#" class="btn square-btn-adjust btn-primary btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i>&nbsp;<?php echo $this->lang->line('add')." ".$this->lang->line('patient');?></a><br/> &nbsp; <br/>
+
 			<div class="panel-body">
 				<?php if(isset($session_date_id)){ ?>
 				<div class="alert alert-warning"><?=$this->lang->line("planned_appointment");?></div>
@@ -208,7 +166,7 @@
 				<?php if(isset($appointment)){ ?>
 				<?php echo form_open('appointment/edit_appointment/'.$appointment['appointment_id']) ?>
 				<?php }else{ ?>
-				<?php echo form_open('appointment/add/'.$year.'/'.$month.'/'.$day.'/'.$hour.'/'.$min.'/'.$status.'/'.$patient_id) ?>
+				<?php echo form_open('appointment/add/'.$status.'/'.$patient_id) ?>
 				<?php } ?>
 				<input type="hidden" name="appointment_id" value="<?= $appointment_id; ?>"/>
 				<input type="hidden" name="patient_id" id="patient_id" value="<?php if(isset($curr_patient)){echo $curr_patient['patient_id']; } ?>"/>
