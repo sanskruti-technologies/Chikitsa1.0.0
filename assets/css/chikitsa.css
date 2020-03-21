@@ -1,3 +1,17 @@
 body{
   height: auto;
 }
+.st_scheduler_desktop{
+	width:100%;
+}
+.ui-autocomplete{
+	color:#858796;
+	font-size:15px;
+}
+a.bg-primary{
+	color:white
+}
+.table
+{
+	background: #fff !important;
+}
