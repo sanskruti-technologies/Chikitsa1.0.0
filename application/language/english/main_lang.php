@@ -257,6 +257,7 @@
 	$lang['days'] = "Days";
 	$lang['deactivate'] = "Deactivate";
 	$lang['deallocate'] = "Deallocate";
+    $lang['decimal_places'] = "Decimal Places";
 	$lang['degrees'] = "Degrees";
 	$lang['delete'] = "Delete";
 	$lang['delete_item'] = "Delete Item";
