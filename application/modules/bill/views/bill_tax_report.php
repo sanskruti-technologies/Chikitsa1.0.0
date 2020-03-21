@@ -58,12 +58,12 @@
 							</tr>
 							<?php foreach($bill_details as $bill_detail){
 										if(($bill_detail['type'] == "tax")!=NULL) {?>
-							<tr>
+							<!--<tr>
 								<th colspan="6"></th>
 								<th><?php echo $this->lang->line('name');?></th>
 								<th><?php echo $this->lang->line('amount');?></th>
 								<th></th>
-							</tr>
+							</tr>-->
 							<?php 
 							break;} } ?>
 						</thead>
@@ -131,7 +131,7 @@
 						</tbody>
 						<?php } ?>
 
-					<table>
+					</table>
 				</div>
 			</div>
 		</div>

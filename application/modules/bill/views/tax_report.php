@@ -106,13 +106,13 @@
 
 								</tr>
 							</tfoot>
-						<table>
+						</table>
 					</div>
 				</div>
 			</div>
 
 	</div>
-</div>
+
 <!-- JQUERY SCRIPTS -->
 <script src="<?= base_url() ?>assets/js/jquery-1.11.3.js"></script>
 <!-- JQUERY UI SCRIPTS -->

@@ -52,7 +52,7 @@ $(window).on('load', function(){
 			<div class="form-group">
 				<a 	title="<?php echo $this->lang->line("add")." ".$this->lang->line("bill");?>"
 					href="<?php echo base_url()."index.php/bill/insert/" ?>"
-					class="btn btn-primary square-btn-adjust">
+					class="btn btn-primary square-btn-adjust btn-sm">
 					<i class="fa fa-plus"></i>&nbsp;<?php echo $this->lang->line("add")." ".$this->lang->line("bill");?>
 				</a>
 			</div>
@@ -131,7 +131,7 @@ $(window).on('load', function(){
 							<td style="text-align:right;"><?php echo currency_format($bill['total_amount']+$bill[$tax_type.'_tax_amount']); ?><?php if($currency_postfix) echo $currency_postfix; ?></td>
 							<td style="text-align:right;"><?php echo currency_format($bill['total_amount']+$bill[$tax_type.'_tax_amount'] - $bill['due_amount']); ?><?php if($currency_postfix) echo $currency_postfix; ?></td>
 							<td style="text-align:right;"><?php echo currency_format($bill['due_amount']); ?><?php if($currency_postfix) echo $currency_postfix; ?></td>
-							<td><a href="<?= site_url('bill/edit/'.$bill['bill_id']);?>" class="btn btn-sm btn-primary square-btn-adjust"><?php echo $this->lang->line("edit");?></a>
+							<td><a href="<?= site_url('bill/edit/'.$bill['bill_id']);?>" class="btn btn-sm btn-primary square-btn-adjust"><i class="fa fa-edit"></i>&nbsp;<?php echo $this->lang->line("edit");?></a>
 							<a target="_blank" class="btn btn-primary btn-sm" href="<?= site_url('bill/print_receipt') . "/" . $bill['bill_id']; ?>"><?php echo $this->lang->line("print");?></a>
 							<a 	title="<?php echo $this->lang->line("payment");?>"
 								href="<?php echo base_url()."index.php/payment/insert/".$bill['patient_id']."/payment" ?>"

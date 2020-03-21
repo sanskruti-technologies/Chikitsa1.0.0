@@ -36,7 +36,7 @@
 	}
 ?>
 <script type="text/javascript" charset="utf-8">
-$(window).load(function(){
+$(window).on('load', function(){
 	$('.confirmDelete').click(function(){
 		return confirm('<?=$this->lang->line("areyousure_delete");?>');
 	});
@@ -601,7 +601,7 @@ $(window).load(function(){
 								<?php } ?>
 								<div class="col-md-2">
 									<br/>
-									<button class="btn btn-primary square-btn-adjust" type="submit" name="submit" value="particular" /><?php echo $this->lang->line("add");?></button>
+									<button class="btn btn-primary square-btn-adjust btn-sm" type="submit" name="submit" value="particular" /><i class="fa fa-plus"></i>&nbsp;<?php echo $this->lang->line("add");?></button>
 
 								</div>
 							</div>
@@ -631,7 +631,7 @@ $(window).load(function(){
 								</div>
 								<div class="col-md-3">
 									<br/>
-									<button class="btn btn-primary square-btn-adjust" type="submit" name="submit" value="item" /><?php echo $this->lang->line("add");?></button>
+									<button class="btn btn-primary square-btn-adjust btn-sm" type="submit" name="submit" value="item" /><i class="fa fa-plus"></i>&nbsp;<?php echo $this->lang->line("add");?></button>
 
 								</div>
 							</div>
@@ -746,7 +746,7 @@ $(window).load(function(){
 								</div>
 								<div class="col-md-3">
 									<br/>
-									<button class="btn btn-primary square-btn-adjust" type="submit" name="submit" value="discount" /><?php echo $this->lang->line("add");?></button>
+									<button class="btn btn-primary square-btn-adjust btn-sm" type="submit" name="submit" value="discount" /><i class="fa fa-plus"></i>&nbsp;<?php echo $this->lang->line("add");?></button>
 								</div>
 							</div>
 						</div>
@@ -768,7 +768,7 @@ $(window).load(function(){
 								</div>
 								<div class="col-md-3">
 									<br/>
-									<button class="btn btn-primary square-btn-adjust" type="submit" name="submit" value="tax" /><?php echo $this->lang->line("add");?></button>
+									<button class="btn btn-primary square-btn-adjust btn-sm" type="submit" name="submit" value="tax" /><i class="fa fa-plus"></i>&nbsp;<?php echo $this->lang->line("add");?></button>
 								</div>
 							</div>
 						</div>
