@@ -29,7 +29,7 @@ $(window).on('load', function(){
 <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800"><?php echo $this->lang->line("refund");?></h1>					
 			<div class="form-group">
-				<a href="<?=site_url('payment/add_issue_refund');?>" class="btn square-btn-adjust btn-primary"><?php echo $this->lang->line('add_refund');?></a>
+				<a href="<?=site_url('payment/add_issue_refund');?>" class="btn square-btn-adjust btn-primary btn-sm"><i class="fa fa-plus"></i>&nbsp;<?php echo $this->lang->line('add_refund');?></a>
 			</div>
 
 			<div class="table-responsive ">
@@ -53,16 +53,17 @@ $(window).on('load', function(){
 								<td><?php echo currency_format($refund['refund_amount']); ?></td>
 								<td>
 								<!--a href="<?= site_url('payment/edit_refund/'.$refund['refund_id']);?>" class="btn btn-sm btn-primary square-btn-adjust"><?php echo $this->lang->line("edit");?></a-->
-								<a class="btn btn-primary square-btn-adjust" style="color:#fff;" title="Edit" href="<?= site_url('payment/edit_refund/'.$refund['refund_id']);?>">Edit</a>
+								<a class="btn btn-primary square-btn-adjust btn-sm" style="color:#fff;" title="Edit" href="<?= site_url('payment/edit_refund/'.$refund['refund_id']);?>"><i class="fa fa-edit"></i>&nbsp;Edit</a>
 								
 								<!--a href="<?= site_url('payment/delete_refund/'.$refund['refund_id']);?>" class="btn btn-sm btn-danger square-btn-adjust confirmDelete"><?php echo $this->lang->line("delete");?></a-->
-								<a class="btn btn-danger square-btn-adjust confirmDelete" title="delete" href="<?= site_url('payment/delete_refund/'.$refund['refund_id']);?>">Delete</a>
+								<a class="btn btn-danger square-btn-adjust confirmDelete btn-sm" title="delete" href="<?= site_url('payment/delete_refund/'.$refund['refund_id']);?>"><i class="fa fa-trash"></i>&nbsp;Delete</a>
 								
 								</td>
 							</tr>
 						<?php $i++; ?>
 						<?php endforeach ?>
 					</tbody>
+				</table>
 				</div>							
 		</div>	
 	

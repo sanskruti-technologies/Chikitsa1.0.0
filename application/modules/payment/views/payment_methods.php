@@ -20,7 +20,7 @@
 	<div class="container-fluid">
 <!-- Page Heading -->
 	  <h1 class="h3 mb-2 text-gray-800"><?php echo $this->lang->line('payment_methods');?></h1>
-		<a href="<?= site_url("payment/insert_payment_method/");?>" class="btn btn-primary square-btn-adjust"><?php echo $this->lang->line("add")." ".$this->lang->line("payment_method");?></a>
+		<a href="<?= site_url("payment/insert_payment_method/");?>" class="btn btn-primary square-btn-adjust btn-sm"><i class="fa fa-plus"></i>&nbsp;<?php echo $this->lang->line("add")." ".$this->lang->line("payment_method");?></a>
 		<div class="table-responsive">
 			<table class="table table-striped table-bordered table-hover" id="tax_rate_table">
 				<thead>
@@ -37,8 +37,8 @@
 							<td><?=$i;?></td>
 							<td><?=$payment_method['payment_method_name'];?></td>
 							<td>
-								<a class="btn btn-primary square-btn-adjust" href="<?=site_url('payment/edit_payment_method/'.$payment_method['payment_method_id']);?>"><?php echo $this->lang->line('edit');?></a>
-								<a class="btn btn-danger square-btn-adjust confirmDelete" href="<?=site_url('payment/delete_payment_method/'.$payment_method['payment_method_id']);?>"><?php echo $this->lang->line('delete');?></a>
+								<a class="btn btn-primary square-btn-adjust btn-sm" href="<?=site_url('payment/edit_payment_method/'.$payment_method['payment_method_id']);?>"><i class="fa fa-edit"></i>&nbsp;<?php echo $this->lang->line('edit');?></a>
+								<a class="btn btn-danger square-btn-adjust confirmDelete btn-sm" href="<?=site_url('payment/delete_payment_method/'.$payment_method['payment_method_id']);?>"><i class="fa fa-trash"></i>&nbsp;<?php echo $this->lang->line('delete');?></a>
 							</td>
 						</tr>
 						<?php $i++; ?>

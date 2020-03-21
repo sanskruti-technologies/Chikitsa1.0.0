@@ -83,7 +83,7 @@ function get_cases($payment_cases,$payment_id){
 							<td>
 								<a href="<?= site_url('payment/approve/'.$payment['payment_id']);?>" class="btn btn-sm btn-success square-btn-adjust confirmApprove"><?php echo $this->lang->line("approve");?></a>
 								<a href="<?= site_url('payment/reject/'.$payment['payment_id']);?>" class="btn btn-sm btn-danger square-btn-adjust confirmReject"><?php echo $this->lang->line("reject");?></a>
-								<a href="<?= site_url('payment/edit/'.$payment['payment_id']);?>" class="btn btn-sm btn-primary square-btn-adjust"><?php echo $this->lang->line("edit");?></a>
+								<a href="<?= site_url('payment/edit/'.$payment['payment_id']);?>" class="btn btn-sm btn-primary square-btn-adjust"><i class="fa fa-edit"></i>&nbsp;<?php echo $this->lang->line("edit");?></a>
 							</td>
 						</tr>
 						<?php $i++; ?>

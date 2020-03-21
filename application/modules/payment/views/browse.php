@@ -42,7 +42,7 @@ function get_cases($payment_cases,$payment_id){
 		<!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800"><?php echo $this->lang->line("payment");?></h1>
 			<div class="form-group"><a 	title="<?php echo $this->lang->line("add")." ".$this->lang->line("payment");?>"                        href="<?php echo base_url()."index.php/payment/insert/0/payment" ?>"
-                                                class="btn btn-primary square-btn-adjust"><i class="fa fa-plus"></i>
+                                                class="btn btn-primary square-btn-adjust btn-sm"><i class="fa fa-plus"></i>
                                 <?php echo $this->lang->line("add")." ".$this->lang->line("payment");?></a>
 			</div>
 			<div class="table-responsive">
@@ -81,9 +81,9 @@ function get_cases($payment_cases,$payment_id){
 							<?php } ?>
 							<td><?php echo ucfirst($payment['payment_status']); ?></td>
 							<td>
-							<a class="btn btn-primary square-btn-adjust" title="Edit" href="<?= site_url('payment/edit/'.$payment['payment_id'].'/payment');?>">Edit</a>
+							<a class="btn btn-primary square-btn-adjust btn-sm" title="Edit" href="<?= site_url('payment/edit/'.$payment['payment_id'].'/payment');?>"><i class="fa fa-edit"></i>&nbsp;Edit</a>
 						
-							<a class="btn btn-danger square-btn-adjust confirmDelete" title="delete" href="<?= site_url('payment/delete/'.$payment['payment_id'].'/payment');?>">Delete</a>
+							<a class="btn btn-danger square-btn-adjust confirmDelete btn-sm" title="delete" href="<?= site_url('payment/delete/'.$payment['payment_id'].'/payment');?>"><i class="fa fa-trash"></i>&nbsp;Delete</a>
 							</td>
 						</tr>
 						<?php $i++; ?>
